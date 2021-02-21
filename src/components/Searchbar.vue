@@ -59,6 +59,7 @@ export default {
       apiReturnedData: "",
       apiKey: process.env.VUE_APP_API_KEY,
       userSearch: "",
+      userSearchQueryString: "",
     };
   },
   mounted() {},
@@ -91,21 +92,22 @@ export default {
       });
     },
     userSearchConcat() {
-      this.userSearch = this.userSearch.split(" ").join("+");
-      console.log(this.userSearch);
+      this.userSearchQueryString = this.userSearch.split(" ").join("+");
+      console.log(this.userSearchQueryString);
       this.appendUserSearchToQuery();
     },
     appendUserSearchToQuery() {
       axios
         .get(
           "https://www.googleapis.com/books/v1/volumes?q=" +
-            this.userSearch +
+            this.userSearchQueryString +
             "&maxResults=40&key=" +
             this.apiKey
         )
         .then((response) => {
           this.apiReturnedData = response;
-          console.log(this.apiReturnedData);
+          // TODO: Create a function to display all the data based off the code below
+          console.log(this.apiReturnedData.data.items[1].volumeInfo.title);
         });
     },
   },
