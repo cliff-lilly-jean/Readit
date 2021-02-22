@@ -46,6 +46,22 @@
         <p>{{ userSearch }}</p>
       </div>
     </div>
+    <div class="card" v-for="book in books" :key="book.id">
+      <p>{{ book.volumeInfo.title }}</p>
+      <br />
+      <!-- <img :src="" alt="" /> -->
+      <p>{{ book.volumeInfo.authors }}</p>
+      <br />
+      <p>{{ book.volumeInfo.description }}</p>
+      <br />
+      <p>
+        <span>pages: {{ book.volumeInfo.pageCount }}</span> |
+        <span>published: {{ book.volumeInfo.publishedDate }}</span>
+      </p>
+      <br />
+      <br />
+      <br />
+    </div>
   </div>
 </template>
 
@@ -60,6 +76,7 @@ export default {
       apiKey: process.env.VUE_APP_API_KEY,
       userSearch: "",
       userSearchQueryString: "",
+      books: "",
     };
   },
   mounted() {},
@@ -106,8 +123,11 @@ export default {
         )
         .then((response) => {
           this.apiReturnedData = response;
+          this.books = response.data.items;
           // TODO: Create a function to display all the data based off the code below
+          // Title, Thumbnail, Description, Page count, Published date
           console.log(this.apiReturnedData.data.items[1].volumeInfo.title);
+          console.log(this.apiReturnedData.data.items);
         });
     },
   },
