@@ -43,25 +43,15 @@
           v-model="userSearch"
           @keyup.enter="userSearchConcat"
         />
-        <p>{{ userSearch }}</p>
       </div>
     </div>
-    <div class="card" v-for="book in books" :key="book.id">
-      <p>{{ book.volumeInfo.title }}</p>
-      <br />
-      <!-- <img :src="" alt="" /> -->
-      <p>{{ book.volumeInfo.authors }}</p>
-      <br />
-      <p>{{ book.volumeInfo.description }}</p>
-      <br />
-      <p>
-        <span>pages: {{ book.volumeInfo.pageCount }}</span> |
-        <span>published: {{ book.volumeInfo.publishedDate }}</span>
-      </p>
-      <br />
-      <br />
-      <br />
-    </div>
+    <ul class="book-list">
+      <li class="book" v-for="(book, index) in books" :key="index">
+        <span class="book__title">{{ book.volumeInfo.title }}</span>
+        <br />
+        <span class="book__author">{{ book.volumeInfo.authors }}</span>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -77,6 +67,7 @@ export default {
       userSearch: "",
       userSearchQueryString: "",
       books: "",
+      thumbnail: "",
     };
   },
   mounted() {},
@@ -119,15 +110,18 @@ export default {
           "https://www.googleapis.com/books/v1/volumes?q=" +
             this.userSearchQueryString +
             "&maxResults=40&key=" +
-            this.apiKey
+            this.apiKey +
+            "&printType=books&projection=lite"
         )
         .then((response) => {
           this.apiReturnedData = response;
           this.books = response.data.items;
-          // TODO: Create a function to display all the data based off the code below
-          // Title, Thumbnail, Description, Page count, Published date
-          console.log(this.apiReturnedData.data.items[1].volumeInfo.title);
+          this.thumbnail = response.data.items;
           console.log(this.apiReturnedData.data.items);
+          console.log(
+            (this.apiReturnedData =
+              response.data.items[2].volumeInfo.imageLinks.thumbnail)
+          );
         });
     },
   },
@@ -147,7 +141,7 @@ export default {
   justify-content: center;
   max-height: 75px;
   position: relative;
-  top: -23em;
+  /* top: -23em; */
   left: 0;
   right: 0;
   cursor: pointer;
@@ -189,5 +183,23 @@ export default {
 
 .searchbar img {
   color: #fff;
+}
+
+.book-list {
+  background: #fff;
+  padding: 20px;
+  overflow: scroll;
+  height: 300px;
+  border-radius: 20px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  max-width: 375px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.book-list li {
+  list-style-type: none;
+  padding: 5px 0;
 }
 </style>
