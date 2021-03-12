@@ -1,24 +1,15 @@
 <template>
   <div id="app">
-    <header class="header">
-      <div class="container">
-        <div class="header__headings">
-          <h1>Readit</h1>
-          <p>Find your next reading adventure.</p>
-        </div>
-        <!-- TODO: Create a searchbar component -->
-        <Searchbar></Searchbar>
-      </div>
-    </header>
+    <LandingPage></LandingPage>
   </div>
 </template>
 
 <script>
-import Searchbar from "./components/Searchbar";
+import LandingPage from "./components/LandingPage";
 export default {
   name: "App",
   components: {
-    Searchbar,
+    LandingPage,
   },
 };
 </script>
@@ -33,6 +24,11 @@ export default {
   box-sizing: border-box;
 }
 
+img {
+  height: auto;
+  width: 100%;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -42,26 +38,7 @@ export default {
 
 body {
   font-family: "Poppins", sans-serif;
-}
-
-header {
-  height: 100vh;
-  background: #efefef;
-}
-
-header .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
-
-.header__headings {
-  margin-top: 2em;
-}
-
-h1 {
-  font-size: 5em;
+  line-height: 1.5;
+  font-size: 18px;
 }
 </style>
