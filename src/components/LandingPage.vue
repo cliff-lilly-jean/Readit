@@ -10,11 +10,7 @@
         <input type="text" class="search-bar" />
       </div>
       <div class="lp__right">
-        <img
-          src="../assets/images/SVG/people_reading.svg"
-          alt=""
-          class="icon"
-        />
+        <img src="../assets/images/love_reading.svg" alt="" class="icon" />
       </div>
     </div>
   </div>
@@ -35,7 +31,11 @@ export default {
 
 <style scoped>
 #landing-page {
-  min-height: 70vh;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .lp-container {
@@ -45,6 +45,7 @@ export default {
   align-items: center;
   max-width: 1140px;
   padding: 0 20px;
+  height: 100%;
 }
 
 .lp__left {
@@ -53,6 +54,7 @@ export default {
 
 .title {
   font-size: 5rem;
+  color: #f4999d;
 }
 
 .lp__right {
