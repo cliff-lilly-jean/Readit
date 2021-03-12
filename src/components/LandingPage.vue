@@ -2,12 +2,15 @@
   <div id="landing-page">
     <div class="lp-container">
       <div class="lp__left">
-        <h2 class="title">Readit</h2>
+        <h1 class="title">Readit</h1>
         <p>
-          Search for any book in the world and find out details such as; author,
-          publish date and version.
+          Search for books anywhere. You don't need to know the name of the
+          book, if you know the name of the author or the publisher, just type
+          and search.
         </p>
-        <input type="text" class="search-bar" />
+        <button class="search-button">
+          Search now <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
       <div class="lp__right">
         <img src="../assets/images/love_reading.svg" alt="" class="icon" />
@@ -19,6 +22,7 @@
 <script>
 // import { gsap } from "gsap";
 // import axios from "axios";
+import "@fortawesome/fontawesome-free/css/all.css";
 
 export default {
   data() {
@@ -63,6 +67,21 @@ export default {
 
 .icon {
   max-width: 100%;
+}
+
+.search-button {
+  padding: 15px 50px;
+  margin: 20px 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  background: #e8505b;
+  color: #fefefe;
+}
+
+.search-button:hover {
+  background: #af3a42;
 }
 
 /* Media Queries */
