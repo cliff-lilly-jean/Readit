@@ -7,7 +7,8 @@ import Routes from './routes';
 Vue.use(VueRouter);
 const routes = new VueRouter({
  // Add routes here
- routes: Routes
+ routes: Routes,
+ mode: "history"
 });
 
 Vue.config.productionTip = false;
