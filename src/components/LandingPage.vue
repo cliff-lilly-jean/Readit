@@ -8,7 +8,7 @@
           book, if you know the name of the author or the publisher, just type
           and search.
         </p>
-        <button class="search-button">
+        <button @click="routeToSearchPage" class="search-button">
           Search now <i class="fas fa-arrow-right"></i>
         </button>
       </div>
@@ -20,15 +20,15 @@
 </template>
 
 <script>
-// import { gsap } from "gsap";
-// import axios from "axios";
-import "@fortawesome/fontawesome-free/css/all.css";
-
 export default {
   data() {
     return {};
   },
-  mounted() {},
+  mounted() {
+    // routeToSearchPage() {
+    //  // Add route to the next page
+    // }
+  },
   methods: {},
 };
 </script>

@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <LandingPage></LandingPage>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import LandingPage from "./components/LandingPage";
+// Font Awesome Import
+import "@fortawesome/fontawesome-free/css/all.css";
+// Component Imports
+// import LandingPage from "./components/LandingPage";
 export default {
   name: "App",
-  components: {
-    LandingPage,
-  },
+  // components: {
+  //   LandingPage,
+  // },
 };
 </script>
 
