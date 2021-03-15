@@ -24,12 +24,12 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    // routeToSearchPage() {
-    //  // Add route to the next page
-    // }
+  mounted() {},
+  methods: {
+    routeToSearchPage() {
+      this.$router.push("/search");
+    },
   },
-  methods: {},
 };
 </script>
 
