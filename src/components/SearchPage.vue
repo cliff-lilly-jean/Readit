@@ -5,8 +5,14 @@
       <p>Search for any book you'd like to get information on.</p>
       <div class="input-group__container">
         <div class="input-group">
-          <input type="text" class="search-box" />
-          <button>
+          <input
+            v-model="usersSearchQueryFromInput"
+            type="text"
+            class="search-box"
+            v-on:keyup.enter="userSearchQuery"
+          />
+
+          <button @click="userSearchQuery">
             <img src="../assets/images/red_search_button.svg" alt="" />
           </button>
         </div>
@@ -17,8 +23,34 @@
 
 <script>
 // import { gsap } from "gsap";
-// import axios from "axios";
-export default {};
+import axios from "axios";
+export default {
+  data() {
+    return {
+      booksAPIKey: process.env.VUE_APP_API_KEY,
+      books: "",
+      searchQuery: "",
+      usersSearchQueryFromInput: "",
+    };
+  },
+  methods: {
+    userSearchQuery() {
+      axios
+        .get(
+          "https://www.googleapis.com/books/v1/volumes?q=" +
+            this.usersSearchQueryFromInput +
+            "&key=" +
+            this.booksAPIKey
+        )
+        .then((response) => {
+          this.books = response;
+          console.log(this.books);
+        });
+      this.usersSearchQueryFromInput = "";
+    },
+  },
+  mounted() {},
+};
 </script>
 
 <style scoped>
