@@ -17,6 +17,17 @@
           </button>
         </div>
       </div>
+      <!-- Create a card div -->
+      <div class="card" v-for="(book, index) in books" :key="index.items">
+        <!-- TODO: Loop thtough the array and get the data -->
+        <img src="" alt="" class="card__img" />
+        <div class="card__body">
+          <h3 class="card__title">{{ book.kind }}</h3>
+          <p class="card__description"></p>
+          <p class="card__author"></p>
+          <p class="card__category"></p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -29,8 +40,12 @@ export default {
     return {
       booksAPIKey: process.env.VUE_APP_API_KEY,
       books: "",
-      searchQuery: "",
       usersSearchQueryFromInput: "",
+      authors: "",
+      titles: "",
+      thumbnails: "",
+      descriptions: "",
+      categories: "",
     };
   },
   methods: {
@@ -43,13 +58,38 @@ export default {
             this.booksAPIKey
         )
         .then((response) => {
-          this.books = response;
+          // Get the data and add it to books
+          this.books = response.data;
           console.log(this.books);
+          for (let i = 0; i < this.books.items.length; i++) {
+            console.log(this.books.items[i]);
+            // Get the author from the books object
+            this.authors = this.books.items[i].volumeInfo.authors;
+            console.log(this.authors);
+            // Get the title from the books object
+            this.titles = this.books.items[i].volumeInfo.title;
+            console.log(this.titles);
+            // Get the thumbnail from the books object
+            this.thumbnails = this.books.items[
+              i
+            ].volumeInfo.imageLinks.thumbnail;
+            console.log(this.thumbnails);
+            // Get the description from tne books object
+            this.descriptions = this.books.items[i].volumeInfo.description;
+            console.log(this.descriptions);
+            // Get the categories from the books object
+            this.categories = this.books.items[i].volumeInfo.categories;
+            console.log(this.categories);
+          }
         });
       this.usersSearchQueryFromInput = "";
     },
   },
-  mounted() {},
+  computed: {},
+  mounted() {
+    console.log("User search Mounted");
+    this.userSearchQuery();
+  },
 };
 </script>
 
@@ -98,6 +138,21 @@ export default {
   bottom: 0;
   cursor: pointer;
 }
+
+.input-group button:focus {
+  outline: none;
+}
+
+.input-group button:active {
+  outline: none;
+  padding: 5px;
+}
+
+.input-group button img:active {
+  background: #efefef;
+  border: 1px solid #d3d3d3;
+}
+
 .input-group button img {
   height: 20px;
   width: 20px;
