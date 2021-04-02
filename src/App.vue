@@ -44,4 +44,8 @@ body {
   line-height: 1.5;
   font-size: 18px;
 }
+
+section {
+  padding: 50px 20px;
+}
 </style>

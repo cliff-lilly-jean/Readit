@@ -3,7 +3,7 @@
     <header id="header">
       <div class="lp-container">
         <div class="lp__left">
-          <h1 class="title">Readit</h1>
+          <h1 class="title">ReadIt</h1>
           <p>
             Create a digital library of books you've read or plan on reading.
             Leave ratings for the books you love and reccomend them to your
@@ -23,11 +23,12 @@
       </div>
     </header>
     <main id="body">
+      <!-- Start Info -->
       <section id="info">
-        <p class="section-title">Why books are important</p>
+        <p class="section-title">Why Books Are Important</p>
         <div class="info__card">
           <img
-            src="../assets/images/_img/book_lover.svg"
+            src="../assets/images/_img/big_book.svg"
             alt=""
             class="info__image"
           />
@@ -55,7 +56,7 @@
         </div>
         <div class="info__card">
           <img
-            src="../assets/images/_img/Reading_man.svg"
+            src="../assets/images/_img/man_reading.svg"
             alt=""
             class="info__image"
           />
@@ -68,6 +69,15 @@
           </p>
         </div>
       </section>
+      <!-- End Info -->
+      <!-- Start Library -->
+      <section id="library">
+        <p class="section-title section-title--alt">
+          All Your Books in One Place
+          <!-- <img src="../assets/images/_img/personal_library.svg" alt="" /> -->
+        </p>
+      </section>
+      <!-- End Library -->
     </main>
   </div>
 </template>
@@ -118,6 +128,16 @@ export default {
   color: #f4999d;
 }
 
+.section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #e8505b;
+}
+
+.section-title--alt {
+  color: #010101;
+}
+
 .lp__right {
   width: 50%;
 }
@@ -144,12 +164,7 @@ export default {
 /* Info Rules */
 
 #info {
-  padding: 50px 20px;
-}
-
-.section-title {
-  font-size: 1.8rem;
-  text-align: center;
+  background: #fcfcfc;
 }
 
 /* Info Cards */
@@ -176,6 +191,18 @@ export default {
 
 .info__copy {
   max-width: 600px;
+}
+
+/* Library Rules */
+
+#library {
+  background: #f4999d;
+}
+
+#library img {
+  max-width: 420px;
+  margin: 50px auto 0;
+  display: block;
 }
 
 /* Media Queries */
