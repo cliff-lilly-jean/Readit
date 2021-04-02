@@ -1,21 +1,52 @@
 <template>
-  <div id="landing-page">
-    <div class="lp-container">
-      <div class="lp__left">
-        <h1 class="title">Readit</h1>
-        <p>
-          Search for books anywhere. You don't need to know the name of the
-          book, if you know the name of the author or the publisher, just type
-          and search.
-        </p>
-        <button @click="routeToSearchPage" class="search-button">
-          Search now <i class="fas fa-arrow-right"></i>
-        </button>
+  <div id="home">
+    <header id="header">
+      <div class="lp-container">
+        <div class="lp__left">
+          <h1 class="title">Readit</h1>
+          <p>
+            Create a digital library of books you've read or plan on reading.
+            Leave ratings for the books you love and reccomend them to your
+            friends.
+          </p>
+          <button @click="routeToSearchPage" class="search-button">
+            Create your library <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+        <div class="lp__right">
+          <img src="../assets/images/love_reading.svg" alt="" class="icon" />
+        </div>
       </div>
-      <div class="lp__right">
-        <img src="../assets/images/love_reading.svg" alt="" class="icon" />
-      </div>
-    </div>
+    </header>
+    <main id="body">
+      <section id="info">
+        <p class="section-title">Why books are important</p>
+        <div class="info__card">
+          <img
+            src="../assets/images/book_lover.svg"
+            alt=""
+            class="info__image"
+          />
+          <p class="info__copy"></p>
+        </div>
+        <div class="info__card">
+          <img
+            src="../assets/images/sitting_reading.svg"
+            alt=""
+            class="info__image"
+          />
+          <p class="info__copy"></p>
+        </div>
+        <div class="info__card">
+          <img
+            src="../assets/images/Reading_man.svg"
+            alt=""
+            class="info__image"
+          />
+          <p class="info__copy"></p>
+        </div>
+      </section>
+    </main>
   </div>
 </template>
 
@@ -34,7 +65,7 @@ export default {
 </script>
 
 <style scoped>
-#landing-page {
+#header {
   min-height: 100vh;
   height: 100%;
   display: flex;
@@ -54,6 +85,10 @@ export default {
 
 .lp__left {
   width: 50%;
+}
+
+.lp__left p {
+  max-width: 90%;
 }
 
 .title {
@@ -82,6 +117,16 @@ export default {
 
 .search-button:hover {
   background: #af3a42;
+}
+
+/* Main Rules */
+.section-title {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.info__image {
+  max-width: 400px;
 }
 
 /* Media Queries */

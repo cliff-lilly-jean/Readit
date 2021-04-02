@@ -11,41 +11,29 @@
             class="search-box"
             v-on:keyup.enter="userSearchQuery"
           />
-
           <button @click="userSearchQuery">
             <img src="../assets/images/red_search_button.svg" alt="" />
           </button>
         </div>
       </div>
       <!-- Create a card div -->
-      <div class="card" v-for="(book, index) in books" :key="index.items">
-        <!-- TODO: Loop thtough the array and get the data -->
-        <img src="" alt="" class="card__img" />
-        <div class="card__body">
-          <h3 class="card__title">{{ book.kind }}</h3>
-          <p class="card__description"></p>
-          <p class="card__author"></p>
-          <p class="card__category"></p>
-        </div>
-      </div>
     </div>
+    <Card :books="books"></Card>
   </div>
 </template>
 
 <script>
 // import { gsap } from "gsap";
+import Card from "./Card";
 import axios from "axios";
 export default {
+  components: { Card },
+  props: [],
   data() {
     return {
-      booksAPIKey: process.env.VUE_APP_API_KEY,
-      books: "",
       usersSearchQueryFromInput: "",
-      authors: "",
-      titles: "",
-      thumbnails: "",
-      descriptions: "",
-      categories: "",
+      booksAPIKey: process.env.VUE_APP_API_KEY,
+      books: {},
     };
   },
   methods: {
@@ -59,37 +47,14 @@ export default {
         )
         .then((response) => {
           // Get the data and add it to books
-          this.books = response.data;
+          this.books = response.data.items;
           console.log(this.books);
-          for (let i = 0; i < this.books.items.length; i++) {
-            console.log(this.books.items[i]);
-            // Get the author from the books object
-            this.authors = this.books.items[i].volumeInfo.authors;
-            console.log(this.authors);
-            // Get the title from the books object
-            this.titles = this.books.items[i].volumeInfo.title;
-            console.log(this.titles);
-            // Get the thumbnail from the books object
-            this.thumbnails = this.books.items[
-              i
-            ].volumeInfo.imageLinks.thumbnail;
-            console.log(this.thumbnails);
-            // Get the description from tne books object
-            this.descriptions = this.books.items[i].volumeInfo.description;
-            console.log(this.descriptions);
-            // Get the categories from the books object
-            this.categories = this.books.items[i].volumeInfo.categories;
-            console.log(this.categories);
-          }
         });
       this.usersSearchQueryFromInput = "";
     },
   },
   computed: {},
-  mounted() {
-    console.log("User search Mounted");
-    this.userSearchQuery();
-  },
+  mounted() {},
 };
 </script>
 
