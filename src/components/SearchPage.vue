@@ -12,7 +12,7 @@
             v-on:keyup.enter="userSearchQuery"
           />
           <button @click="userSearchQuery">
-            <img src="../assets/images/red_search_button.svg" alt="" />
+            <img src="../assets/images/_img/red_search_button.svg" alt="" />
           </button>
         </div>
       </div>
