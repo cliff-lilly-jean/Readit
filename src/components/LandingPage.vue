@@ -227,5 +227,24 @@ export default {
     width: 100%;
     text-align: center;
   }
+
+  .info__card {
+    flex-wrap: wrap;
+    margin: 100px auto;
+    /* text-align: center; */
+  }
+
+  .info__card .info__image {
+    order: 1;
+    display: block;
+    text-align: center;
+    margin: 10px auto;
+  }
+
+  .info__card .info__copy {
+    order: 2;
+    text-align: center;
+    margin: 10px auto;
+  }
 }
 </style>
