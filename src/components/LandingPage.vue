@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <header id="header">
-      <div class="lp-container">
+      <section class="lp-container">
         <div class="lp__left">
           <h1 class="title">ReadIt</h1>
           <p>
@@ -20,7 +20,7 @@
             class="icon"
           />
         </div>
-      </div>
+      </section>
     </header>
     <main id="body">
       <!-- Start Info -->
@@ -134,9 +134,9 @@ export default {
   color: #e8505b;
 }
 
-.section-title--alt {
-  color: #010101;
-}
+/* .section-title--alt {
+  color: #fcfcfc;
+} */
 
 .lp__right {
   width: 50%;
@@ -196,7 +196,7 @@ export default {
 /* Library Rules */
 
 #library {
-  background: #f4999d;
+  background: #253237;
 }
 
 #library img {
