@@ -78,12 +78,43 @@
         </p>
       </section>
       <!-- End Library -->
+      <!-- Start Features -->
+      <section id="features">
+        <div class="feature">
+          <img
+            src="../assets/images/_img/organize_your_library.svg"
+            alt=""
+            class="feature__img"
+          />
+          <p class="feature__description">
+            Organize your own personal library with your favorite books.
+          </p>
+        </div>
+        <div class="feature">
+          <img
+            src="../assets/images/_img/share_your_recommendations.svg"
+            alt=""
+            class="feature__img"
+          />
+          <p class="feature__description">
+            Reccomend and share your favorite books with friends.
+          </p>
+        </div>
+      </section>
+      <!-- End Features -->
+      <!-- Start Footer -->
+      <Footer></Footer>
+      <!-- End Footer -->
     </main>
   </div>
 </template>
 
 <script>
+import Footer from "./Footer";
 export default {
+  components: {
+    Footer,
+  },
   data() {
     return {};
   },
@@ -134,9 +165,9 @@ export default {
   color: #e8505b;
 }
 
-/* .section-title--alt {
-  color: #fcfcfc;
-} */
+.section-title--alt {
+  color: #2f2e41;
+}
 
 .lp__right {
   width: 50%;
@@ -163,9 +194,9 @@ export default {
 
 /* Info Rules */
 
-#info {
-  background: #fcfcfc;
-}
+/* #info {
+  background: #f5f5f5;
+} */
 
 /* Info Cards */
 
@@ -196,13 +227,32 @@ export default {
 /* Library Rules */
 
 #library {
-  background: #253237;
+  background: #ffdbdd;
 }
 
 #library img {
   max-width: 420px;
   margin: 50px auto 0;
   display: block;
+}
+
+/* Feature Rules */
+
+#features {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.feature__img {
+  max-width: 400px;
+}
+
+.feature__description {
+  margin: 50px auto 0;
+  text-align: center;
 }
 
 /* Media Queries */

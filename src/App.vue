@@ -7,13 +7,8 @@
 <script>
 // Font Awesome Import
 import "@fortawesome/fontawesome-free/css/all.css";
-// Component Imports
-// import LandingPage from "./components/LandingPage";
 export default {
   name: "App",
-  // components: {
-  //   LandingPage,
-  // },
 };
 </script>
 
