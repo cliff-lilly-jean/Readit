@@ -1,12 +1,24 @@
 <template>
   <footer id="footer">
     <div class="footer__content">
-      <p class="footer__title">ReadIt</p>
+      <p class="footer__title"><a href="#">ReadIt</a></p>
       <p class="footer__copyright">
         &copy; Copyright 2021 Cliff Jean. All rights reserved.
       </p>
-      <!-- TODO: Decide what links to add -->
-      <div class="footer__links"></div>
+      <div class="footer__links">
+        <a
+          href="https://www.linkedin.com/in/cliff-lilly-jean/"
+          class="footer__link"
+          target="_blank"
+          ><img src="../assets/images/_img/linkedin_icon.svg" alt=""
+        /></a>
+        <a
+          href="https://github.com/cliff-lilly-jean"
+          class="footer__link"
+          target="_blank"
+          ><img src="../assets/images/_img/github_icon.svg" alt=""
+        /></a>
+      </div>
     </div>
   </footer>
 </template>
@@ -17,7 +29,7 @@ export default {};
 
 <style scoped>
 #footer {
-  background: #2f2e41;
+  background: #253237;
   padding: 20px;
 }
 
@@ -31,8 +43,24 @@ export default {};
 }
 
 .footer__title {
-  color: #f4999d;
   font-size: 2rem;
   font-weight: bold;
+}
+
+.footer__title a {
+  color: #f4999d;
+  text-decoration: none;
+}
+
+.footer__links {
+  display: flex;
+  max-width: 75px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__link img {
+  max-width: 30px;
 }
 </style>

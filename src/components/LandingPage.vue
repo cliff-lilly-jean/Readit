@@ -1,5 +1,8 @@
 <template>
   <div id="home">
+    <!-- Start Navbar -->
+    <Navbar></Navbar>
+    <!-- End Navbar -->
     <header id="header">
       <section class="lp-container">
         <div class="lp__left">
@@ -74,8 +77,8 @@
       <section id="library">
         <p class="section-title section-title--alt">
           All Your Books in One Place
-          <!-- <img src="../assets/images/_img/personal_library.svg" alt="" /> -->
         </p>
+        <img src="../assets/images/_img/personal_library.svg" alt="" />
       </section>
       <!-- End Library -->
       <!-- Start Features -->
@@ -111,9 +114,11 @@
 
 <script>
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 export default {
   components: {
     Footer,
+    Navbar,
   },
   data() {
     return {};
@@ -128,6 +133,10 @@ export default {
 </script>
 
 <style scoped>
+#home {
+  position: relative;
+}
+
 #header {
   min-height: 100vh;
   height: 100%;
@@ -166,7 +175,7 @@ export default {
 }
 
 .section-title--alt {
-  color: #2f2e41;
+  color: #253237;
 }
 
 .lp__right {
@@ -193,10 +202,6 @@ export default {
 }
 
 /* Info Rules */
-
-/* #info {
-  background: #f5f5f5;
-} */
 
 /* Info Cards */
 
