@@ -43,4 +43,19 @@ body {
 section {
   padding: 50px 20px;
 }
+
+.button {
+  padding: 15px 50px;
+  margin: 20px 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  background: #e8505b;
+  color: #fefefe;
+}
+
+.button:hover {
+  background: #af3a42;
+}
 </style>

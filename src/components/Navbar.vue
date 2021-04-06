@@ -8,7 +8,9 @@
         <ul class="navigation__links">
           <li class="navigation__link"><a href="#">Home</a></li>
         </ul>
-        <button class="navigation__button">Sign up</button>
+        <!-- TODO: Link to the sign up/log in page -->
+        <!-- TODO: Switch the button copy to sign out once the user is logged in -->
+        <button class="navigation__button button">Sign up</button>
       </div>
     </div>
   </nav>
@@ -47,5 +49,26 @@ export default {};
 .navigation__right {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  max-width: 200px;
+  width: 100%;
+}
+
+.navigation__link {
+  list-style-type: none;
+}
+
+.navigation__link a {
+  text-decoration: none;
+  color: #010203;
+}
+
+.navigation__link a:hover {
+  border-bottom: 2px solid #e8505b;
+}
+
+.navigation__button {
+  padding: 15px;
+  margin: 0;
 }
 </style>

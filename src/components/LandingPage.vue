@@ -12,7 +12,7 @@
             Leave ratings for the books you love and reccomend them to your
             friends.
           </p>
-          <button @click="routeToSearchPage" class="search-button">
+          <button @click="routeToSearchPage" class="button">
             Create your library <i class="fas fa-arrow-right"></i>
           </button>
         </div>
@@ -83,25 +83,28 @@
       <!-- End Library -->
       <!-- Start Features -->
       <section id="features">
-        <div class="feature">
-          <img
-            src="../assets/images/_img/organize_your_library.svg"
-            alt=""
-            class="feature__img"
-          />
-          <p class="feature__description">
-            Organize your own personal library with your favorite books.
-          </p>
-        </div>
-        <div class="feature">
-          <img
-            src="../assets/images/_img/share_your_recommendations.svg"
-            alt=""
-            class="feature__img"
-          />
-          <p class="feature__description">
-            Reccomend and share your favorite books with friends.
-          </p>
+        <h2 class="section-title">What You Can Do</h2>
+        <div class="features__container">
+          <div class="feature">
+            <img
+              src="../assets/images/_img/organize_your_library.svg"
+              alt=""
+              class="feature__img"
+            />
+            <p class="feature__description">
+              Organize your own personal library with your favorite books.
+            </p>
+          </div>
+          <div class="feature">
+            <img
+              src="../assets/images/_img/share_your_recommendations.svg"
+              alt=""
+              class="feature__img"
+            />
+            <p class="feature__description">
+              Reccomend and share your favorite books with friends.
+            </p>
+          </div>
         </div>
       </section>
       <!-- End Features -->
@@ -186,21 +189,6 @@ export default {
   max-width: 100%;
 }
 
-.search-button {
-  padding: 15px 50px;
-  margin: 20px 0;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  background: #e8505b;
-  color: #fefefe;
-}
-
-.search-button:hover {
-  background: #af3a42;
-}
-
 /* Info Rules */
 
 /* Info Cards */
@@ -244,11 +232,20 @@ export default {
 /* Feature Rules */
 
 #features {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+#features h2 {
+  margin: 0 auto 50px;
+  text-align: center;
+  font-weight: normal;
+}
+
+.features__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1140px;
-  margin: 0 auto;
 }
 
 .feature__img {
