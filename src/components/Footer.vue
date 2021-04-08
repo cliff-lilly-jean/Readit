@@ -1,7 +1,7 @@
 <template>
   <footer id="footer">
     <div class="footer__content">
-      <p class="footer__title"><a href="#">ReadIt</a></p>
+      <p class="footer__title"><a href="/">ReadIt</a></p>
       <p class="footer__copyright">
         &copy; Copyright 2021 Cliff Jean. All rights reserved.
       </p>

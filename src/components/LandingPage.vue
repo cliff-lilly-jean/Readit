@@ -6,7 +6,7 @@
     <header id="header">
       <section class="lp-container">
         <div class="lp__left">
-          <h1 class="title">ReadIt</h1>
+          <!-- <h1 class="title">ReadIt</h1> -->
           <p>
             Create a digital library of books you've read or plan on reading.
             Leave ratings for the books you love and reccomend them to your
@@ -220,7 +220,7 @@ export default {
 /* Library Rules */
 
 #library {
-  background: #ffdbdd;
+  background: #fff0f0;
 }
 
 #library img {

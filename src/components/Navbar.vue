@@ -2,14 +2,18 @@
   <nav id="navigation">
     <div class="navigation__content">
       <div class="navigation__left">
-        <p class="navigation__logo"><a href="#">ReadIt</a></p>
+        <p class="navigation__logo"><a href="/">ReadIt</a></p>
       </div>
       <div class="navigation__right">
         <ul class="navigation__links">
-          <li class="navigation__link"><a href="#">Home</a></li>
+          <!-- <li class="navigation__link"><a href="#">Home</a></li> -->
+          <!-- TODO: Add an profile page after log in -->
+          <!-- TODO: Add a library page after log in -->
+          <!-- TODO: Add a favorites page after log in -->
         </ul>
         <!-- TODO: Link to the sign up/log in page -->
         <!-- TODO: Switch the button copy to sign out once the user is logged in -->
+        <p class="login"><a href="/login">Login</a></p>
         <button class="navigation__button button">Sign up</button>
       </div>
     </div>
@@ -58,12 +62,14 @@ export default {};
   list-style-type: none;
 }
 
-.navigation__link a {
+.navigation__link a,
+p.login > a {
   text-decoration: none;
   color: #010203;
 }
 
-.navigation__link a:hover {
+.navigation__link a:hover,
+p.login > a:hover {
   border-bottom: 2px solid #e8505b;
 }
 
