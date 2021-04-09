@@ -53,6 +53,7 @@ section {
   font-size: 1.1rem;
   background: #e8505b;
   color: #fefefe;
+  transition: all 0.5s;
 }
 
 .button:hover {

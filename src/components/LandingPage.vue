@@ -37,10 +37,8 @@
           />
           <p class="info__copy">
             <!-- TODO: Add relavent copy -->
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos quo
-            voluptatem repudiandae nam! Eaque, assumenda itaque non sapiente,
-            voluptates nisi accusamus et provident magnam, ad nostrum ratione
-            molestias dicta praesentium!
+            Books are an item that can be passed along to future generations,
+            allowing them to gain from the knowledge stored inside.
           </p>
         </div>
         <div class="info__card">
@@ -51,10 +49,9 @@
           />
           <p class="info__copy">
             <!-- TODO: Add relavent copy -->
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos quo
-            voluptatem repudiandae nam! Eaque, assumenda itaque non sapiente,
-            voluptates nisi accusamus et provident magnam, ad nostrum ratione
-            molestias dicta praesentium!
+            Books allow you the opportunity to escape reality for a momment,
+            placing you inside a world foreign and comepletely differnent from
+            the one you're in.
           </p>
         </div>
         <div class="info__card">
@@ -65,10 +62,9 @@
           />
           <p class="info__copy">
             <!-- TODO: Add relavent copy -->
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos quo
-            voluptatem repudiandae nam! Eaque, assumenda itaque non sapiente,
-            voluptates nisi accusamus et provident magnam, ad nostrum ratione
-            molestias dicta praesentium!
+            Books provide a wealth of knowledge that would otherwise be hidden.
+            The potential for self improvement is greatly increased with the aid
+            of books.
           </p>
         </div>
       </section>

@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: Make the navbar responsinve -->
   <nav id="navigation">
     <div class="navigation__content">
       <div class="navigation__left">
@@ -31,6 +32,7 @@ export default {};
   max-width: 100vw;
   width: 100%;
   padding: 20px;
+  z-index: 10;
 }
 
 .navigation__content {
