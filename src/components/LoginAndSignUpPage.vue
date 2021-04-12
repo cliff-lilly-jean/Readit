@@ -304,12 +304,12 @@ form.sign-up-form {
   z-index: 7;
 }
 
-.left-panel {
-  padding: 3rem 17% 2rem 12%;
+.panel-left {
+  padding: 8rem 17% 2rem 12%;
 }
 
-.right-panel {
-  padding: 3rem 12% 2rem 17%;
+.panel-right {
+  padding: 8rem 12% 2rem 17%;
 }
 
 .panel .content {
@@ -338,8 +338,8 @@ form.sign-up-form {
   font-size: 0.8rem;
 }
 
-.right-panel .content,
-.right-panel .image {
+.panel-right .content,
+.panel-right .image {
   transform: translateX(800px);
 }
 
@@ -350,25 +350,25 @@ form.sign-up-form {
   right: 52%;
 }
 
-.container.sing-up-mode .left-panel .image,
-.container.sing-up-mode .left-panel .content {
+.container.sign-up-mode .panel-left .image,
+.container.sign-up-mode .panel-left .content {
   transform: translate(-800px);
 }
 
-.container.sing-up-mode .right-panel .image,
-.container.sing-up-mode .right-panel .content {
+.container.sign-up-mode .panel-right .image,
+.container.sign-up-mode .panel-right .content {
   transform: translateX(0%);
 }
 
-.container.sing-up-mode .left-panel {
+.container.sign-up-mode .panel-left {
   pointer-events: none;
 }
 
-.container.sing-up-mode .right-panel {
+.container.sign-up-mode .panel-right {
   pointer-events: all;
 }
 
-.container.sing-up-mode .signin-signup {
+.container.sign-up-mode .signin-signup {
   left: 25%;
 }
 
