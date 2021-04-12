@@ -36,12 +36,16 @@
           </form>
         </div>
         <!-- Sign Up -->
-        <div class="signin-signup">
-          <form action="#" class="sign-in-form">
-            <h2 class="title">Sign in</h2>
+        <div class="signup-signup">
+          <form action="#" class="sign-up-form">
+            <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" placeholder="Username" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Email" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
@@ -49,7 +53,7 @@
             </div>
             <input type="submit" class="btn solid" value="Login" />
             <p class="social-text">
-              Or sign in with one of your social accounts
+              Or sign up with one of your social accounts
             </p>
             <div class="social-media">
               <a href="#" class="social-icon">
@@ -68,7 +72,33 @@
           </form>
         </div>
       </div>
-      <div class="panels-container"></div>
+      <div class="panels-container">
+        <div class="panel panel-left">
+          <div class="content">
+            <h3>New Here?</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
+              libero perferendis consequuntur omnis temporibus necessitatibus
+              est dignissimos cupiditate aperiam nesciunt!
+            </p>
+            <button class="btn transparent" id="sign-up-button">Sign Up</button>
+          </div>
+          <img src="../assets/images/_img/sign_up.svg" alt="" class="image" />
+        </div>
+        <!-- Right Panel -->
+        <div class="panel panel-right">
+          <div class="content">
+            <h3>One of us</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
+              libero perferendis consequuntur omnis temporibus necessitatibus
+              est dignissimos cupiditate aperiam nesciunt!
+            </p>
+            <button class="btn transparent" id="sign-in-button">Sign In</button>
+          </div>
+          <img src="../assets/images/_img/sign_in.svg" alt="" class="image" />
+        </div>
+      </div>
     </div>
     <Footer></Footer>
   </div>
@@ -98,6 +128,18 @@ export default {
   overflow: hidden;
 }
 
+.container:before {
+  content: "";
+  position: absolute;
+  height: 2000px;
+  width: 2000px;
+  top: -10%;
+  right: 48%;
+  background-image: linear-gradient(45deg, #f37179 0%, #ce343f 100%);
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
+
 .forms-container {
   position: absolute;
   width: 100%;
@@ -113,6 +155,9 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  padding: 0.5rem;
 }
 
 .title {
@@ -206,5 +251,27 @@ form {
 .social-icon:hover {
   color: #e8505b;
   border-color: #af3a42;
+}
+
+/* Sign Up */
+
+.signin-signup {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 75%;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+/* Other */
+
+form.sign-in-form {
+  z-index: 2;
+}
+
+form.sign-up-form {
+  z-index: 1;
+  opacity: 0;
 }
 </style>

@@ -1,9 +1,13 @@
 /<template>
   <div id="search-page">
-    <h1 class="title">Readit</h1>
+    <!-- Start Navbar -->
+    <Navbar></Navbar>
+    <!-- End Navbar -->
     <div class="container">
-      <p>Search for any book you'd like to get information on.</p>
       <div class="input-group__container">
+        <p class="input-group__title">
+          Search for any book you'd like to get information on.
+        </p>
         <div class="input-group">
           <input
             v-model="usersSearchQueryFromInput"
@@ -17,8 +21,12 @@
         </div>
       </div>
       <!-- Create a card div -->
+      <Card :books="books"></Card>
     </div>
-    <Card :books="books"></Card>
+
+    <!-- Start Footer -->
+    <Footer></Footer>
+    <!-- End Footer -->
   </div>
 </template>
 
@@ -26,8 +34,10 @@
 // import { gsap } from "gsap";
 import Card from "./Card";
 import axios from "axios";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 export default {
-  components: { Card },
+  components: { Card, Footer, Navbar },
   props: [],
   data() {
     return {
@@ -59,30 +69,28 @@ export default {
 </script>
 
 <style scoped>
-#search-page {
-  padding: 0 20px;
-}
-
 .container {
   margin: 0 auto;
   max-width: 1200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 70vh;
+  min-height: 100vh;
   position: relative;
-}
-
-.title {
-  font-size: 3rem;
-  color: #f4999d;
+  padding: 0 20px;
 }
 
 .input-group__container {
   position: relative;
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 750px;
+  min-height: 50vh;
   width: 100%;
+  top: 12em;
+}
+
+.input-group__title {
+  text-align: left;
 }
 
 .input-group {
@@ -98,7 +106,7 @@ export default {
   border: none;
   position: relative;
   top: 25px;
-  left: -30px;
+  left: -85px;
   right: 0;
   bottom: 0;
   cursor: pointer;
@@ -129,7 +137,7 @@ export default {
   border-right: none;
   border-left: none;
   padding: 20px 10px 5px;
-  max-width: 800px;
+  max-width: 600px;
   width: 100%;
   margin: 50px auto 0;
   outline: none;
