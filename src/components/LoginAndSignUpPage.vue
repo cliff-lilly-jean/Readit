@@ -1,7 +1,7 @@
 <template>
   <div id="sign-up">
     <Navbar></Navbar>
-    <div class="container">
+    <div :class="{ 'sign-up-mode': signUpModeActive }" class="container">
       <div class="forms-container">
         <!-- Sign In -->
         <div class="signin-signup">
@@ -36,7 +36,7 @@
           </form>
         </div>
         <!-- Sign Up -->
-        <div class="signup-signup">
+        <div class="signin-signup">
           <form action="#" class="sign-up-form">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
@@ -81,7 +81,13 @@
               libero perferendis consequuntur omnis temporibus necessitatibus
               est dignissimos cupiditate aperiam nesciunt!
             </p>
-            <button class="btn transparent" id="sign-up-button">Sign Up</button>
+            <button
+              @click="signUpModeIsTrue"
+              class="btn transparent"
+              id="sign-up-button"
+            >
+              Sign Up
+            </button>
           </div>
           <img src="../assets/images/_img/sign_up.svg" alt="" class="image" />
         </div>
@@ -94,7 +100,13 @@
               libero perferendis consequuntur omnis temporibus necessitatibus
               est dignissimos cupiditate aperiam nesciunt!
             </p>
-            <button class="btn transparent" id="sign-in-button">Sign In</button>
+            <button
+              @click="signUpModeIsFalse"
+              class="btn transparent"
+              id="sign-in-button"
+            >
+              Sign In
+            </button>
           </div>
           <img src="../assets/images/_img/sign_in.svg" alt="" class="image" />
         </div>
@@ -111,6 +123,20 @@ export default {
   components: {
     Navbar,
     Footer,
+  },
+  data() {
+    return {
+      signUpModeActive: false,
+    };
+  },
+  methods: {
+    signUpModeIsTrue() {
+      this.signUpModeActive = true;
+    },
+
+    signUpModeIsFalse() {
+      this.signUpModeActive = false;
+    },
   },
 };
 </script>
@@ -265,6 +291,7 @@ form {
   display: grid;
   grid-template-columns: 1fr;
   z-index: 5;
+  /* transition: 1.1s 0.4s ease-in-out; */
 }
 
 /* Other */
