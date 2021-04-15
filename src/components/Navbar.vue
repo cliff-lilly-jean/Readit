@@ -1,32 +1,46 @@
 <template>
   <!-- TODO: Make the navbar responsinve -->
-  <nav id="navigation">
-    <div class="navigation__content">
-      <div class="navigation__left">
-        <p class="navigation__logo"><a href="/">ReadIt</a></p>
+  <nav id="navbar">
+    <div class="navbar__content">
+      <div class="navbar__left">
+        <p class="navbar__logo"><a href="/">ReadIt</a></p>
       </div>
-      <div class="navigation__right">
-        <ul class="navigation__links">
-          <!-- <li class="navigation__link"><a href="#">Home</a></li> -->
+      <div class="navbar__right">
+        <ul class="navbar__links">
+          <!-- <li class="navbar__link"><a href="#">Home</a></li> -->
           <!-- TODO: Add an profile page after log in -->
           <!-- TODO: Add a library page after log in -->
           <!-- TODO: Add a favorites page after log in -->
         </ul>
         <!-- TODO: Link to the sign up/log in page -->
         <!-- TODO: Switch the button copy to sign out once the user is logged in -->
-        <p class="login"><a href="/login">Login</a></p>
-        <button class="navigation__button button">Sign up</button>
+        <p class="navbar__login"><a href="/login">Login</a></p>
+        <a href="#"
+          ><button @click="signUpButtonClicked" class="navbar__button button">
+            Sign up
+          </button></a
+        >
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Navbar",
+  props: {
+    signUpButtonOnNavbar: String,
+  },
+  methods: {
+    signUpButtonClicked() {
+      this.$emit("clicked");
+    },
+  },
+};
 </script>
 
 <style scoped>
-#navigation {
+#navbar {
   position: absolute;
   background: transparent;
   max-width: 100vw;
@@ -35,24 +49,24 @@ export default {};
   z-index: 10;
 }
 
-.navigation__content {
+.navbar__content {
   display: flex;
   justify-content: space-between;
   max-width: 90%;
   margin: 0 auto;
 }
 
-.navigation__logo {
+.navbar__logo {
   font-size: 2rem;
   font-weight: bold;
 }
 
-.navigation__logo a {
+.navbar__logo a {
   color: #f4999d;
   text-decoration: none;
 }
 
-.navigation__right {
+.navbar__right {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,23 +74,29 @@ export default {};
   width: 100%;
 }
 
-.navigation__link {
+.navbar__link {
   list-style-type: none;
 }
 
-.navigation__link a,
-p.login > a {
+.navbar__link a,
+p.navbar__login > a {
   text-decoration: none;
   color: #010203;
 }
 
-.navigation__link a:hover,
-p.login > a:hover {
+.navbar__link a:hover,
+p.navbar__login > a:hover {
   border-bottom: 2px solid #e8505b;
 }
 
-.navigation__button {
+.navbar__button {
   padding: 15px;
   margin: 0;
+}
+
+.navbar__button a {
+  text-decoration: none;
+  color: #fefefe;
+  outline: none;
 }
 </style>

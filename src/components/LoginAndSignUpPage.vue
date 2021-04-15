@@ -1,9 +1,10 @@
 <template>
   <div id="sign-up">
-    <Navbar></Navbar>
+    <Navbar @clicked="signUpButtonIsPressed()"></Navbar>
     <div :class="{ 'sign-up-mode': isSignUpMode }" class="container">
       <div class="forms-container">
         <div class="signin-signup">
+          <!-- TODO: Add a form action -->
           <form action="#" class="sign-in-form">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
@@ -15,7 +16,10 @@
               <input type="password" placeholder="Password" />
             </div>
             <input type="submit" value="Login" class="btn solid" />
-            <p class="social-text">Or Sign in with social platforms</p>
+            <p class="social-text">
+              Or Sign in with one fo your social platforms
+            </p>
+            <!-- TODO: Link the social icons to their respective platform -->
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
@@ -31,6 +35,7 @@
               </a>
             </div>
           </form>
+          <!-- TODO: Add a form action -->
           <form action="#" class="sign-up-form">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
@@ -46,7 +51,10 @@
               <input type="password" placeholder="Password" />
             </div>
             <input type="submit" class="btn" value="Sign up" />
-            <p class="social-text">Or Sign up with social platforms</p>
+            <p class="social-text">
+              Or Sign up with one of your social platforms
+            </p>
+            <!-- TODO: Link the social icons to their respective platform -->
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
@@ -68,7 +76,7 @@
       <div class="panels-container">
         <div class="panel left-panel">
           <div class="content">
-            <h3>New here ?</h3>
+            <h3>New here?</h3>
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
@@ -85,7 +93,7 @@
         </div>
         <div class="panel right-panel">
           <div class="content">
-            <h3>One of us ?</h3>
+            <h3>One of us?</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
               laboriosam ad deleniti.
