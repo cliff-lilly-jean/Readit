@@ -1,9 +1,8 @@
 <template>
   <div id="sign-up">
     <Navbar></Navbar>
-    <div :class="{ 'sign-up-mode': signUpModeActive }" class="container">
+    <div :class="{ 'sign-up-mode': isSignUpMode }" class="container">
       <div class="forms-container">
-        <!-- Sign In -->
         <div class="signin-signup">
           <form action="#" class="sign-in-form">
             <h2 class="title">Sign in</h2>
@@ -15,10 +14,8 @@
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" />
             </div>
-            <input type="submit" class="btn solid" value="Login" />
-            <p class="social-text">
-              Or sign in with one of your social accounts
-            </p>
+            <input type="submit" value="Login" class="btn solid" />
+            <p class="social-text">Or Sign in with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
@@ -34,9 +31,6 @@
               </a>
             </div>
           </form>
-        </div>
-        <!-- Sign Up -->
-        <div class="signin-signup">
           <form action="#" class="sign-up-form">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
@@ -51,10 +45,8 @@
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" />
             </div>
-            <input type="submit" class="btn solid" value="Login" />
-            <p class="social-text">
-              Or sign up with one of your social accounts
-            </p>
+            <input type="submit" class="btn" value="Sign up" />
+            <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
@@ -72,43 +64,41 @@
           </form>
         </div>
       </div>
+      <!-- Left and Rignt Panels -->
       <div class="panels-container">
-        <div class="panel panel-left">
+        <div class="panel left-panel">
           <div class="content">
-            <h3>New Here?</h3>
+            <h3>New here ?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              libero perferendis consequuntur omnis temporibus necessitatibus
-              est dignissimos cupiditate aperiam nesciunt!
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+              ex ratione. Aliquid!
             </p>
             <button
-              @click="signUpModeIsTrue"
+              @click="signUpButtonIsPressed"
               class="btn transparent"
-              id="sign-up-button"
+              id="sign-up-btn"
             >
-              Sign Up
+              Sign up
             </button>
           </div>
-          <img src="../assets/images/_img/sign_up.svg" alt="" class="image" />
+          <img src="../assets/images/_img/sign_up.svg" class="image" alt="" />
         </div>
-        <!-- Right Panel -->
-        <div class="panel panel-right">
+        <div class="panel right-panel">
           <div class="content">
-            <h3>One of us</h3>
+            <h3>One of us ?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              libero perferendis consequuntur omnis temporibus necessitatibus
-              est dignissimos cupiditate aperiam nesciunt!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+              laboriosam ad deleniti.
             </p>
             <button
-              @click="signUpModeIsFalse"
+              @click="signInButtonIsPressed"
               class="btn transparent"
-              id="sign-in-button"
+              id="sign-in-btn"
             >
-              Sign In
+              Sign in
             </button>
           </div>
-          <img src="../assets/images/_img/sign_in.svg" alt="" class="image" />
+          <img src="../assets/images/_img/sign_in.svg" class="image" alt="" />
         </div>
       </div>
     </div>
@@ -126,16 +116,16 @@ export default {
   },
   data() {
     return {
-      signUpModeActive: false,
+      isSignUpMode: false,
     };
   },
   methods: {
-    signUpModeIsTrue() {
-      this.signUpModeActive = true;
+    signUpButtonIsPressed() {
+      this.isSignUpMode = true;
     },
 
-    signUpModeIsFalse() {
-      this.signUpModeActive = false;
+    signInButtonIsPressed() {
+      this.isSignUpMode = false;
     },
   },
 };
@@ -149,23 +139,9 @@ export default {
 .container {
   position: relative;
   width: 100%;
-  background-color: #fefefe;
+  background-color: #fff;
   min-height: 100vh;
   overflow: hidden;
-  z-index: 6;
-}
-
-.container:before {
-  content: "";
-  position: absolute;
-  height: 2000px;
-  width: 2000px;
-  top: -10%;
-  right: 48%;
-  background-image: linear-gradient(45deg, #f37179 0%, #ce343f 100%);
-  transform: translateY(-50%);
-  border-radius: 50%;
-  transition: 1.8s ease-in-out;
 }
 
 .forms-container {
@@ -176,30 +152,51 @@ export default {
   left: 0;
 }
 
-/* Form Rules */
+.signin-signup {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 75%;
+  width: 50%;
+  transition: 1s 0.7s ease-in-out;
+  display: grid;
+  grid-template-columns: 1fr;
+  z-index: 5;
+}
 
 form {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0rem 5rem;
+  transition: all 0.2s 0.7s;
+  overflow: hidden;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
-  padding: 0.5rem;
+}
+
+form.sign-up-form {
+  opacity: 0;
+  z-index: 1;
+}
+
+form.sign-in-form {
+  z-index: 2;
 }
 
 .title {
   font-size: 2.2rem;
-  margin-bottom: 10px;
   color: #444;
+  margin-bottom: 10px;
 }
 
 .input-field {
   max-width: 380px;
   width: 100%;
-  height: 55px;
   background-color: #f0f0f0;
   margin: 10px 0;
+  height: 55px;
   border-radius: 55px;
   display: grid;
   grid-template-columns: 15% 85%;
@@ -210,8 +207,9 @@ form {
 .input-field i {
   text-align: center;
   line-height: 55px;
-  color: 55px;
-  font-size: 1.5rem;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1.1rem;
 }
 
 .input-field input {
@@ -224,36 +222,14 @@ form {
   color: #333;
 }
 
-.input-field input:placeholder-shown {
+.input-field input::placeholder {
   color: #aaa;
   font-weight: 500;
 }
 
-/* Button Rules */
-
-.btn {
-  width: 150px;
-  height: 49px;
-  outline: none;
-  border: none;
-  border-radius: 48px;
-  background-color: #e8505b;
-  color: #fefefe;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 10px 0;
-  transition: all 0.5s;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: #af3a42;
-}
-
-/* Social Media Rules */
-
 .social-text {
   padding: 0.7rem 0;
+  font-size: 1rem;
 }
 
 .social-media {
@@ -264,84 +240,94 @@ form {
 .social-icon {
   height: 46px;
   width: 46px;
-  border: 1px solid #333;
-  margin: 0 0.45rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-decoration: none;
+  margin: 0 0.45rem;
   color: #333;
-  font-size: 1.3rem;
   border-radius: 50%;
-  transition: all 0.5s;
+  border: 1px solid #333;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: 0.3s;
 }
 
 .social-icon:hover {
   color: #e8505b;
-  border-color: #af3a42;
+  border-color: #af2932;
 }
 
-/* Sign Up */
-
-.signin-signup {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  left: 75%;
-  display: grid;
-  grid-template-columns: 1fr;
-  z-index: 5;
-  /* transition: 1.1s 0.4s ease-in-out; */
+.btn {
+  width: 150px;
+  background-color: #e8505b;
+  border: none;
+  outline: none;
+  height: 49px;
+  border-radius: 49px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
-/* Other */
-
-form.sign-in-form {
-  z-index: 2;
+.btn:hover {
+  background-color: #b9343d;
 }
-
-form.sign-up-form {
-  z-index: 1;
-  opacity: 0;
-}
-
-/* Panels */
-
-.image {
-  width: 100%;
-  transition: 1.1s 0.4s ease-in-out;
-}
-
 .panels-container {
   position: absolute;
-  width: 100%;
   height: 100%;
+  width: 100%;
   top: 0;
   left: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
 
+.container:before {
+  content: "";
+  position: absolute;
+  height: 2000px;
+  width: 2000px;
+  top: -10%;
+  right: 48%;
+  transform: translateY(-50%);
+  background-image: linear-gradient(-45deg, #e8505b 0%, #b6111c 100%);
+  transition: 1.8s ease-in-out;
+  border-radius: 50%;
+  z-index: 6;
+}
+
+.image {
+  width: 100%;
+  transition: transform 1.1s ease-in-out;
+  transition-delay: 0.4s;
+}
+
 .panel {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: space-around;
   text-align: center;
-  z-index: 7;
+  z-index: 6;
 }
 
-.panel-left {
+.left-panel {
+  pointer-events: all;
   padding: 8rem 17% 2rem 12%;
 }
 
-.panel-right {
+.right-panel {
+  pointer-events: none;
   padding: 8rem 12% 2rem 17%;
 }
 
 .panel .content {
-  color: #fefefe;
-  transition: 0.9s 0.6s ease-in-out;
+  color: #fff;
+  transition: transform 0.9s ease-in-out;
+  transition-delay: 0.6s;
 }
 
 .panel h3 {
@@ -358,54 +344,183 @@ form.sign-up-form {
 .btn.transparent {
   margin: 0;
   background: none;
-  border: 2px solid #fefefe;
+  border: 2px solid #fff;
   width: 130px;
   height: 41px;
   font-weight: 600;
   font-size: 0.8rem;
 }
 
-.panel-right .content,
-.panel-right .image {
+.right-panel .image,
+.right-panel .content {
   transform: translateX(800px);
 }
 
-/* Animations */
+/* ANIMATION */
 
 .container.sign-up-mode:before {
   transform: translate(100%, -50%);
   right: 52%;
 }
 
-.container.sign-up-mode .panel-left .image,
-.container.sign-up-mode .panel-left .content {
-  transform: translate(-800px);
-}
-
-.container.sign-up-mode .panel-right .image,
-.container.sign-up-mode .panel-right .content {
-  transform: translateX(0%);
-}
-
-.container.sign-up-mode .panel-left {
-  pointer-events: none;
-}
-
-.container.sign-up-mode .panel-right {
-  pointer-events: all;
+.container.sign-up-mode .left-panel .image,
+.container.sign-up-mode .left-panel .content {
+  transform: translateX(-800px);
 }
 
 .container.sign-up-mode .signin-signup {
   left: 25%;
 }
 
-.container.sign-up-mode form.sign-in-form {
-  z-index: 1;
-  opacity: 0;
+.container.sign-up-mode form.sign-up-form {
+  opacity: 1;
+  z-index: 2;
 }
 
-.container.sign-up-mode form.sign-up-form {
-  z-index: 2;
-  opacity: 1;
+.container.sign-up-mode form.sign-in-form {
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.sign-up-mode .right-panel .image,
+.container.sign-up-mode .right-panel .content {
+  transform: translateX(0%);
+}
+
+.container.sign-up-mode .left-panel {
+  pointer-events: none;
+}
+
+.container.sign-up-mode .right-panel {
+  pointer-events: all;
+}
+
+@media (max-width: 870px) {
+  .container {
+    min-height: 800px;
+    height: 100vh;
+  }
+  .signin-signup {
+    width: 100%;
+    top: 95%;
+    transform: translate(-50%, -100%);
+    transition: 1s 0.8s ease-in-out;
+  }
+
+  .signin-signup,
+  .container.sign-up-mode .signin-signup {
+    left: 50%;
+  }
+
+  .panels-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+  }
+
+  .panel {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2.5rem 8%;
+    grid-column: 1 / 2;
+  }
+
+  .right-panel {
+    grid-row: 3 / 4;
+  }
+
+  .left-panel {
+    grid-row: 1 / 2;
+  }
+
+  .image {
+    width: 200px;
+    transition: transform 0.9s ease-in-out;
+    transition-delay: 0.6s;
+  }
+
+  .panel .content {
+    padding-right: 15%;
+    transition: transform 0.9s ease-in-out;
+    transition-delay: 0.8s;
+  }
+
+  .panel h3 {
+    font-size: 1.2rem;
+  }
+
+  .panel p {
+    font-size: 0.7rem;
+    padding: 0.5rem 0;
+  }
+
+  .btn.transparent {
+    width: 110px;
+    height: 35px;
+    font-size: 0.7rem;
+  }
+
+  .container:before {
+    width: 1500px;
+    height: 1500px;
+    transform: translateX(-50%);
+    left: 30%;
+    bottom: 68%;
+    right: initial;
+    top: initial;
+    transition: 2s ease-in-out;
+  }
+
+  .container.sign-up-mode:before {
+    transform: translate(-50%, 100%);
+    bottom: 32%;
+    right: initial;
+  }
+
+  .container.sign-up-mode .left-panel .image,
+  .container.sign-up-mode .left-panel .content {
+    transform: translateY(-300px);
+  }
+
+  .container.sign-up-mode .right-panel .image,
+  .container.sign-up-mode .right-panel .content {
+    transform: translateY(0px);
+  }
+
+  .right-panel .image,
+  .right-panel .content {
+    transform: translateY(300px);
+  }
+
+  .container.sign-up-mode .signin-signup {
+    top: 5%;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width: 570px) {
+  form {
+    padding: 0 1.5rem;
+  }
+
+  .image {
+    display: none;
+  }
+  .panel .content {
+    padding: 0.5rem 1rem;
+  }
+  .container {
+    padding: 1.5rem;
+  }
+
+  .container:before {
+    bottom: 72%;
+    left: 50%;
+  }
+
+  .container.sign-up-mode:before {
+    bottom: 28%;
+    left: 50%;
+  }
 }
 </style>
