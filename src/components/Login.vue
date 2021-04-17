@@ -1,6 +1,6 @@
 <template>
   <div id="sign-up">
-    <Navbar @clicked="signUpButtonIsPressed()"></Navbar>
+    <Navbar :mode="isSignUpMode"></Navbar>
     <div :class="{ 'sign-up-mode': isSignUpMode }" class="container">
       <div class="forms-container">
         <div class="signin-signup">
@@ -117,6 +117,7 @@
 <script>
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+
 export default {
   components: {
     Navbar,

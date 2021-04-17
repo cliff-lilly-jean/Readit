@@ -14,12 +14,12 @@
         </ul>
         <!-- TODO: Link to the sign up/log in page -->
         <!-- TODO: Switch the button copy to sign out once the user is logged in -->
-        <p class="navbar__login"><a href="/login">Login</a></p>
-        <a href="#"
-          ><button @click="signUpButtonClicked" class="navbar__button button">
-            Sign up
-          </button></a
-        >
+        <p class="navbar__login">
+          <a @click="loginClicked">Login</a>
+        </p>
+        <button @click="signUpButtonClicked" class="navbar__button button">
+          Sign up
+        </button>
       </div>
     </div>
   </nav>
@@ -28,14 +28,18 @@
 <script>
 export default {
   name: "Navbar",
-  props: {
-    signUpButtonOnNavbar: String,
+  data() {
+    return {};
   },
   methods: {
     signUpButtonClicked() {
-      this.$emit("clicked");
+      this.$router.push({ path: "/sign-up" });
+    },
+    loginClicked() {
+      this.$router.push({ path: "/login" });
     },
   },
+  computed: {},
 };
 </script>
 
@@ -81,7 +85,7 @@ export default {
 .navbar__link a,
 p.navbar__login > a {
   text-decoration: none;
-  color: #010203;
+  /* color: #010203; */
 }
 
 .navbar__link a:hover,
@@ -94,9 +98,10 @@ p.navbar__login > a:hover {
   margin: 0;
 }
 
-.navbar__button a {
+.navbar__button {
   text-decoration: none;
   color: #fefefe;
   outline: none;
+  font-weight: bold;
 }
 </style>
