@@ -98,6 +98,7 @@
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
               laboriosam ad deleniti.
             </p>
+            <!-- TODO: Add OAuth -->
             <button
               @click="signInButtonIsPressed"
               class="btn transparent"

@@ -8,13 +8,13 @@
       <div class="navbar__right">
         <ul class="navbar__links">
           <!-- <li class="navbar__link"><a href="#">Home</a></li> -->
-          <!-- TODO: Add an profile page after log in -->
+          <!-- TODO: Add an profile/about page after log in -->
           <!-- TODO: Add a library page after log in -->
           <!-- TODO: Add a favorites page after log in -->
+          <!-- TODO: Add a clubs page after login -->
         </ul>
-        <!-- TODO: Link to the sign up/log in page -->
         <!-- TODO: Switch the button copy to sign out once the user is logged in -->
-        <p class="navbar__login">
+        <p class="navbar__login sign-up">
           <a @click="loginClicked">Login</a>
         </p>
         <button @click="signUpButtonClicked" class="navbar__button button">
@@ -28,15 +28,18 @@
 <script>
 export default {
   name: "Navbar",
+  props: ["mode"],
   data() {
     return {};
   },
   methods: {
     signUpButtonClicked() {
       this.$router.push({ path: "/sign-up" });
+      this.$emit("signUpButtonClicked");
     },
     loginClicked() {
-      this.$router.push({ path: "/login" });
+      this.$router.push({ path: "/sign-up" });
+      this.$emit("loginClicked");
     },
   },
   computed: {},
@@ -86,6 +89,7 @@ export default {
 p.navbar__login > a {
   text-decoration: none;
   /* color: #010203; */
+  cursor: pointer;
 }
 
 .navbar__link a:hover,

@@ -1,6 +1,10 @@
 <template>
   <div id="sign-up">
-    <Navbar></Navbar>
+    <Navbar
+      :mode="isSignUpMode"
+      @signUpButtonClicked="isSignUpMode = true"
+      @loginClicked="isSignUpMode = false"
+    ></Navbar>
     <div :class="{ 'sign-up-mode': isSignUpMode }" class="container">
       <div class="forms-container">
         <div class="signin-signup">
@@ -98,6 +102,7 @@
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
               laboriosam ad deleniti.
             </p>
+            <!-- TODO: Add OAuth -->
             <button
               @click="signInButtonIsPressed"
               class="btn transparent"
@@ -125,7 +130,7 @@ export default {
   },
   data() {
     return {
-      isSignUpMode: true,
+      isSignUpMode: "",
     };
   },
   methods: {

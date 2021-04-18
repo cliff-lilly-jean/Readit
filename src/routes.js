@@ -1,7 +1,6 @@
 import LandingPage from './components/LandingPage.vue';
 import SearchPage from './components/SearchPage.vue';
-import Login from './components/Login.vue';
-import SignUp from './components/SignUp.vue';
+import SignUp from './components/SignUpSignIn.vue';
 
 export default [
  // Each object is a different route
@@ -12,10 +11,6 @@ export default [
  {
   path: '/search',
   component: SearchPage
- },
- {
-  path: '/login',
-  component: Login
  },
  {
   path: '/sign-up',
