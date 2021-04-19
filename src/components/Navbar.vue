@@ -14,7 +14,7 @@
           <!-- TODO: Add a clubs page after login -->
         </ul>
         <!-- TODO: Switch the button copy to sign out once the user is logged in -->
-        <p class="navbar__login sign-up">
+        <p class="navbar__login" :class="{ 'sign-up': mode }">
           <a @click="loginClicked">Login</a>
         </p>
         <button @click="signUpButtonClicked" class="navbar__button button">
@@ -90,11 +90,21 @@ p.navbar__login > a {
   text-decoration: none;
   /* color: #010203; */
   cursor: pointer;
+  transition: 1.3s 0.8s ease-in-out;
+}
+
+p.navbar__login.sign-up > a {
+  color: #fefefe;
+  transition: 1.3s 0.8s ease-in-out;
 }
 
 .navbar__link a:hover,
 p.navbar__login > a:hover {
   border-bottom: 2px solid #e8505b;
+}
+
+p.navbar__login.sign-up > a:hover {
+  border-bottom: 2px solid #fefefe;
 }
 
 .navbar__button {

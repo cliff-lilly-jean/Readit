@@ -25,7 +25,7 @@
             </p>
             <!-- TODO: Link the social icons to their respective platform -->
             <div class="social-media">
-              <a href="#" class="social-icon">
+              <a @click="fbLogin" href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
               <a href="#" class="social-icon">
@@ -60,7 +60,7 @@
             </p>
             <!-- TODO: Link the social icons to their respective platform -->
             <div class="social-media">
-              <a href="#" class="social-icon">
+              <a @click="fbLogin" href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
               <a href="#" class="social-icon">
@@ -140,6 +140,40 @@ export default {
 
     signInButtonIsPressed() {
       this.isSignUpMode = false;
+    },
+    async fbLogin() {
+      await this.loadFacebookSDK(document, "script", "facebook-jssdk");
+      await this.initFacebook();
+      window.FB.login(function (response) {
+        if (response.authResponse) {
+          alert("You are logged in &amp; cookie set!");
+          // Now you can redirect the user or do an AJAX request to
+          // a PHP script that grabs the signed request from the cookie.
+        } else {
+          alert("User cancelled login or did not fully authorize.");
+        }
+      });
+      return false;
+    },
+    async initFacebook() {
+      window.fbAsyncInit = function () {
+        window.FB.init({
+          appId: "294488758795120", //You will need to change this
+          cookie: true, // This is important, it's not enabled by default
+          version: "v13.0",
+        });
+      };
+    },
+    async loadFacebookSDK(d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
     },
   },
 };
