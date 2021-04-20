@@ -7,6 +7,7 @@
 <script>
 // Font Awesome Import
 import "@fortawesome/fontawesome-free/css/all.css";
+import "line-awesome/dist/line-awesome/css/line-awesome.min.css";
 export default {
   name: "App",
   data() {
@@ -18,6 +19,12 @@ export default {
 <style>
 /* Font import */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap");
+
+:root {
+  --main-color: #e8505b;
+  --color-dark: #992830;
+  --text-grey: #8390a2;
+}
 
 * {
   margin: 0;
