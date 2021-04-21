@@ -20,12 +20,6 @@ export default {
 /* Font import */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap");
 
-:root {
-  --main-color: #e8505b;
-  --color-dark: #992830;
-  --text-grey: #8390a2;
-}
-
 * {
   margin: 0;
   padding: 0;
