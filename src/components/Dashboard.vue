@@ -337,6 +337,23 @@ export default {
   font-size: 1.1rem;
 }
 
+.sidebar-menu a:hover {
+  padding-left: 1rem;
+  display: block;
+  color: #010101;
+  font-size: 1.1rem;
+  background: #fefefe;
+  border-radius: 30px 0px 0px 30px;
+}
+
+.sidebar-menu a span {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a.active span {
+  padding: 0;
+}
+
 .sidebar-menu a.active {
   background: #fefefe;
   padding-top: 1rem;
@@ -396,7 +413,7 @@ header {
   width: calc(100% - 345px);
   top: 0;
   z-index: 100;
-  transition: left 300ms;
+  /* transition: left 300ms; */
 }
 
 #nav-toggle {
@@ -735,11 +752,6 @@ button:hover {
     width: 345px;
   }
 
-  /* #nav-toggle:checked + .sidebar:hover {
-    width: 345px;
-    z-index: 200;
-  } */
-
   #nav-toggle:checked + .sidebar .sidebar-brand,
   #nav-toggle:checked + .sidebar li {
     padding-left: 2rem;
@@ -763,6 +775,21 @@ button:hover {
 @media only screen and (max-width: 560px) {
   .cards {
     grid-template-columns: 100%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  header {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .user-wrapper {
+    margin-top: 1rem;
+  }
+
+  .sidebar-menu {
+    margin-top: 5rem;
   }
 }
 </style>
