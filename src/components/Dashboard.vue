@@ -4,6 +4,8 @@
     <input type="checkbox" id="nav-toggle" />
     <div class="sidebar">
       <div class="sidebar-brand">
+        <!-- TODO: Fix this section -->
+        <span class="lab la-resolving"></span>
         <h2><span>ReadIt</span></h2>
       </div>
       <div class="sidebar-menu">
@@ -358,17 +360,8 @@ export default {
   text-align: center;
 }
 
-#nav-toggle:checked + .sidebar li a {
-  padding-left: 0rem;
-}
-
 #nav-toggle:checked ~ .main-content {
   margin-left: 70px;
-}
-
-.main-content {
-  transition: margin-left 300ms;
-  margin-left: 345px;
 }
 
 #nav-toggle:checked + .sidebar .sidebar-brand h2,
@@ -383,6 +376,11 @@ export default {
 #nav-toggle:checked ~ .main-content header {
   width: calc(100% - 70px);
   left: 70px;
+}
+
+.main-content {
+  transition: margin-left 300ms;
+  margin-left: 345px;
 }
 
 /* Header */
@@ -632,4 +630,139 @@ button:hover {
 }
 
 /* Media Queries */
+
+@media only screen and (max-width: 1200px) {
+  .sidebar {
+    width: 70px;
+  }
+
+  .sidebar .sidebar-brand,
+  .sidebar li {
+    padding-left: 1rem;
+    text-align: center;
+  }
+
+  .sidebar li a {
+    padding-left: 0rem;
+  }
+
+  .sidebar .sidebar-brand h2,
+  .sidebar li a span:last-child {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 70px;
+  }
+
+  .main-content header {
+    width: calc(100% - 70px);
+    left: 70px;
+  }
+
+  /*  */
+}
+
+@media only screen and (max-width: 960px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .recent-grid {
+    grid-template-columns: 60% 40%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recent-grid {
+    grid-template-columns: 100%;
+  }
+
+  .search-wrapper {
+    display: none;
+  }
+
+  .sidebar {
+    left: -100% !important;
+  }
+
+  header h2 {
+    display: flex;
+    align-items: center;
+  }
+
+  header h2 label {
+    display: inline-block;
+    text-align: center;
+    background: #e8505b;
+    padding-right: 0rem;
+    margin-right: 1rem;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    color: #fefefe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  header h2 span {
+    padding-right: 0rem;
+    text-align: center;
+  }
+
+  header h2 {
+    font-size: 1.1rem;
+  }
+
+  .main-content {
+    width: 100%;
+    margin-left: 0rem;
+  }
+
+  header {
+    width: 100% !important;
+    left: 0 !important;
+  }
+
+  #nav-toggle:checked + .sidebar {
+    left: 0 !important;
+    z-index: 100;
+    width: 345px;
+  }
+
+  /* #nav-toggle:checked + .sidebar:hover {
+    width: 345px;
+    z-index: 200;
+  } */
+
+  #nav-toggle:checked + .sidebar .sidebar-brand,
+  #nav-toggle:checked + .sidebar li {
+    padding-left: 2rem;
+    text-align: left;
+  }
+
+  #nav-toggle:checked + .sidebar li a {
+    padding-left: 1rem;
+  }
+
+  #nav-toggle:checked + .sidebar .sidebar-brand h2,
+  #nav-toggle:checked + .sidebar li a span:last-child {
+    display: inline;
+  }
+
+  #nav-toggle:checked ~ .main-content {
+    margin-left: 0rem !important;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .cards {
+    grid-template-columns: 100%;
+  }
+}
 </style>
