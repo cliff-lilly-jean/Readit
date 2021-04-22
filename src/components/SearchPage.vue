@@ -1,43 +1,14 @@
 /<template>
-  <div id="search-page">
-    <!-- Start Navbar -->
-    <Navbar></Navbar>
-    <!-- End Navbar -->
-    <div class="container">
-      <div class="input-group__container">
-        <p class="input-group__title">
-          Search for any book you'd like to get information on.
-        </p>
-        <div class="input-group">
-          <input
-            v-model="usersSearchQueryFromInput"
-            type="text"
-            class="search-box"
-            v-on:keyup.enter="userSearchQuery"
-          />
-          <button @click="userSearchQuery">
-            <img src="../assets/images/_img/red_search_button.svg" alt="" />
-          </button>
-        </div>
-      </div>
-      <!-- Create a card div -->
-      <Card :books="books"></Card>
-    </div>
-
-    <!-- Start Footer -->
-    <Footer></Footer>
-    <!-- End Footer -->
-  </div>
+  <div id="search-page"></div>
 </template>
 
 <script>
 // import { gsap } from "gsap";
-import Card from "./Card";
+
 import axios from "axios";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+
 export default {
-  components: { Card, Footer, Navbar },
+  // components: { Card, Footer, Navbar },
   props: [],
   data() {
     return {
