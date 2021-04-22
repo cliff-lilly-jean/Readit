@@ -25,7 +25,7 @@
             </p>
             <!-- TODO: Link the social icons to their respective platform -->
             <div class="social-media">
-              <a @click="fbLogin" href="#" class="social-icon">
+              <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
               <a href="#" class="social-icon">
@@ -60,7 +60,7 @@
             </p>
             <!-- TODO: Link the social icons to their respective platform -->
             <div class="social-media">
-              <a @click="fbLogin" href="#" class="social-icon">
+              <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
               <a href="#" class="social-icon">

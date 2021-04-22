@@ -34,11 +34,11 @@ export default {
   },
   methods: {
     signUpButtonClicked() {
-      this.$router.push({ path: "/sign-up" });
+      this.$router.push({ path: "/sign-up" }).catch(() => {});
       this.$emit("signUpButtonClicked");
     },
     loginClicked() {
-      this.$router.push({ path: "/sign-up" });
+      this.$router.push({ path: "/sign-up" }).catch(() => {});
       this.$emit("loginClicked");
     },
   },
@@ -88,14 +88,13 @@ export default {
 .navbar__link a,
 p.navbar__login > a {
   text-decoration: none;
-  /* color: #010203; */
   cursor: pointer;
-  transition: 1.3s 0.8s ease-in-out;
+  transition: color 1.3s 0.8s ease-in-out;
 }
 
 p.navbar__login.sign-up > a {
   color: #fefefe;
-  transition: 1.3s 0.8s ease-in-out;
+  transition: color 1.3s 0.8s ease-in-out;
 }
 
 .navbar__link a:hover,

@@ -1,7 +1,7 @@
 import LandingPage from './components/LandingPage.vue';
 import SearchPage from './components/SearchPage.vue';
 import SignUp from './components/SignUpSignIn.vue';
-import Dashboard from "./components/Dasboard.vue";
+import Dashboard from "./components/Dashboard.vue";
 
 export default [
  // Each object is a different route
