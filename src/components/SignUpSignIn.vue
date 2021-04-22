@@ -130,7 +130,7 @@ export default {
   },
   data() {
     return {
-      isSignUpMode: "",
+      isSignUpMode: true,
     };
   },
   methods: {

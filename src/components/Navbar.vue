@@ -30,7 +30,9 @@ export default {
   name: "Navbar",
   props: ["mode"],
   data() {
-    return {};
+    return {
+      isSignUpMode: "",
+    };
   },
   methods: {
     signUpButtonClicked() {
