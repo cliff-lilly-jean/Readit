@@ -1,5 +1,6 @@
 <template>
   <div id="sign-up">
+    <!-- TODO: Fix the signup true and false values on click when transitioning to the SIGN-UP page -->
     <Navbar
       :mode="isSignUpMode"
       @signUpButtonClicked="isSignUpMode = true"

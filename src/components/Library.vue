@@ -1,5 +1,5 @@
 <template>
-  <div id="user-dashboard">
+  <div id="library">
     <!-- Sidebar -->
     <input type="checkbox" id="nav-toggle" />
     <div class="sidebar">
@@ -11,7 +11,7 @@
       <div class="sidebar-menu">
         <ul>
           <li>
-            <a href="" class="active">
+            <a href="">
               <span class="las la-igloo"></span>
               <span>Dashboard</span>
             </a>
@@ -23,7 +23,7 @@
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="" class="active">
               <span class="las la-book"></span>
               <span>Library</span>
             </a>
@@ -38,31 +38,33 @@
       </div>
     </div>
     <!-- Sidebar -->
+    <!-- Header -->
+    <header>
+      <h2>
+        <label for="nav-toggle">
+          <span class="las la-bars"></span>
+        </label>
+        Dashboard
+      </h2>
+      <div class="search-wrapper">
+        <span class="las la-search"></span>
+        <!-- TODO: Add the book search functionailty -->
+        <input type="search" placeholder="Search here" />
+      </div>
+      <div class="user-wrapper">
+        <!-- TODO: BIND the SRC of each individual USERS image IF they have one -->
+        <!-- TODO: Create a function to make the image link to the PROFILE page -->
+        <img src="../assets/images/_img/cliff-jean-portrait.jpg" alt="" />
+        <!-- TODO: MODEL the userName for each individual USER -->
+        <div class="user-description">
+          <h4>{{ userName }}</h4>
+          <small>{{ role }}</small>
+        </div>
+      </div>
+    </header>
+    <!-- Header -->
     <!-- Main content -->
     <div class="main-content">
-      <header>
-        <h2>
-          <label for="nav-toggle">
-            <span class="las la-bars"></span>
-          </label>
-          Dashboard
-        </h2>
-        <div class="search-wrapper">
-          <span class="las la-search"></span>
-          <!-- TODO: Add the book search functionailty -->
-          <input type="search" placeholder="Search here" />
-        </div>
-        <div class="user-wrapper">
-          <!-- TODO: BIND the SRC of each individual USERS image IF they have one -->
-          <!-- TODO: Create a function to make the image link to the PROFILE page -->
-          <img src="../assets/images/_img/cliff-jean-portrait.jpg" alt="" />
-          <!-- TODO: MODEL the userName for each individual USER -->
-          <div class="user-description">
-            <h4>{{ userName }}</h4>
-            <small>{{ role }}</small>
-          </div>
-        </div>
-      </header>
       <main>
         <div class="cards">
           <!-- Individual Card -->
@@ -295,6 +297,7 @@ export default {
       bookPublishedDate: 2004,
       // TODO: Need a way to collect users information
       connectionDescription: "Artist",
+      isSidebarOpen: true,
     };
   },
   methods: {
@@ -305,120 +308,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 * {
   list-style-type: none;
   text-decoration: none;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 345px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100%;
-  background: #e8505b;
-  z-index: 100;
-  transition: width 300ms;
-}
-
-.sidebar-brand {
-  height: 90px;
-  padding: 1rem 0rem 1rem 2rem;
-  color: #fefefe;
-}
-
-.sidebar-brand h2:hover {
-  cursor: pointer;
-}
-
-.sidebar-brand span {
-  display: inline-block;
-  padding-right: 1rem;
-}
-
-.sidebar-menu {
-  margin-top: 1rem;
-}
-
-.sidebar-menu li {
-  width: 100%;
-  margin-bottom: 1.7rem;
-  padding-left: 1rem;
-}
-
-.sidebar-menu a {
-  padding-left: 1rem;
-  display: block;
-  color: #fefefe;
-  font-size: 1.1rem;
-}
-
-.sidebar-menu a:hover {
-  padding-left: 1rem;
-  display: block;
-  color: #010101;
-  font-size: 1.1rem;
-  background: #fefefe;
-  border-radius: 30px 0px 0px 30px;
-  transition: 300ms;
-}
-
-.sidebar-menu a span {
-  padding: 1rem 0;
-}
-
-.sidebar-menu a.active span {
-  padding: 0;
-}
-
-.sidebar-menu a.active {
-  background: #fefefe;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  color: #e8505b;
-  border-radius: 30px 0px 0px 30px;
-}
-
-.sidebar-menu a span:first-child {
-  font-size: 1.5rem;
-  padding-right: 1rem;
-}
-
-#nav-toggle:checked + .sidebar {
-  width: 70px;
-}
-
-#nav-toggle:checked + .sidebar .sidebar-brand,
-#nav-toggle:checked + .sidebar li {
-  padding-left: 1rem;
-  text-align: center;
-}
-
-#nav-toggle:checked ~ .main-content {
-  margin-left: 70px;
-}
-
-#nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child,
-#nav-toggle:checked + .sidebar li a span:last-child {
-  display: none;
-}
-
-#nav-toggle:checked ~ .main-content {
-  margin-left: 70px;
-}
-
-#nav-toggle:checked ~ .main-content header {
-  width: calc(100% - 70px);
-  left: 70px;
 }
 
 .main-content {
   transition: margin-left 300ms;
   margin-left: 345px;
 }
-
 /* Header */
 
 header {
@@ -450,6 +349,15 @@ header span label {
 
 header label span:hover {
   cursor: pointer;
+}
+
+#nav-toggle:checked ~ .main-content {
+  margin-left: 70px;
+}
+
+#nav-toggle:checked ~ header {
+  width: calc(100% - 70px);
+  left: 70px;
 }
 
 .search-wrapper {
@@ -669,13 +577,104 @@ button:hover {
   cursor: pointer;
 }
 
+/* Sidebar */
+
+#nav-toggle {
+  display: none;
+}
+
+#nav-toggle:checked + .sidebar {
+  width: 70px;
+}
+
+#nav-toggle:checked + .sidebar .sidebar-brand,
+#nav-toggle:checked + .sidebar li {
+  padding-left: 1rem;
+  text-align: center;
+}
+
+#nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child,
+#nav-toggle:checked + .sidebar li a span:last-child {
+  display: none;
+}
+
+.sidebar {
+  width: 345px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #e8505b;
+  z-index: 100;
+  transition: width 300ms;
+}
+
+.sidebar-brand {
+  height: 90px;
+  padding: 1rem 0rem 1rem 2rem;
+  color: #fefefe;
+}
+
+.sidebar-brand h2:hover {
+  cursor: pointer;
+}
+
+.sidebar-brand span {
+  display: inline-block;
+  padding-right: 1rem;
+}
+
+.sidebar-menu {
+  margin-top: 1rem;
+}
+
+.sidebar-menu li {
+  width: 100%;
+  margin-bottom: 1.7rem;
+  padding-left: 1rem;
+}
+
+.sidebar-menu a {
+  padding-left: 1rem;
+  display: block;
+  color: #fefefe;
+  font-size: 1.1rem;
+}
+
+.sidebar-menu a:hover {
+  padding-left: 1rem;
+  display: block;
+  color: #010101;
+  font-size: 1.1rem;
+  background: #fefefe;
+  border-radius: 30px 0px 0px 30px;
+  transition: 300ms;
+}
+
+.sidebar-menu a span {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a.active span {
+  padding: 0;
+}
+
+.sidebar-menu a.active {
+  background: #fefefe;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #e8505b;
+  border-radius: 30px 0px 0px 30px;
+}
+
+.sidebar-menu a span:first-child {
+  font-size: 1.5rem;
+  padding-right: 1rem;
+}
+
 /* Media Queries */
 
 @media only screen and (max-width: 1200px) {
-  .sidebar {
-    width: 70px;
-  }
-
   .sidebar .sidebar-brand,
   .sidebar li {
     padding-left: 1rem;
@@ -690,17 +689,6 @@ button:hover {
   .sidebar li a span:last-child {
     display: none;
   }
-
-  .main-content {
-    margin-left: 70px;
-  }
-
-  .main-content header {
-    width: calc(100% - 70px);
-    left: 70px;
-  }
-
-  /*  */
 }
 
 @media only screen and (max-width: 960px) {
@@ -724,6 +712,27 @@ button:hover {
 
   .search-wrapper {
     display: none;
+  }
+
+  #nav-toggle:checked + .sidebar {
+    left: 0 !important;
+    z-index: 100;
+    width: 345px;
+  }
+
+  #nav-toggle:checked + .sidebar .sidebar-brand,
+  #nav-toggle:checked + .sidebar li {
+    padding-left: 2rem;
+    text-align: left;
+  }
+
+  #nav-toggle:checked + .sidebar li a {
+    padding-left: 1rem;
+  }
+
+  #nav-toggle:checked + .sidebar .sidebar-brand h2,
+  #nav-toggle:checked + .sidebar li a span:last-child {
+    display: inline;
   }
 
   .sidebar {
@@ -767,31 +776,6 @@ button:hover {
   header {
     width: 100% !important;
     left: 0 !important;
-  }
-
-  #nav-toggle:checked + .sidebar {
-    left: 0 !important;
-    z-index: 100;
-    width: 345px;
-  }
-
-  #nav-toggle:checked + .sidebar .sidebar-brand,
-  #nav-toggle:checked + .sidebar li {
-    padding-left: 2rem;
-    text-align: left;
-  }
-
-  #nav-toggle:checked + .sidebar li a {
-    padding-left: 1rem;
-  }
-
-  #nav-toggle:checked + .sidebar .sidebar-brand h2,
-  #nav-toggle:checked + .sidebar li a span:last-child {
-    display: inline;
-  }
-
-  #nav-toggle:checked ~ .main-content {
-    margin-left: 0rem !important;
   }
 }
 

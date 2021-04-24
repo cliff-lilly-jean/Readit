@@ -1,7 +1,7 @@
 <template>
   <footer id="footer">
     <div class="footer__content">
-      <p class="footer__title"><a href="/">ReadIt</a></p>
+      <p @click="navigateHome" class="footer__title">ReadIt</p>
       <p class="footer__copyright">
         &copy; Copyright 2021 Cliff Jean. All rights reserved.
       </p>
@@ -24,7 +24,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    navigateHome() {
+      this.$router.push({ path: "/" }).catch(() => {});
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -47,9 +56,13 @@ export default {};
   font-weight: bold;
 }
 
-.footer__title a {
+.footer__title {
   color: #f4999d;
   text-decoration: none;
+}
+
+.footer__title:hover {
+  cursor: pointer;
 }
 
 .footer__links {
