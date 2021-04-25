@@ -12,7 +12,7 @@
             friends.
           </p>
           <!-- TODO: Create a function on this button that routes this page to the LIBRARY page if the user is authenticated -->
-          <button class="button">
+          <button @click="routeToSearchPage" class="button">
             Create your library <i class="fas fa-arrow-right"></i>
           </button>
         </div>
@@ -120,7 +120,11 @@ export default {
     return {};
   },
   mounted() {},
-  methods: {},
+  methods: {
+    routeToSearchPage() {
+      this.$router.push("/search");
+    },
+  },
 };
 </script>
 
