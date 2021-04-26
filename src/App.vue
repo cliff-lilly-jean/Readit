@@ -7,7 +7,6 @@
 <script>
 // Font Awesome Import
 import "@fortawesome/fontawesome-free/css/all.css";
-import "line-awesome/dist/line-awesome/css/line-awesome.min.css";
 export default {
   name: "App",
   data() {
