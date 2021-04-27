@@ -40,7 +40,6 @@ img {
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.5;
-  font-size: 18px;
 }
 
 section {

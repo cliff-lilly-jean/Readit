@@ -327,5 +327,23 @@ export default {
 .cardBox .card {
   position: relative;
   background: #fefefe;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.cardBox .card .numbers {
+  position: relative;
+  font-size: 2em;
+  font-weight: 500;
+}
+
+.cardBox .card .cardName {
+  color: #999;
+}
+
+.cardBox .card .iconBox {
+  font-size: 2.5em;
 }
 </style>
