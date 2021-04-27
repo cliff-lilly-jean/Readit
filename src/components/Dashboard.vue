@@ -83,6 +83,7 @@
         <!-- Top Bar End -->
         <!-- Card Box Start -->
         <div class="cardBox">
+          <!-- TODO: Add a route to the Connections page -->
           <div class="card">
             <div>
               <div class="numbers">{{ totalConnections }}</div>
@@ -92,6 +93,7 @@
               <i class="fas fa-link"></i>
             </div>
           </div>
+          <!-- TODO: Add a route to the Library page -->
           <div class="card">
             <div>
               <div class="numbers">{{ booksInLibrary }}</div>
@@ -101,6 +103,7 @@
               <i class="fas fa-book"></i>
             </div>
           </div>
+          <!-- TODO: Add a route to the Clubs page -->
           <div class="card">
             <div>
               <div class="numbers">{{ numberOfClubs }}</div>
@@ -112,6 +115,92 @@
           </div>
         </div>
         <!-- Card Box End -->
+        <!-- Details Start -->
+        <div class="details">
+          <div class="recentBooks">
+            <div class="cardHeader">
+              <h2>Recent Books</h2>
+              <!-- TODO: Create a path to the Library page -->
+              <a href="#" class="btn">View All</a>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <td>Title</td>
+                  <td>Author</td>
+                  <td>Publsh Date</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ bookTitle }}</td>
+                  <td>{{ bookAuthor }}</td>
+                  <td>
+                    <span class="status delivered">{{ bookPublishDate }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ bookTitle }}</td>
+                  <td>{{ bookAuthor }}</td>
+                  <td>
+                    <span class="status return">{{ bookPublishDate }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ bookTitle }}</td>
+                  <td>{{ bookAuthor }}</td>
+                  <td>
+                    <span class="status inprogress">{{ bookPublishDate }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ bookTitle }}</td>
+                  <td>{{ bookAuthor }}</td>
+                  <td>
+                    <span class="status">{{ bookPublishDate }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ bookTitle }}</td>
+                  <td>{{ bookAuthor }}</td>
+                  <td>
+                    <span class="status delivered">{{ bookPublishDate }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ bookTitle }}</td>
+                  <td>{{ bookAuthor }}</td>
+                  <td>
+                    <span class="status return">{{ bookPublishDate }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ bookTitle }}</td>
+                  <td>{{ bookAuthor }}</td>
+                  <td>
+                    <span class="status delivered">{{ bookPublishDate }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ bookTitle }}</td>
+                  <td>{{ bookAuthor }}</td>
+                  <td>
+                    <span class="status return">{{ bookPublishDate }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="recentConnections">
+            <div class="cardHeader">
+              <h2>Recent Connections</h2>
+              <!-- TODO: Create a path to the Library page -->
+              <a href="#" class="btn"></a>
+            </div>
+          </div>
+        </div>
+        <!-- Details End -->
       </div>
       <!-- Main End -->
     </div>
@@ -130,6 +219,9 @@ export default {
       booksInLibrary: 97,
       totalConnections: 11,
       numberOfClubs: 2,
+      bookTitle: "Harry Potter",
+      bookAuthor: "J.K. Rowling",
+      bookPublishDate: 2007,
     };
   },
   methods: {
@@ -345,5 +437,47 @@ export default {
 
 .cardBox .card .iconBox {
   font-size: 2.5em;
+  color: #ff6e69;
+}
+
+.details {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  padding-top: 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.details .recentBooks {
+  position: relative;
+  display: grid;
+  min-height: 530px;
+  background: #fefefe;
+  padding: 20px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cardHeader h2 {
+  font-weight: 600;
+}
+
+.btn {
+  position: relative;
+  padding: 5px 10px;
+  background: #ff6e69;
+  color: #fefefe;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.details table {
+  width: 100%;
+  border-collapse: collapse;
 }
 </style>
