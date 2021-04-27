@@ -1,7 +1,8 @@
 <template>
   <div id="user-dashboard">
     <div class="container">
-      <div class="navigation">
+      <!-- Navigation Start -->
+      <div :class="{ active: navigationState }" class="navigation">
         <ul>
           <li>
             <a href="#">
@@ -59,14 +60,49 @@
           </li>
         </ul>
       </div>
+      <!-- Navigation End -->
+      <!-- Main Start -->
+      <div :class="{ active: mainState }" class="main">
+        <!-- Top Bar Start -->
+        <div class="topbar">
+          <div
+            @click="toggleMenu"
+            :class="{ active: toggleState }"
+            class="toggle"
+          ></div>
+          <div class="search">
+            <label for="">
+              <input type="text" placeholder="Search here" />
+            </label>
+          </div>
+          <div class="user">
+            <img src="../assets/images/_img/cliff-jean-portrait.jpg" alt="" />
+          </div>
+        </div>
+        <!-- Top Bar End -->
+      </div>
+      <!-- Main End -->
     </div>
   </div>
 </template>
 
 <script>
+// Font Awesome Import
+
 export default {
   data() {
-    return {};
+    return {
+      toggleState: false,
+      navigationState: false,
+      mainState: false,
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.toggleMenuState = !this.toggleMenuState;
+      this.navigationState = !this.navigationState;
+      this.mainState = !this.mainState;
+    },
   },
 };
 </script>
@@ -76,7 +112,7 @@ export default {
   overflow-x: hidden;
 }
 
-/* Navigatrion */
+/* Navigation */
 .container {
   position: relative;
   width: 100%;
@@ -86,9 +122,13 @@ export default {
   position: fixed;
   width: 300px;
   height: 100%;
-  background: #e8505b;
+  background: #9c0610;
   transition: 0.5s;
   overflow: hidden;
+}
+
+.navigation.active {
+  width: 60px;
 }
 
 .navigation ul {
@@ -105,7 +145,11 @@ export default {
 }
 
 .navigation ul li:hover {
-  background: #ff9ea4;
+  background: #ff6e69;
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 20px;
 }
 
 .navigation ul li:nth-child(1):hover {
@@ -142,5 +186,53 @@ export default {
   height: 60px;
   line-height: 60px;
   white-space: nowrap;
+}
+
+/* Main */
+.main {
+  position: relative;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: #f5f5f5;
+  transition: 0.5s;
+}
+
+.main.active {
+  width: calc(100% - 60px);
+  left: 60px;
+}
+
+/* Top Bar */
+.topbar {
+  width: 100%;
+  background: #fefefe;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.toggle:before {
+  content: "\f0c9";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  line-height: 60px;
+  font-size: 24px;
+  font-weight: 900;
+  text-align: center;
+  color: #111;
+}
+
+.search {
 }
 </style>
