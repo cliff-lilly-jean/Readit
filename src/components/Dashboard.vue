@@ -71,8 +71,9 @@
             class="toggle"
           ></div>
           <div class="search">
-            <label for="">
+            <label for="#">
               <input type="text" placeholder="Search here" />
+              <i class="fas fa-search"></i>
             </label>
           </div>
           <div class="user">
@@ -80,6 +81,37 @@
           </div>
         </div>
         <!-- Top Bar End -->
+        <!-- Card Box Start -->
+        <div class="cardBox">
+          <div class="card">
+            <div>
+              <div class="numbers">{{ totalConnections }}</div>
+              <div class="cardName">Connections</div>
+            </div>
+            <div class="iconBox">
+              <i class="fas fa-link"></i>
+            </div>
+          </div>
+          <div class="card">
+            <div>
+              <div class="numbers">{{ booksInLibrary }}</div>
+              <div class="cardName">Library</div>
+            </div>
+            <div class="iconBox">
+              <i class="fas fa-book"></i>
+            </div>
+          </div>
+          <div class="card">
+            <div>
+              <div class="numbers">{{ numberOfClubs }}</div>
+              <div class="cardName">Clubs</div>
+            </div>
+            <div class="iconBox">
+              <i class="fas fa-users"></i>
+            </div>
+          </div>
+        </div>
+        <!-- Card Box End -->
       </div>
       <!-- Main End -->
     </div>
@@ -95,6 +127,9 @@ export default {
       toggleState: false,
       navigationState: false,
       mainState: false,
+      booksInLibrary: 97,
+      totalConnections: 11,
+      numberOfClubs: 2,
     };
   },
   methods: {
@@ -208,6 +243,7 @@ export default {
   width: 100%;
   background: #fefefe;
   height: 60px;
+  padding: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -234,5 +270,62 @@ export default {
 }
 
 .search {
+  position: relative;
+  width: 400px;
+  margin: 0 10px;
+}
+
+.search label {
+  width: 100%;
+}
+
+.search label input {
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  padding: 5px 20px;
+  padding-left: 35px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.search label .fas {
+  position: absolute;
+  left: 15px;
+  top: 10px;
+}
+
+.user {
+  position: relative;
+  min-width: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.user img {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cards */
+
+.cardBox {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.cardBox .card {
+  position: relative;
+  background: #fefefe;
 }
 </style>
