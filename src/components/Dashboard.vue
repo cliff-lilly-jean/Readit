@@ -157,7 +157,7 @@
                   <td>{{ bookTitle }}</td>
                   <td>{{ bookAuthor }}</td>
                   <td>
-                    <span class="status">{{ bookPublishDate }}</span>
+                    <span class="status pending">{{ bookPublishDate }}</span>
                   </td>
                 </tr>
                 <tr>
@@ -191,13 +191,126 @@
               </tbody>
             </table>
           </div>
-
           <div class="recentConnections">
             <div class="cardHeader">
               <h2>Recent Connections</h2>
-              <!-- TODO: Create a path to the Library page -->
-              <a href="#" class="btn"></a>
             </div>
+            <table>
+              <tbody>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBx">
+                      <img
+                        src="../assets/images/_img/cliff-jean-portrait.jpg"
+                        alt=""
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>
+                      {{ connectionName }}<br />
+                      <span>{{ connectionLocation }} </span>
+                    </h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBx">
+                      <img
+                        src="../assets/images/_img/cliff-jean-portrait.jpg"
+                        alt=""
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>
+                      {{ connectionName }}<br />
+                      <span>{{ connectionLocation }} </span>
+                    </h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBx">
+                      <img
+                        src="../assets/images/_img/cliff-jean-portrait.jpg"
+                        alt=""
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>
+                      {{ connectionName }}<br />
+                      <span>{{ connectionLocation }} </span>
+                    </h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBx">
+                      <img
+                        src="../assets/images/_img/cliff-jean-portrait.jpg"
+                        alt=""
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>
+                      {{ connectionName }}<br />
+                      <span>{{ connectionLocation }} </span>
+                    </h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBx">
+                      <img
+                        src="../assets/images/_img/cliff-jean-portrait.jpg"
+                        alt=""
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>
+                      {{ connectionName }}<br />
+                      <span>{{ connectionLocation }} </span>
+                    </h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBx">
+                      <img
+                        src="../assets/images/_img/cliff-jean-portrait.jpg"
+                        alt=""
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>
+                      {{ connectionName }}<br />
+                      <span>{{ connectionLocation }} </span>
+                    </h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="60px">
+                    <div class="imgBx">
+                      <img
+                        src="../assets/images/_img/cliff-jean-portrait.jpg"
+                        alt=""
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <h4>
+                      {{ connectionName }}<br />
+                      <span>{{ connectionLocation }} </span>
+                    </h4>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <!-- Details End -->
@@ -222,6 +335,8 @@ export default {
       bookTitle: "Harry Potter",
       bookAuthor: "J.K. Rowling",
       bookPublishDate: 2007,
+      connectionName: "Cliff Jean",
+      connectionLocation: "North Lauderdale",
     };
   },
   methods: {
@@ -446,12 +561,12 @@ export default {
   padding: 20px;
   padding-top: 0;
   display: grid;
+  grid-gap: 20px;
   grid-template-columns: 2fr 1fr;
 }
 
 .details .recentBooks {
   position: relative;
-  display: grid;
   min-height: 530px;
   background: #fefefe;
   padding: 20px;
@@ -479,5 +594,117 @@ export default {
 .details table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 10px;
 }
+
+.details table thead td {
+  font-weight: 600;
+}
+
+.details .recentBooks table tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.details .recentBooks table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.details .recentBooks table tbody tr:hover {
+  background: #ff6e69;
+  color: #fefefe;
+}
+
+.details .recentBooks table tr td {
+  padding: 9px 5px;
+}
+
+.details .recentBooks table thead tr td:last-child,
+.details .recentBooks table tbody tr td:last-child {
+  text-align: right;
+}
+
+.details .recentBooks table thead tr td:nth-child(2),
+.details .recentBooks table tbody tr td:nth-child(2) {
+  text-align: right;
+  padding-right: 20px;
+}
+
+/* .details .recentBooks table thead tr td:nth-child(3),
+.details .recentBooks table tbody tr td:nth-child(3) {
+  text-align: center;
+} */
+
+.status {
+  position: relative;
+  padding: 2px 4px;
+
+  color: #fefefe;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.delivered {
+  background: #8de02c;
+}
+
+.pending {
+  background: #f9ca3f;
+}
+
+.return {
+  background: #f00;
+}
+
+.inprogress {
+  background: #1795ce;
+}
+
+.details .recentConnections {
+  position: relative;
+  min-height: 530px;
+  background: #fefefe;
+  padding: 20px;
+}
+
+.details .recentConnections .imgBx {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.details .recentConnections .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.details .recentConnections table tr td h4 span {
+  font-size: 14px;
+  color: #999;
+}
+
+.details .recentConnections table tr:hover td h4 span,
+.details .recentConnections table tr:hover {
+  background: #ff6e69;
+  color: #fefefe;
+}
+
+.details .recentConnections table tr td {
+  padding: 7px 10px;
+}
+
+.details .recentConnections table tr td h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2em;
+}
+
+/* Media Queries */
 </style>
