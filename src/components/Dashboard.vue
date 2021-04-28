@@ -341,7 +341,7 @@ export default {
   },
   methods: {
     toggleMenu() {
-      this.toggleMenuState = !this.toggleMenuState;
+      this.toggleState = !this.toggleState;
       this.navigationState = !this.navigationState;
       this.mainState = !this.mainState;
     },
@@ -707,4 +707,82 @@ export default {
 }
 
 /* Media Queries */
+
+@media (max-width: 992px) {
+  .navigation {
+    left: -300px;
+  }
+
+  .navigation.active {
+    left: 0;
+    width: 300px;
+  }
+
+  .main {
+    width: 100%;
+    left: 0;
+  }
+
+  .main.active {
+    width: calc(100% - 300px);
+    left: 300px;
+  }
+
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 758px) {
+  .details {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .cardHeader h2 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .details .recentBooks {
+    overflow-x: auto;
+  }
+
+  .details .recentBooks table {
+    width: 600px;
+  }
+
+  .navigation {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+
+  .toggle.active {
+    position: fixed;
+    z-index: 10000;
+    right: 0;
+    left: initial;
+  }
+
+  .toggle.active:before {
+    color: #fefefe;
+    z-index: 10000;
+  }
+
+  .main,
+  .main.active {
+    width: 100%;
+    left: 0;
+  }
+}
 </style>
