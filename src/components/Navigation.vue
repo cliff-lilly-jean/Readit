@@ -3,12 +3,15 @@
     <!-- Navigation Start -->
     <div :class="{ active: toggleState }" class="navigation">
       <ul>
-        <li>
-          <a @click="routeToHomePage" href="">
-            <span class="icon"><i class="fab fa-resolving"></i></span>
-            <span class="title"><h2>ReadIt</h2></span>
-          </a>
-        </li>
+        <router-link to="/">
+          <li>
+            <a href="">
+              <span class="icon"><i class="fab fa-resolving"></i></span>
+              <span class="title"><h2>ReadIt</h2></span>
+            </a>
+          </li>
+        </router-link>
+        <!-- TODO: Change all function push calls to router into router-link tags -->
         <li>
           <a @click="routeToDashboardPage" href="">
             <span class="icon"><i class="fas fa-home"></i></span>

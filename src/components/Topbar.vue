@@ -7,9 +7,10 @@
         :class="{ active: toggleState }"
         class="toggle"
       ></div>
+      <!-- TODO: Add Book search Functionaility -->
       <div class="search">
         <label for="#">
-          <input type="text" placeholder="Search here" />
+          <input type="text" placeholder="Search books here" />
           <i class="fas fa-search"></i>
         </label>
       </div>
