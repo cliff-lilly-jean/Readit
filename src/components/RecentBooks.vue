@@ -4,7 +4,7 @@
       <div class="cardHeader">
         <h2>Recent Books</h2>
         <!-- TODO: Create a path to the Library page -->
-        <a href="#" class="btn">View All</a>
+        <a @click="routeToLibraryPage" href="" class="btn">View All</a>
       </div>
       <table>
         <thead>
@@ -16,6 +16,7 @@
         </thead>
         <tbody>
           <tr>
+            <!-- TODO: Pull this data from the server -->
             <td>{{ bookTitle }}</td>
             <td>{{ bookAuthor }}</td>
             <td>
@@ -23,6 +24,7 @@
             </td>
           </tr>
           <tr>
+            <!-- TODO: Pull this data from the server -->
             <td>{{ bookTitle }}</td>
             <td>{{ bookAuthor }}</td>
             <td>
@@ -30,6 +32,7 @@
             </td>
           </tr>
           <tr>
+            <!-- TODO: Pull this data from the server -->
             <td>{{ bookTitle }}</td>
             <td>{{ bookAuthor }}</td>
             <td>
@@ -37,6 +40,7 @@
             </td>
           </tr>
           <tr>
+            <!-- TODO: Pull this data from the server -->
             <td>{{ bookTitle }}</td>
             <td>{{ bookAuthor }}</td>
             <td>
@@ -44,6 +48,7 @@
             </td>
           </tr>
           <tr>
+            <!-- TODO: Pull this data from the server -->
             <td>{{ bookTitle }}</td>
             <td>{{ bookAuthor }}</td>
             <td>
@@ -51,6 +56,7 @@
             </td>
           </tr>
           <tr>
+            <!-- TODO: Pull this data from the server -->
             <td>{{ bookTitle }}</td>
             <td>{{ bookAuthor }}</td>
             <td>
@@ -58,6 +64,7 @@
             </td>
           </tr>
           <tr>
+            <!-- TODO: Pull this data from the server -->
             <td>{{ bookTitle }}</td>
             <td>{{ bookAuthor }}</td>
             <td>
@@ -65,6 +72,7 @@
             </td>
           </tr>
           <tr>
+            <!-- TODO: Pull this data from the server -->
             <td>{{ bookTitle }}</td>
             <td>{{ bookAuthor }}</td>
             <td>
@@ -81,10 +89,18 @@
 export default {
   data() {
     return {
+      // TODO: Pull data from the server
       bookTitle: "Harry Potter",
       bookAuthor: "J.K. Rowling",
       bookPublishDate: 2007,
     };
+  },
+  methods: {
+    routeToLibraryPage() {
+      this.$router.push({ path: "/library" }).catch(() => {
+        this.$emit("routeToLibraryPage");
+      });
+    },
   },
 };
 </script>

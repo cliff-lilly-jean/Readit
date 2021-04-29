@@ -2,8 +2,9 @@
   <div id="card-box-component">
     <div class="cardBox">
       <!-- TODO: Add a route to the Connections page -->
-      <div class="card">
+      <div @click="routeToConnectionsPage" class="card">
         <div>
+          <!-- TODO: Pull this data from the server -->
           <div class="numbers">{{ totalConnections }}</div>
           <div class="cardName">Connections</div>
         </div>
@@ -11,9 +12,9 @@
           <i class="fas fa-link"></i>
         </div>
       </div>
-      <!-- TODO: Add a route to the Library page -->
-      <div class="card">
+      <div @click="routeToLibraryPage" class="card">
         <div>
+          <!-- TODO: Pull this data from the server -->
           <div class="numbers">{{ booksInLibrary }}</div>
           <div class="cardName">Library</div>
         </div>
@@ -22,8 +23,9 @@
         </div>
       </div>
       <!-- TODO: Add a route to the Clubs page -->
-      <div class="card">
+      <div @click="routeToClubsPage" class="card">
         <div>
+          <!-- TODO: Pull this data from the server -->
           <div class="numbers">{{ numberOfClubs }}</div>
           <div class="cardName">Clubs</div>
         </div>
@@ -44,6 +46,23 @@ export default {
       totalConnections: 11,
       numberOfClubs: 2,
     };
+  },
+  methods: {
+    routeToLibraryPage() {
+      this.$router.push({ path: "/library" }).catch(() => {
+        this.$emit("routeToLibraryPage");
+      });
+    },
+    routeToConnectionsPage() {
+      this.$router.push({ path: "/connections" }).catch(() => {
+        this.$emit("routeToConnectionsPage");
+      });
+    },
+    routeToClubsPage() {
+      this.$router.push({ path: "/clubs" }).catch(() => {
+        this.$emit("routeToClubsPage");
+      });
+    },
   },
 };
 </script>

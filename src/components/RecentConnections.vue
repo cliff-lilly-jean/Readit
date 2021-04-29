@@ -17,6 +17,7 @@
             </td>
             <td>
               <h4>
+                <!-- TODO: Pull this data from the server -->
                 {{ connectionName }}<br />
                 <span>{{ connectionLocation }} </span>
               </h4>
@@ -33,6 +34,7 @@
             </td>
             <td>
               <h4>
+                <!-- TODO: Pull this data from the server -->
                 {{ connectionName }}<br />
                 <span>{{ connectionLocation }} </span>
               </h4>
@@ -49,6 +51,7 @@
             </td>
             <td>
               <h4>
+                <!-- TODO: Pull this data from the server -->
                 {{ connectionName }}<br />
                 <span>{{ connectionLocation }} </span>
               </h4>
@@ -65,6 +68,7 @@
             </td>
             <td>
               <h4>
+                <!-- TODO: Pull this data from the server -->
                 {{ connectionName }}<br />
                 <span>{{ connectionLocation }} </span>
               </h4>
@@ -81,6 +85,7 @@
             </td>
             <td>
               <h4>
+                <!-- TODO: Pull this data from the server -->
                 {{ connectionName }}<br />
                 <span>{{ connectionLocation }} </span>
               </h4>
@@ -97,6 +102,7 @@
             </td>
             <td>
               <h4>
+                <!-- TODO: Pull this data from the server -->
                 {{ connectionName }}<br />
                 <span>{{ connectionLocation }} </span>
               </h4>
@@ -113,6 +119,7 @@
             </td>
             <td>
               <h4>
+                <!-- TODO: Pull this data from the server -->
                 {{ connectionName }}<br />
                 <span>{{ connectionLocation }} </span>
               </h4>

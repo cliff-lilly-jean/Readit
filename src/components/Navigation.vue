@@ -4,55 +4,55 @@
     <div :class="{ active: toggleState }" class="navigation">
       <ul>
         <li>
-          <a href="#">
+          <a @click="routeToHomePage" href="">
             <span class="icon"><i class="fab fa-resolving"></i></span>
             <span class="title"><h2>ReadIt</h2></span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a @click="routeToDashboardPage" href="">
             <span class="icon"><i class="fas fa-home"></i></span>
             <span class="title">Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a @click="routeToConnectionsPage" href="">
             <span class="icon"><i class="fas fa-link"></i></span>
             <span class="title">Connections</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a @click="routeToLibraryPage" href="">
             <span class="icon"><i class="fas fa-book"></i></span>
             <span class="title">Library</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a @click="routeToClubsPage" href="">
             <span class="icon"><i class="fas fa-users"></i></span>
             <span class="title">Clubs</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a @click="routeToHelpPage" href="">
             <span class="icon"><i class="fas fa-question-circle"></i></span>
             <span class="title">Help</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a @click="routeToSettingsPage" href="">
             <span class="icon"><i class="fas fa-cog"></i></span>
             <span class="title">Settings</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a @click="routeToPasswordPage" href="">
             <span class="icon"><i class="fas fa-lock"></i></span>
             <span class="title">Password</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a @click="routeToSignOutPage" href="">
             <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
             <span class="title">Sign Out</span>
           </a>
@@ -68,6 +68,53 @@ export default {
   props: ["toggleState"],
   data() {
     return {};
+  },
+  methods: {
+    routeToHomePage() {
+      this.$router.push({ path: "/" }).catch(() => {
+        this.$emit("routeToHomePage");
+      });
+    },
+    routeToDashboardPage() {
+      this.$router.push({ path: "/dashboard" }).catch(() => {
+        this.$emit("routeToDashboardPage");
+      });
+    },
+    routeToClubsPage() {
+      this.$router.push({ path: "/clubs" }).catch(() => {
+        this.$emit("routeToClubsPage");
+      });
+    },
+    routeToLibraryPage() {
+      this.$router.push({ path: "/library" }).catch(() => {
+        this.$emit("routeToLibraryPage");
+      });
+    },
+    routeToConnectionsPage() {
+      this.$router.push({ path: "/connections" }).catch(() => {
+        this.$emit("routeToConnectionsPage");
+      });
+    },
+    routeToHelpPage() {
+      this.$router.push({ path: "/help" }).catch(() => {
+        this.$emit("routeToHelpPage");
+      });
+    },
+    routeToSettingsPage() {
+      this.$router.push({ path: "/settings" }).catch(() => {
+        this.$emit("routeToSettingsPage");
+      });
+    },
+    routeToPasswordPage() {
+      this.$router.push({ path: "/password" }).catch(() => {
+        this.$emit("routeToPasswordPage");
+      });
+    },
+    routeToSignOutPage() {
+      this.$router.push({ path: "/sign-up" }).catch(() => {
+        this.$emit("routeToSignOutPage");
+      });
+    },
   },
 };
 </script>
