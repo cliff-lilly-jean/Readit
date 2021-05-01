@@ -1,10 +1,45 @@
 <template>
-  <div id="library-component"></div>
+  <div id="library-component">
+    <!-- Navigation Start -->
+    <Navigation :toggleState="toggleState"></Navigation>
+    <!-- Navigation End -->
+    <!-- Main Start -->
+    <div :class="{ active: toggleState }" class="main">
+      <!-- Top Bar Start -->
+      <Topbar @toggleMenu="toggleStateChange"></Topbar>
+      <!-- Top Bar End -->
+      <!-- Details Start -->
+      <div class="details">
+        <BookCard></BookCard>
+      </div>
+      <!-- Details End -->
+    </div>
+    <!-- Main End -->
+  </div>
 </template>
 
 <script>
-export default {};
+import Navigation from "./Navigation";
+import Topbar from "./Topbar";
+import BookCard from "./BookCard";
+export default {
+  components: {
+    Navigation,
+    Topbar,
+    BookCard,
+  },
+  data() {
+    return {
+      toggleState: false,
+    };
+  },
+  methods: {
+    toggleStateChange(value) {
+      this.toggleState = value;
+    },
+  },
+};
 </script>
 
-<style>
+<style scoped>
 </style>
