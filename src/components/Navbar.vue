@@ -17,11 +17,13 @@
         </ul>
         <!-- TODO: Switch the button copy to sign out once the user is logged in -->
         <p class="navbar__login" :class="{ 'sign-up': mode }">
-          <a @click="loginClicked">Login</a>
+          <router-link to="/sign-up" @click="loginClicked"> Login </router-link>
         </p>
-        <button @click="signUpButtonClicked" class="navbar__button button">
-          Sign up
-        </button>
+        <router-link to="/sign-up">
+          <button @click="signUpButtonClicked" class="navbar__button button">
+            Sign up
+          </button>
+        </router-link>
       </div>
     </div>
   </nav>
@@ -36,14 +38,10 @@ export default {
   },
   methods: {
     signUpButtonClicked() {
-      this.$router.push({ path: "/sign-up" }).catch(() => {
-        this.$emit("signUpButtonClicked");
-      });
+      this.$emit("signUpButtonClicked");
     },
     loginClicked() {
-      this.$router.push({ path: "/sign-up" }).catch(() => {
-        this.$emit("loginClicked");
-      });
+      this.$emit("loginClicked");
     },
   },
   computed: {},

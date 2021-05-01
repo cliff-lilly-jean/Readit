@@ -3,8 +3,7 @@
     <div class="recentBooks">
       <div class="cardHeader">
         <h2>Recent Books</h2>
-        <!-- TODO: Create a path to the Library page -->
-        <a @click="routeToLibraryPage" href="" class="btn">View All</a>
+        <router-link class="btn" to="/library">View All</router-link>
       </div>
       <table>
         <thead>

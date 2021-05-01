@@ -1,38 +1,43 @@
 <template>
   <div id="card-box-component">
     <div class="cardBox">
-      <!-- TODO: Add a route to the Connections page -->
-      <div @click="routeToConnectionsPage" class="card">
-        <div>
-          <!-- TODO: Pull this data from the server -->
-          <div class="numbers">{{ totalConnections }}</div>
-          <div class="cardName">Connections</div>
+      <router-link to="/connections">
+        <div class="card">
+          <div>
+            <!-- TODO: Pull this data from the server -->
+            <div class="numbers">{{ totalConnections }}</div>
+            <div class="cardName">Connections</div>
+          </div>
+          <div class="iconBox">
+            <i class="fas fa-link"></i>
+          </div>
         </div>
-        <div class="iconBox">
-          <i class="fas fa-link"></i>
+      </router-link>
+      <router-link to="/library">
+        <div class="card">
+          <div>
+            <!-- TODO: Pull this data from the server -->
+            <div class="numbers">{{ booksInLibrary }}</div>
+            <div class="cardName">Library</div>
+          </div>
+          <div class="iconBox">
+            <i class="fas fa-book"></i>
+          </div>
         </div>
-      </div>
-      <div @click="routeToLibraryPage" class="card">
-        <div>
-          <!-- TODO: Pull this data from the server -->
-          <div class="numbers">{{ booksInLibrary }}</div>
-          <div class="cardName">Library</div>
-        </div>
-        <div class="iconBox">
-          <i class="fas fa-book"></i>
-        </div>
-      </div>
+      </router-link>
       <!-- TODO: Add a route to the Clubs page -->
-      <div @click="routeToClubsPage" class="card">
-        <div>
-          <!-- TODO: Pull this data from the server -->
-          <div class="numbers">{{ numberOfClubs }}</div>
-          <div class="cardName">Clubs</div>
+      <router-link to="/clubs">
+        <div class="card">
+          <div>
+            <!-- TODO: Pull this data from the server -->
+            <div class="numbers">{{ numberOfClubs }}</div>
+            <div class="cardName">Clubs</div>
+          </div>
+          <div class="iconBox">
+            <i class="fas fa-users"></i>
+          </div>
         </div>
-        <div class="iconBox">
-          <i class="fas fa-users"></i>
-        </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -46,23 +51,6 @@ export default {
       totalConnections: 11,
       numberOfClubs: 2,
     };
-  },
-  methods: {
-    routeToLibraryPage() {
-      this.$router.push({ path: "/library" }).catch(() => {
-        this.$emit("routeToLibraryPage");
-      });
-    },
-    routeToConnectionsPage() {
-      this.$router.push({ path: "/connections" }).catch(() => {
-        this.$emit("routeToConnectionsPage");
-      });
-    },
-    routeToClubsPage() {
-      this.$router.push({ path: "/clubs" }).catch(() => {
-        this.$emit("routeToClubsPage");
-      });
-    },
   },
 };
 </script>

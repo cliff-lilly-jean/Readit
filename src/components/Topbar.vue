@@ -14,9 +14,10 @@
           <i class="fas fa-search"></i>
         </label>
       </div>
-      <div class="user">
+      <!-- TODO: Route this to the settings page-->
+      <router-link to="/settings" class="user">
         <img src="../assets/images/_img/cliff-jean-portrait.jpg" alt="" />
-      </div>
+      </router-link>
     </div>
     <!-- Top Bar End -->
   </div>
