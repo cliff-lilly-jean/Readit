@@ -3,62 +3,61 @@
     <!-- Navigation Start -->
     <div :class="{ active: toggleState }" class="navigation">
       <ul>
-        <router-link to="/">
-          <li>
-            <a href="">
-              <span class="icon"><i class="fab fa-resolving"></i></span>
-              <span class="title"><h2>ReadIt</h2></span>
-            </a>
-          </li>
-        </router-link>
-        <!-- TODO: Change all function push calls to router into router-link tags -->
         <li>
-          <a @click="routeToDashboardPage" href="">
+          <router-link to="/">
+            <span class="icon"><i class="fab fa-resolving"></i></span>
+            <span class="title"><h2>ReadIt</h2></span>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/dashboard">
             <span class="icon"><i class="fas fa-home"></i></span>
             <span class="title">Dashboard</span>
-          </a>
+          </router-link>
         </li>
+
         <li>
-          <a @click="routeToConnectionsPage" href="">
+          <router-link to="/connections">
             <span class="icon"><i class="fas fa-link"></i></span>
             <span class="title">Connections</span>
-          </a>
+          </router-link>
         </li>
         <li>
-          <a @click="routeToLibraryPage" href="">
+          <router-link to="/library">
             <span class="icon"><i class="fas fa-book"></i></span>
             <span class="title">Library</span>
-          </a>
+          </router-link>
         </li>
         <li>
-          <a @click="routeToClubsPage" href="">
+          <router-link to="/clubs">
             <span class="icon"><i class="fas fa-users"></i></span>
             <span class="title">Clubs</span>
-          </a>
+          </router-link>
         </li>
         <li>
-          <a @click="routeToHelpPage" href="">
+          <router-link to="/help">
             <span class="icon"><i class="fas fa-question-circle"></i></span>
             <span class="title">Help</span>
-          </a>
+          </router-link>
         </li>
         <li>
-          <a @click="routeToSettingsPage" href="">
+          <router-link to="/settings">
             <span class="icon"><i class="fas fa-cog"></i></span>
             <span class="title">Settings</span>
-          </a>
+          </router-link>
         </li>
         <li>
-          <a @click="routeToPasswordPage" href="">
+          <router-link to="/password">
             <span class="icon"><i class="fas fa-lock"></i></span>
             <span class="title">Password</span>
-          </a>
+          </router-link>
         </li>
         <li>
-          <a @click="routeToSignOutPage" href="">
+          <!-- TODO: Force this link to automatically make the sign out form active -->
+          <router-link to="/sign-up">
             <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
             <span class="title">Sign Out</span>
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -71,53 +70,6 @@ export default {
   props: ["toggleState"],
   data() {
     return {};
-  },
-  methods: {
-    routeToHomePage() {
-      this.$router.push({ path: "/" }).catch(() => {
-        this.$emit("routeToHomePage");
-      });
-    },
-    routeToDashboardPage() {
-      this.$router.push({ path: "/dashboard" }).catch(() => {
-        this.$emit("routeToDashboardPage");
-      });
-    },
-    routeToClubsPage() {
-      this.$router.push({ path: "/clubs" }).catch(() => {
-        this.$emit("routeToClubsPage");
-      });
-    },
-    routeToLibraryPage() {
-      this.$router.push({ path: "/library" }).catch(() => {
-        this.$emit("routeToLibraryPage");
-      });
-    },
-    routeToConnectionsPage() {
-      this.$router.push({ path: "/connections" }).catch(() => {
-        this.$emit("routeToConnectionsPage");
-      });
-    },
-    routeToHelpPage() {
-      this.$router.push({ path: "/help" }).catch(() => {
-        this.$emit("routeToHelpPage");
-      });
-    },
-    routeToSettingsPage() {
-      this.$router.push({ path: "/settings" }).catch(() => {
-        this.$emit("routeToSettingsPage");
-      });
-    },
-    routeToPasswordPage() {
-      this.$router.push({ path: "/password" }).catch(() => {
-        this.$emit("routeToPasswordPage");
-      });
-    },
-    routeToSignOutPage() {
-      this.$router.push({ path: "/sign-up" }).catch(() => {
-        this.$emit("routeToSignOutPage");
-      });
-    },
   },
 };
 </script>

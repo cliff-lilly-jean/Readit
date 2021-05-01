@@ -1,23 +1,25 @@
 <template>
   <footer id="footer">
     <div class="footer__content">
-      <p @click="navigateHome" class="footer__title">ReadIt</p>
+      <router-link to="/">
+        <p class="footer__title">ReadIt</p>
+      </router-link>
       <p class="footer__copyright">
         &copy; Copyright 2021 Cliff Jean. All rights reserved.
       </p>
       <div class="footer__links">
-        <a
-          href="https://www.linkedin.com/in/cliff-lilly-jean/"
+        <router-link
           class="footer__link"
-          target="_blank"
+          to="https://www.linkedin.com/in/cliff-lilly-jean/"
+        >
           ><img src="../assets/images/_img/linkedin_icon.svg" alt=""
-        /></a>
-        <a
-          href="https://github.com/cliff-lilly-jean"
+        /></router-link>
+        <router-link
+          to="https://github.com/cliff-lilly-jean"
           class="footer__link"
-          target="_blank"
-          ><img src="../assets/images/_img/github_icon.svg" alt=""
-        /></a>
+        >
+          <img src="../assets/images/_img/github_icon.svg" alt="" />
+        </router-link>
       </div>
     </div>
   </footer>
@@ -27,11 +29,6 @@
 export default {
   data() {
     return {};
-  },
-  methods: {
-    navigateHome() {
-      this.$router.push({ path: "/" }).catch(() => {});
-    },
   },
 };
 </script>

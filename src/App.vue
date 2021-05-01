@@ -25,6 +25,10 @@ export default {
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 img {
   height: auto;
   width: 100%;

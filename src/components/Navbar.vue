@@ -3,7 +3,9 @@
   <nav id="navbar">
     <div class="navbar__content">
       <div class="navbar__left">
-        <p @click="navigateHome" class="navbar__logo">ReadIt</p>
+        <router-link to="/">
+          <p class="navbar__logo">ReadIt</p>
+        </router-link>
       </div>
       <div class="navbar__right">
         <ul class="navbar__links">
@@ -33,9 +35,6 @@ export default {
     return {};
   },
   methods: {
-    navigateHome() {
-      this.$router.push({ path: "/" }).catch(() => {});
-    },
     signUpButtonClicked() {
       this.$router.push({ path: "/sign-up" }).catch(() => {
         this.$emit("signUpButtonClicked");
