@@ -8,11 +8,7 @@
       <!-- Top Bar Start -->
       <Topbar @toggleMenu="toggleStateChange"></Topbar>
       <!-- Top Bar End -->
-      <!-- Details Start -->
-      <div class="details">
-        <BookCard></BookCard>
-      </div>
-      <!-- Details End -->
+      <BookCard></BookCard>
     </div>
     <!-- Main End -->
   </div>

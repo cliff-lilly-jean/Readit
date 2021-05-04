@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 const routes = new VueRouter({
  // Add routes here
  routes: Routes,
- mode: "history"
+ // mode: "history"
 });
 
 Vue.config.productionTip = false;
