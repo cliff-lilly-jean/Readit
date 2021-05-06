@@ -8,9 +8,19 @@
         class="toggle"
       ></div>
       <!-- TODO: Add Book search Functionaility -->
+      <!-- TODO: Add Barcode Scanner functionality
+       * Use the QuaggaJs library: https://serratus.github.io/quaggaJS/
+       ***** Reference this for issues with the QuaggaJs scanner: https://github.com/serratus/quaggaJS/issues/192#issuecomment-661585700
+       * Use this for the Barcode scanner API: https://www.barcodelookup.com/api
+       -->
       <div class="search">
         <label for="#">
-          <input type="text" placeholder="Search books here" />
+          <input
+            v-model="usersSearch"
+            @keyup.enter="userSearchQuery"
+            type="text"
+            placeholder="Enter a book Barcode/ISBN"
+          />
           <i class="fas fa-search"></i>
         </label>
       </div>
@@ -24,16 +34,34 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  // props: ["toggleState"],
   data() {
     return {
       toggleState: false,
+      usersSearch: "",
+      booksAPIKey: process.env.VUE_APP_API_KEY,
+      books: {},
     };
   },
   methods: {
     toggleMenu() {
       this.$emit("toggleMenu", (this.toggleState = !this.toggleState));
+    },
+    userSearchQuery() {
+      axios
+        .get(
+          "https://www.googleapis.com/books/v1/volumes?q=isbn:" +
+            this.usersSearch +
+            "&key=" +
+            this.booksAPIKey
+        )
+        .then((response) => {
+          // Get the data and add it to books
+          // this.books = response.items;
+          console.log(response);
+        });
+      this.usersSearchQueryFromInput = "";
     },
   },
 };

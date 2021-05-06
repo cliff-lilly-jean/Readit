@@ -2,13 +2,18 @@ import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
 import Routes from './routes';
+import { firestorePlugin } from 'vuefire';
+
+
+// Vuefire Firebase
+Vue.use(firestorePlugin);
 
 // Router
 Vue.use(VueRouter);
 const routes = new VueRouter({
  // Add routes here
  routes: Routes,
- // mode: "history"
+ mode: "history"
 });
 
 Vue.config.productionTip = false;

@@ -56,9 +56,20 @@ export default {
 <style scoped>
 .container {
   display: grid;
-  gap: 20px;
+  gap: 40px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   margin: 0 auto;
   padding: 20px;
+}
+
+.card {
+  margin: 20px 0;
+  background: #fff1f3;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card .content {
+  padding: 0 20px;
+  text-align: center;
 }
 </style>

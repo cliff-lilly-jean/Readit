@@ -73,13 +73,13 @@ export default {
 }
 
 .details {
-  /* position: relative;
+  position: relative;
   width: 100%;
   padding: 20px;
   padding-top: 0;
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: 2fr 1fr; */
+  grid-template-columns: 2fr 1fr;
 }
 
 /* Media Queries */
