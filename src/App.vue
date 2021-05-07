@@ -65,4 +65,9 @@ section {
 .button:hover {
   background: #af3a42;
 }
+
+/* Center the Video when the barcode scanner is clicked */
+.scanner-box video {
+  width: 100%;
+}
 </style>

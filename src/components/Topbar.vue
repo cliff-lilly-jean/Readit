@@ -29,7 +29,16 @@
           ></i>
         </label>
       </div>
-      <div class="scanner-box" id="scanner-box"></div>
+      <!-- TODO: Finish this design -->
+      <!-- TODO: Add a close button that triggers a call to the Quagga.stop method -->
+      <div
+        class="scanner-box-container"
+        :class="{
+          'scanner-box-container--active': scannerBoxContainerOpacity,
+        }"
+      >
+        <div class="scanner-box" id="scanner-box"></div>
+      </div>
       <!-- TODO: Route this to the settings page-->
       <router-link to="/settings" class="user">
         <img src="../assets/images/_img/cliff-jean-portrait.jpg" alt="" />
@@ -50,6 +59,8 @@ export default {
       booksAPIKey: process.env.VUE_APP_API_KEY,
       books: {},
       barcodeScannerHoverMessage: "Use your webcam to scan the books barcode",
+      lastCode: "",
+      scannerBoxContainerOpacity: false,
     };
   },
   methods: {
@@ -85,7 +96,7 @@ export default {
             },
 
             decoder: {
-              readers: ["code_128_reader"],
+              readers: ["ean_reader"],
             },
           },
           function (err) {
@@ -97,6 +108,13 @@ export default {
             Quagga.start();
           }
         );
+        // Toggle the active class on the scanner container
+        this.scannerBoxContainerOpacity = !this.scannerBoxContainerOpacity;
+        Quagga.onDetected(function (result) {
+          this.lastCode = result.codeResult.code;
+          Quagga.stop();
+          console.log(this.lastCode);
+        });
       }
     },
   },
@@ -188,14 +206,33 @@ export default {
   object-fit: cover;
 }
 
+.scanner-box-container {
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scanner-box-container.scanner-box-container--active {
+  opacity: 1;
+}
+
 .scanner-box {
-  height: 500px;
-  width: 500px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: right 50%;
-  transform: translate(-50%, -50%);
+  background: #fefefe;
+  width: 640px;
+  max-width: 100%;
+  height: 480px;
+  padding: 30px 50px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 480px) {
