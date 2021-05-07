@@ -123,7 +123,7 @@
 <script>
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { auth } from "../firebase";
+// import { auth } from "../firebase";
 
 export default {
   components: {

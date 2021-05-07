@@ -13,17 +13,23 @@
        ***** Reference this for issues with the QuaggaJs scanner: https://github.com/serratus/quaggaJS/issues/192#issuecomment-661585700
        * Use this for the Barcode scanner API: https://www.barcodelookup.com/api
        -->
-      <div class="search">
+      <div id="search" class="search">
         <label for="#">
           <input
             v-model="usersSearch"
             @keyup.enter="userSearchQuery"
             type="text"
-            placeholder="Enter a book Barcode/ISBN"
+            placeholder="Enter your book Barcode/ISBN"
           />
           <i class="fas fa-search"></i>
+          <i
+            @click="openBarcodeScanner"
+            :title="barcodeScannerHoverMessage"
+            class="fas fa-barcode"
+          ></i>
         </label>
       </div>
+      <div class="scanner-box" id="scanner-box"></div>
       <!-- TODO: Route this to the settings page-->
       <router-link to="/settings" class="user">
         <img src="../assets/images/_img/cliff-jean-portrait.jpg" alt="" />
@@ -35,6 +41,7 @@
 
 <script>
 import axios from "axios";
+import Quagga from "quagga";
 export default {
   data() {
     return {
@@ -42,6 +49,7 @@ export default {
       usersSearch: "",
       booksAPIKey: process.env.VUE_APP_API_KEY,
       books: {},
+      barcodeScannerHoverMessage: "Use your webcam to scan the books barcode",
     };
   },
   methods: {
@@ -61,7 +69,35 @@ export default {
           // this.books = response.items;
           console.log(response);
         });
-      this.usersSearchQueryFromInput = "";
+      this.usersSearch = "";
+    },
+    openBarcodeScanner() {
+      if (
+        navigator.mediaDevices &&
+        typeof navigator.mediaDevices.getUserMedia === "function"
+      ) {
+        Quagga.init(
+          {
+            inputStream: {
+              name: "Live",
+              type: "LiveStream",
+              target: document.querySelector("#scanner-box"),
+            },
+
+            decoder: {
+              readers: ["code_128_reader"],
+            },
+          },
+          function (err) {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            console.log("Initialization finished. Ready to start");
+            Quagga.start();
+          }
+        );
+      }
     },
   },
 };
@@ -125,6 +161,15 @@ export default {
   top: 10px;
 }
 
+.search label .fas.fa-barcode {
+  left: auto;
+  right: -30px;
+}
+
+.search label .fas.fa-barcode:hover {
+  cursor: pointer;
+}
+
 .user {
   position: relative;
   min-width: 50px;
@@ -141,6 +186,16 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.scanner-box {
+  height: 500px;
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: right 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media (max-width: 480px) {

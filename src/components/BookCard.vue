@@ -1,6 +1,7 @@
 <template>
   <div id="book-card">
     <div class="container">
+      <!-- TODO: Design better looking cards -->
       <div class="card">
         <div class="imgBx">
           <!-- TODO: Bind the mg src to the returned image from the search -->
