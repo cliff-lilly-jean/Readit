@@ -9,8 +9,6 @@
       ></div>
       <!-- TODO: Add Book search Functionaility -->
       <!-- TODO: Add Barcode Scanner functionality
-       * Use the QuaggaJs library: https://serratus.github.io/quaggaJS/
-       ***** Reference this for issues with the QuaggaJs scanner: https://github.com/serratus/quaggaJS/issues/192#issuecomment-661585700
        * Use this for the Barcode scanner API: https://www.barcodelookup.com/api
        -->
       <div id="search" class="search">
@@ -19,7 +17,7 @@
             v-model="usersSearch"
             @keyup.enter="userSearchQuery"
             type="text"
-            placeholder="Enter your book Barcode/ISBN"
+            placeholder="Enter your book ISBN or click the bars to the right to scan"
           />
           <i class="fas fa-search"></i>
           <i
@@ -29,7 +27,6 @@
           ></i>
         </label>
       </div>
-      <!-- TODO: Finish this design -->
       <!-- TODO: Add a close button that triggers a call to the Quagga.stop method -->
       <div
         class="scanner-box-container"
@@ -37,7 +34,9 @@
           'scanner-box-container--active': scannerBoxContainerOpacity,
         }"
       >
-        <div class="scanner-box" id="scanner-box"></div>
+        <div class="scanner-box" id="scanner-box">
+          <i @click="closeBarcodeScanner" class="fas fa-times"></i>
+        </div>
       </div>
       <!-- TODO: Route this to the settings page-->
       <router-link to="/settings" class="user">
@@ -49,6 +48,7 @@
 </template>
 
 <script>
+import { bus } from "../main";
 import axios from "axios";
 import Quagga from "quagga";
 export default {
@@ -61,12 +61,16 @@ export default {
       barcodeScannerHoverMessage: "Use your webcam to scan the books barcode",
       lastCode: "",
       scannerBoxContainerOpacity: false,
+      bookTitle: "",
+      bookAuthor: "",
+      bookDescription: "",
     };
   },
   methods: {
     toggleMenu() {
       this.$emit("toggleMenu", (this.toggleState = !this.toggleState));
     },
+    // User search method
     userSearchQuery() {
       axios
         .get(
@@ -77,16 +81,29 @@ export default {
         )
         .then((response) => {
           // Get the data and add it to books
+          // 9781612680170
           // this.books = response.items;
-          console.log(response);
+          let returnData = response.data.items[0].volumeInfo;
+          console.log(response.data.items[0].volumeInfo);
+          this.bookTitle = returnData.title;
+          this.bookAuthor = returnData.authors[0];
+          this.bookDescription = returnData.description;
+          bus.$emit("bookDetails", [
+            this.bookTitle,
+            this.bookAuthor,
+            this.bookDescription,
+          ]);
         });
       this.usersSearch = "";
     },
+    // Barcode Scanner Method
     openBarcodeScanner() {
       if (
         navigator.mediaDevices &&
         typeof navigator.mediaDevices.getUserMedia === "function"
       ) {
+        // Global 'this' variable within Quagga
+        let vm = this;
         Quagga.init(
           {
             inputStream: {
@@ -98,6 +115,7 @@ export default {
             decoder: {
               readers: ["ean_reader"],
             },
+            multiple: false,
           },
           function (err) {
             if (err) {
@@ -108,14 +126,47 @@ export default {
             Quagga.start();
           }
         );
-        // Toggle the active class on the scanner container
-        this.scannerBoxContainerOpacity = !this.scannerBoxContainerOpacity;
+
         Quagga.onDetected(function (result) {
-          this.lastCode = result.codeResult.code;
+          vm.lastCode = result.codeResult.code;
+          axios
+            .get(
+              "https://www.googleapis.com/books/v1/volumes?q=isbn:" +
+                vm.lastCode +
+                "&key=" +
+                vm.booksAPIKey
+            )
+            .then((response) => {
+              // Get the data and add it to books
+              // 9781612680170
+              console.log(response.data.items[0].volumeInfo);
+              vm.bookTitle = response.data.items[0].volumeInfo.title;
+              vm.bookAuthor = response.data.items[0].volumeInfo.authors[0];
+              vm.bookDescription =
+                response.data.items[0].volumeInfo.description;
+              bus.$emit("bookDetails", [
+                vm.bookTitle,
+                vm.bookAuthor,
+                vm.bookDescription,
+              ]);
+            });
+          vm.usersSearch = "";
+          vm.scannerBoxContainerOpacity = false;
           Quagga.stop();
-          console.log(this.lastCode);
+          console.log(vm.lastCode);
         });
+        vm.toggleScanner();
       }
+    },
+    closeBarcodeScanner() {
+      this.scannerBoxContainerOpacity = false;
+      Quagga.stop;
+    },
+    toggleScanner() {
+      if (this.scannerBoxContainerOpacity === false) {
+        Quagga.stop();
+      }
+      this.scannerBoxContainerOpacity = !this.scannerBoxContainerOpacity;
     },
   },
 };
@@ -219,10 +270,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 0.3s ease;
 }
 
 .scanner-box-container.scanner-box-container--active {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .scanner-box {
@@ -233,6 +286,14 @@ export default {
   padding: 30px 50px;
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.scanner-box .fas.fa-times {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 20px;
 }
 
 @media (max-width: 480px) {

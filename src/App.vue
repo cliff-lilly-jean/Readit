@@ -67,7 +67,9 @@ section {
 }
 
 /* Center the Video when the barcode scanner is clicked */
-.scanner-box video {
+#scanner-box video,
+#scanner-box canvas {
   width: 100%;
+  height: auto;
 }
 </style>

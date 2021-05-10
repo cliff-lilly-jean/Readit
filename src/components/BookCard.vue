@@ -43,13 +43,22 @@
 </template>
 
 <script>
+import { bus } from "../main";
 export default {
+  // props: ["bookTitle", "bookAuthor", "bookDescription"],
   data() {
     return {
-      bookTitle: "Harry Potter",
-      bookDescription:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum in autem possimus delectus consequatur consectetur odit non praesentium. Voluptatum rerum voluptates dicta ullam aliquid deserunt alias voluptatem vel hic libero!",
+      bookTitle: "",
+      bookAuthor: "",
+      bookDescription: "",
     };
+  },
+  created() {
+    bus.$on("bookDetails", (data) => {
+      this.bookTitle = data[0];
+      this.bookAuthor = data[1];
+      this.bookDescription = data[2];
+    });
   },
 };
 </script>

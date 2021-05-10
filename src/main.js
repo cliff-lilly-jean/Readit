@@ -5,6 +5,9 @@ import Routes from './routes';
 import { firestorePlugin } from 'vuefire';
 
 
+// Event Bus
+export const bus = new Vue();
+
 // Vuefire Firebase
 Vue.use(firestorePlugin);
 
