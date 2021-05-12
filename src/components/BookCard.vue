@@ -2,38 +2,15 @@
   <div id="book-card">
     <div class="container">
       <!-- TODO: Design better looking cards -->
-      <div class="card">
+      <!-- TODO: Create new cards reactivly with vFor -->
+      <div class="card" :class="{ active: cardPopulated }">
         <div class="imgBx">
           <!-- TODO: Bind the mg src to the returned image from the search -->
           <img src="../assets/images/_img/book_cover.jpeg" alt="" />
         </div>
         <div class="content">
-          <!-- TODO: Bind this to the returned book title -->
           <h2>{{ bookTitle }}</h2>
-          <p>{{ bookDescription }}</p>
-          <button class="button">Learn More</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="imgBx">
-          <!-- TODO: Bind the mg src to the returned image from the search -->
-          <img src="../assets/images/_img/book_cover.jpeg" alt="" />
-        </div>
-        <div class="content">
-          <!-- TODO: Bind this to the returned book title -->
-          <h2>{{ bookTitle }}</h2>
-          <p>{{ bookDescription }}</p>
-          <button class="button">Learn More</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="imgBx">
-          <!-- TODO: Bind the mg src to the returned image from the search -->
-          <img src="../assets/images/_img/book_cover.jpeg" alt="" />
-        </div>
-        <div class="content">
-          <!-- TODO: Bind this to the returned book title -->
-          <h2>{{ bookTitle }}</h2>
+          <p>{{ bookAuthor }}</p>
           <p>{{ bookDescription }}</p>
           <button class="button">Learn More</button>
         </div>
@@ -45,19 +22,22 @@
 <script>
 import { bus } from "../main";
 export default {
-  // props: ["bookTitle", "bookAuthor", "bookDescription"],
   data() {
     return {
       bookTitle: "",
       bookAuthor: "",
       bookDescription: "",
+      cardPopulated: false,
     };
   },
+  methods: {},
   created() {
     bus.$on("bookDetails", (data) => {
       this.bookTitle = data[0];
       this.bookAuthor = data[1];
       this.bookDescription = data[2];
+      this.cardPopulated = true;
+      console.log(this.bookTitle);
     });
   },
 };
@@ -73,9 +53,15 @@ export default {
 }
 
 .card {
-  margin: 20px 0;
+  margin: 20px auto;
+  max-width: 300px;
   background: #fff1f3;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+}
+
+.card.active {
+  opacity: 1;
 }
 
 .card .content {
