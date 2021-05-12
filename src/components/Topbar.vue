@@ -7,10 +7,7 @@
         :class="{ active: toggleState }"
         class="toggle"
       ></div>
-      <!-- TODO: Add Book search Functionaility -->
-      <!-- TODO: Add Barcode Scanner functionality
-       * Use this for the Barcode scanner API: https://www.barcodelookup.com/api
-       -->
+      <!-- TODO: Route this to the library page based off a correct barcode or input entry -->
       <div id="search" class="search">
         <label for="#">
           <input
@@ -27,7 +24,6 @@
           ></i>
         </label>
       </div>
-      <!-- TODO: Add a close button that triggers a call to the Quagga.stop method -->
       <div
         class="scanner-box-container"
         :class="{
@@ -38,7 +34,6 @@
           <i @click="closeBarcodeScanner" class="fas fa-times"></i>
         </div>
       </div>
-      <!-- TODO: Route this to the settings page-->
       <router-link to="/settings" class="user">
         <img src="../assets/images/_img/cliff-jean-portrait.jpg" alt="" />
       </router-link>
@@ -82,16 +77,16 @@ export default {
         .then((response) => {
           // Get the data and add it to books
           // 9781612680170
-          // this.books = response.items;
           let returnData = response.data.items[0].volumeInfo;
-          console.log(response.data.items[0].volumeInfo);
           this.bookTitle = returnData.title;
           this.bookAuthor = returnData.authors[0];
           this.bookDescription = returnData.description;
+          this.bookThumb = returnData.imageLinks.thumbnail;
           bus.$emit("bookDetails", [
             this.bookTitle,
             this.bookAuthor,
             this.bookDescription,
+            this.bookThumb,
           ]);
         });
       this.usersSearch = "";

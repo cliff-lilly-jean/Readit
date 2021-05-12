@@ -2,11 +2,10 @@
   <div id="book-card">
     <div class="container">
       <!-- TODO: Design better looking cards -->
-      <!-- TODO: Create new cards reactivly with vFor -->
       <div class="card" :class="{ active: cardPopulated }">
         <div class="imgBx">
           <!-- TODO: Bind the mg src to the returned image from the search -->
-          <img src="../assets/images/_img/book_cover.jpeg" alt="" />
+          <img :src="bookThumb" alt="" />
         </div>
         <div class="content">
           <h2>{{ bookTitle }}</h2>
@@ -27,6 +26,7 @@ export default {
       bookTitle: "",
       bookAuthor: "",
       bookDescription: "",
+      bookThumb: "",
       cardPopulated: false,
     };
   },
@@ -36,8 +36,8 @@ export default {
       this.bookTitle = data[0];
       this.bookAuthor = data[1];
       this.bookDescription = data[2];
+      this.bookThumb = data[3];
       this.cardPopulated = true;
-      console.log(this.bookTitle);
     });
   },
 };
@@ -67,5 +67,10 @@ export default {
 .card .content {
   padding: 0 20px;
   text-align: center;
+}
+
+.card .imgBx {
+  max-width: 200px;
+  margin: 0 auto;
 }
 </style>
