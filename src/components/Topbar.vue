@@ -81,12 +81,16 @@ export default {
           this.bookTitle = returnData.title;
           this.bookAuthor = returnData.authors[0];
           this.bookDescription = returnData.description;
+          this.bookRating = returnData.averageRating;
           this.bookThumb = returnData.imageLinks.thumbnail;
+          console.log(returnData);
+          console.log(returnData.averageRating);
           bus.$emit("bookDetails", [
             this.bookTitle,
             this.bookAuthor,
             this.bookDescription,
             this.bookThumb,
+            this.bookRating,
           ]);
         });
       this.usersSearch = "";
@@ -134,15 +138,18 @@ export default {
             .then((response) => {
               // Get the data and add it to books
               // 9781612680170
-              console.log(response.data.items[0].volumeInfo);
-              vm.bookTitle = response.data.items[0].volumeInfo.title;
-              vm.bookAuthor = response.data.items[0].volumeInfo.authors[0];
-              vm.bookDescription =
-                response.data.items[0].volumeInfo.description;
+              let returnData = response.data.items[0].volumeInfo;
+              vm.bookTitle = returnData.title;
+              vm.bookAuthor = returnData.authors[0];
+              vm.bookDescription = returnData.description;
+              vm.bookRating = returnData.averageRating;
+              vm.bookThumb = returnData.imageLinks.thumbnail;
               bus.$emit("bookDetails", [
                 vm.bookTitle,
                 vm.bookAuthor,
                 vm.bookDescription,
+                vm.bookThumb,
+                vm.bookRating,
               ]);
             });
           vm.usersSearch = "";
