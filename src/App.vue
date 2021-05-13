@@ -7,7 +7,6 @@
 <script>
 // Font Awesome Import
 import "@fortawesome/fontawesome-free/css/all.css";
-import "line-awesome/dist/line-awesome/css/line-awesome.min.css";
 export default {
   name: "App",
   data() {
@@ -26,6 +25,10 @@ export default {
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 img {
   height: auto;
   width: 100%;
@@ -41,7 +44,6 @@ img {
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.5;
-  font-size: 18px;
 }
 
 section {
@@ -62,5 +64,12 @@ section {
 
 .button:hover {
   background: #af3a42;
+}
+
+/* Center the Video when the barcode scanner is clicked */
+#scanner-box video,
+#scanner-box canvas {
+  width: 100%;
+  height: auto;
 }
 </style>

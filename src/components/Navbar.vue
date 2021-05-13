@@ -3,7 +3,9 @@
   <nav id="navbar">
     <div class="navbar__content">
       <div class="navbar__left">
-        <p class="navbar__logo"><a href="/">ReadIt</a></p>
+        <router-link to="/">
+          <p class="navbar__logo">ReadIt</p>
+        </router-link>
       </div>
       <div class="navbar__right">
         <ul class="navbar__links">
@@ -15,11 +17,13 @@
         </ul>
         <!-- TODO: Switch the button copy to sign out once the user is logged in -->
         <p class="navbar__login" :class="{ 'sign-up': mode }">
-          <a @click="loginClicked">Login</a>
+          <router-link to="/sign-up" @click="loginClicked"> Login </router-link>
         </p>
-        <button @click="signUpButtonClicked" class="navbar__button button">
-          Sign up
-        </button>
+        <router-link to="/sign-up">
+          <button @click="signUpButtonClicked" class="navbar__button button">
+            Sign up
+          </button>
+        </router-link>
       </div>
     </div>
   </nav>
@@ -36,11 +40,9 @@ export default {
   },
   methods: {
     signUpButtonClicked() {
-      this.$router.push({ path: "/sign-up" });
       this.$emit("signUpButtonClicked");
     },
     loginClicked() {
-      this.$router.push({ path: "/sign-up" });
       this.$emit("loginClicked");
     },
   },
@@ -68,11 +70,11 @@ export default {
 .navbar__logo {
   font-size: 2rem;
   font-weight: bold;
+  color: #f4999d;
 }
 
-.navbar__logo a {
-  color: #f4999d;
-  text-decoration: none;
+.navbar__logo:hover {
+  cursor: pointer;
 }
 
 .navbar__right {
@@ -90,14 +92,13 @@ export default {
 .navbar__link a,
 p.navbar__login > a {
   text-decoration: none;
-  /* color: #010203; */
   cursor: pointer;
-  transition: 1.3s 0.8s ease-in-out;
+  transition: color 1.3s 0.8s ease-in-out;
 }
 
 p.navbar__login.sign-up > a {
   color: #fefefe;
-  transition: 1.3s 0.8s ease-in-out;
+  transition: color 1.3s 0.8s ease-in-out;
 }
 
 .navbar__link a:hover,

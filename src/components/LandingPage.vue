@@ -6,12 +6,12 @@
     <header id="header">
       <section class="lp-container">
         <div class="lp__left">
-          <!-- <h1 class="title">ReadIt</h1> -->
           <p>
             Create a digital library of books you've read or plan on reading.
             Leave ratings for the books you love and reccomend them to your
             friends.
           </p>
+          <!-- TODO: Create a function on this button that routes this page to the LIBRARY page if the user is authenticated -->
           <button @click="routeToSearchPage" class="button">
             Create your library <i class="fas fa-arrow-right"></i>
           </button>
@@ -36,7 +36,6 @@
             class="info__image"
           />
           <p class="info__copy">
-            <!-- TODO: Add relavent copy -->
             Books are an item that can be passed along to future generations,
             allowing them to gain from the knowledge stored inside.
           </p>
@@ -48,7 +47,6 @@
             class="info__image"
           />
           <p class="info__copy">
-            <!-- TODO: Add relavent copy -->
             Books allow you the opportunity to escape reality for a momment,
             placing you inside a world foreign and comepletely differnent from
             the one you're in.
@@ -61,7 +59,6 @@
             class="info__image"
           />
           <p class="info__copy">
-            <!-- TODO: Add relavent copy -->
             Books provide a wealth of knowledge that would otherwise be hidden.
             The potential for self improvement is greatly increased with the aid
             of books.

@@ -1,5 +1,6 @@
 <template>
   <div id="sign-up">
+    <!-- TODO: Fix the signup true and false values on click when transitioning to the SIGN-UP page -->
     <Navbar
       :mode="isSignUpMode"
       @signUpButtonClicked="isSignUpMode = true"
@@ -12,8 +13,8 @@
           <form action="#" class="sign-in-form">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <i class="fas fa-envelope-open-text"></i>
+              <input type="email" placeholder="Email" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
@@ -25,7 +26,7 @@
             </p>
             <!-- TODO: Link the social icons to their respective platform -->
             <div class="social-media">
-              <a @click="fbLogin" href="#" class="social-icon">
+              <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
               <a href="#" class="social-icon">
@@ -44,7 +45,7 @@
             <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="email" placeholder="Name" />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
@@ -60,7 +61,7 @@
             </p>
             <!-- TODO: Link the social icons to their respective platform -->
             <div class="social-media">
-              <a @click="fbLogin" href="#" class="social-icon">
+              <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
               <a href="#" class="social-icon">
@@ -122,6 +123,7 @@
 <script>
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+// import { auth } from "../firebase";
 
 export default {
   components: {
