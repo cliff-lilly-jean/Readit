@@ -83,6 +83,7 @@ export default {
           this.bookDescription = returnData.description;
           this.bookRating = returnData.averageRating;
           this.bookThumb = returnData.imageLinks.thumbnail;
+          this.bookPublishDate = returnData.publishDate;
           console.log(returnData);
           console.log(returnData.averageRating);
           bus.$emit("bookDetails", [
@@ -91,6 +92,7 @@ export default {
             this.bookDescription,
             this.bookThumb,
             this.bookRating,
+            this.bookPublishDate,
           ]);
         });
       this.usersSearch = "";
@@ -144,12 +146,14 @@ export default {
               vm.bookDescription = returnData.description;
               vm.bookRating = returnData.averageRating;
               vm.bookThumb = returnData.imageLinks.thumbnail;
+              vm.bookPublishDate = returnData.publishDate;
               bus.$emit("bookDetails", [
                 vm.bookTitle,
                 vm.bookAuthor,
                 vm.bookDescription,
                 vm.bookThumb,
                 vm.bookRating,
+                vm.bookPublishDate,
               ]);
             });
           vm.usersSearch = "";

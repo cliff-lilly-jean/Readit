@@ -1,24 +1,21 @@
 <template>
   <div id="book-card">
+    <!-- 9781612680170 -->
     <div class="container">
       <!-- TODO: Design better looking cards -->
-      <div class="card" :class="{ active: cardPopulated }">
-        <h2>{{ bookTitle }}</h2>
-        <div class="card__interior">
-          <div class="imgBx">
-            <img :src="bookThumb" alt="" />
+      <div class="book">
+        <div class="book__img">
+          <img :src="bookThumb" alt="The thumbnail image of the book" />
+        </div>
+        <div class="book__info">
+          <div class="book__date">
+            <span>{{ bookPublishDate }}</span>
           </div>
-          <div class="content">
-            <div class="content__container">
-              <p>{{ bookDescription }}</p>
-              <p class="card__author">{{ bookAuthor }}</p>
-            </div>
-            <div class="content__rating">
-              <p>Avg rating: {{ avgRatingToStars }}</p>
-            </div>
-            <!-- TODO: Create an add to library function that push's the book to the users database library -->
-            <button class="button">Learn More</button>
-          </div>
+          <h1 class="book__title">{{ bookTitle }}</h1>
+          <p class="book__author">{{ bookAuthor }}</p>
+          <p class="book__rating">{{ avgRatingToStars }}</p>
+          <p class="book__description">{{ bookDescription }}</p>
+          <a href="#" class="book__cta">Read more</a>
         </div>
       </div>
     </div>
@@ -35,6 +32,7 @@ export default {
       bookDescription: "",
       bookThumb: "",
       bookRating: "",
+      bookPublishDate: "",
       bookStars: [],
       cardPopulated: false,
     };
@@ -47,6 +45,7 @@ export default {
       this.bookDescription = data[2];
       this.bookThumb = data[3];
       this.bookRating = data[4];
+      this.bookPublishDate = data[5];
       this.cardPopulated = true;
     });
   },
