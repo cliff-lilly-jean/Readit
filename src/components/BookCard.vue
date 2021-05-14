@@ -2,7 +2,6 @@
   <div id="book-card">
     <!-- 9781612680170 -->
     <div class="container">
-      <!-- TODO: Design better looking cards -->
       <div class="book">
         <div class="book__img">
           <img :src="bookThumb" alt="The thumbnail image of the book" />
@@ -15,6 +14,7 @@
           <p class="book__author">{{ bookAuthor }}</p>
           <p class="book__rating">{{ avgRatingToStars }}</p>
           <p class="book__description">{{ bookDescription }}</p>
+          <!-- TODO: See if there's a way to connect this to amazon or some other bookstore -->
           <a href="#" class="book__cta">Read more</a>
         </div>
       </div>
