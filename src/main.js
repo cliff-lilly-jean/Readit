@@ -4,6 +4,9 @@ import VueRouter from 'vue-router';
 import Routes from './routes';
 import { firestorePlugin } from 'vuefire';
 
+// Composition API
+import VueCompositionApi from '@vue/composition-api';
+Vue.use(VueCompositionApi);
 
 // Event Bus
 export const bus = new Vue();

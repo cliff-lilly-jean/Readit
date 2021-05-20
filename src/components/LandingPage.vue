@@ -11,12 +11,19 @@
             Leave ratings for the books you love and reccomend them to your
             friends.
           </p>
-
-          <router-link to="/sign-up">
-            <button class="button">
-              Create your library <i class="fas fa-arrow-right"></i>
-            </button>
-          </router-link>
+          <User v-slot:user="{ user }">
+            <!-- If the user is signed in then take them to their dashboard if not then take them to the sign up page -->
+            <router-link v-if="user" to="/dashboard">
+              <button class="button">
+                Create your library <i class="fas fa-arrow-right"></i>
+              </button>
+            </router-link>
+            <router-link v-else to="/sign-up">
+              <button class="button">
+                Create your library <i class="fas fa-arrow-right"></i>
+              </button>
+            </router-link>
+          </User>
         </div>
         <div class="lp__right">
           <img
@@ -113,10 +120,12 @@
 <script>
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import User from "./User.vue";
 export default {
   components: {
     Footer,
     Navbar,
+    User,
   },
   data() {
     return {};
