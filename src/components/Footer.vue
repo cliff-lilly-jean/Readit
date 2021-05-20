@@ -73,4 +73,12 @@ export default {
 .footer__link img {
   max-width: 30px;
 }
+
+@media (max-width: 600px) {
+  .footer__content {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
 </style>

@@ -2,7 +2,8 @@
   <div id="book-card">
     <!-- 9781612680170 -->
     <div class="container">
-      <div class="book">
+      <!-- TODO: Fix card design -->
+      <div class="book" :class="{ active: cardPopulated }">
         <div class="book__img">
           <img :src="bookThumb" alt="The thumbnail image of the book" />
         </div>
@@ -15,7 +16,8 @@
           <p class="book__rating">{{ avgRatingToStars }}</p>
           <p class="book__description">{{ bookDescription }}</p>
           <!-- TODO: See if there's a way to connect this to amazon or some other bookstore -->
-          <a href="#" class="book__cta">Read more</a>
+          <!-- TODO: Create an add to library method that increments the number of books in a books array and adds the current book to the array -->
+          <a href="#" class="button">Add to library</a>
         </div>
       </div>
     </div>
@@ -63,54 +65,135 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  display: grid;
-  gap: 40px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.card {
-  margin: 20px auto;
-  max-width: 600px;
+#book-card {
   width: 100%;
-  background: #fff1f3;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  padding: 20px;
-}
-
-.card h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.7rem;
-}
-
-.card__interior {
+  height: 100vh;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
 }
 
-.card.active {
+img {
+  width: 100%;
+}
+
+.book {
+  width: 100%;
+  max-width: 98rem;
+  padding: 2rem;
+  background: #fefefe;
+  box-shadow: 0 1.4rem 8rem rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 0.8rem;
+  opacity: 0;
+}
+
+.book__img {
+  min-width: 200px;
+  max-width: 200px;
+  height: 100%;
+  transform: translateX(-4rem);
+  position: relative;
+}
+
+.book__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0.8rem;
+}
+
+.book__img:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(245, 91, 86, 0.3),
+    rgba(254, 84, 99, 0.3)
+  );
+  box-shadow: 0.5rem 0.5rem 3rem 1px rgba(0, 0, 0, 0.05);
+  border-radius: 0.8rem;
+}
+
+.book__date span {
+  display: block;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1.6rem;
+  margin: 0.5rem 0;
+}
+
+.book__title {
+  font-size: 2.5rem;
+  margin: 0.8rem 0 0.7rem;
+  text-transform: uppercase;
+  color: #e8505b;
+}
+
+.book__author {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.book__description {
+  margin: 1rem 0 1.8rem;
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.book__cta {
+  display: inline-block;
+  padding: 1rem 1.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  color: #fefefe;
+  background-image: linear-gradient(to right, #e8505b 0%, #f57a83 100%);
+  border-radius: 0.8rem;
+  text-decoration: none;
+}
+
+.book.active {
   opacity: 1;
 }
 
-.content {
-  max-width: 400px;
+/* TODO: Fix the sizing on mobile */
+
+/* Media Queries */
+
+@media screen and (max-width: 1068px) {
+  .book {
+    max-width: 80rem;
+  }
+
+  .book__img {
+    min-width: 200px;
+    max-width: 200px;
+  }
 }
 
-.card .imgBx {
-  max-width: 250px;
+@media screen and (max-width: 868px) {
+  .book {
+    max-width: 40rem;
+  }
 }
 
-p {
-  margin: 10px 0;
-}
+@media screen and (max-width: 768px) {
+  .book {
+    padding: 1rem;
+    flex-direction: column;
+  }
 
-.card__author {
-  font-weight: bold;
-  font-size: 1.15rem;
+  .book__img {
+    min-width: 200px;
+    max-width: 200px;
+    transform: translate(0, -2rem);
+  }
 }
 </style>
