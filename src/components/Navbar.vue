@@ -6,7 +6,7 @@
           <p class="navbar__logo">ReadIt</p>
         </router-link>
       </div>
-      <!-- <div class="navbar__right">
+      <div class="navbar__right">
         <div class="navbar__right--sm">
           <i class="fas fa-bars"></i>
         </div>
@@ -22,7 +22,7 @@
             </button>
           </router-link>
         </div>
-      </div> -->
+      </div>
     </div>
   </nav>
 </template>

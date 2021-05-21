@@ -29,12 +29,7 @@
                 value="New Here?"
               />
             </div>
-            <input
-              @click.prevent="auth.signInAnonymously()"
-              type="submit"
-              value="Sign up anonymously"
-              class="btn btn-anonymous"
-            />
+            <AnonymousLogin></AnonymousLogin>
             <p class="social-text">
               Or Sign in with one fo your social platforms
             </p>
@@ -76,12 +71,7 @@
               />
             </div>
             <!-- TODO: Create a method that runs if someone signs in anonymously send an alert every 30mins to create an account -->
-            <input
-              @click.prevent="auth.signInAnonymously()"
-              type="submit"
-              value="Sign in anonymously"
-              class="btn btn-anonymous"
-            />
+            <AnonymousLogin></AnonymousLogin>
             <p class="social-text">
               Or Sign up with one of your social platforms
             </p>
@@ -146,17 +136,17 @@
 <script>
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { auth } from "../firebase";
+import AnonymousLogin from "./AnonymousLogin";
 
 export default {
   components: {
     Navbar,
     Footer,
+    AnonymousLogin,
   },
   data() {
     return {
       isSignUpMode: "",
-      auth,
     };
   },
   methods: {
