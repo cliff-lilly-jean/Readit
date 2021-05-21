@@ -11,10 +11,11 @@
             Leave ratings for the books you love and reccomend them to your
             friends.
           </p>
-          <!-- TODO: Create a function on this button that routes this page to the LIBRARY page if the user is authenticated -->
-          <button @click="routeToSearchPage" class="button">
-            Create your library <i class="fas fa-arrow-right"></i>
-          </button>
+          <router-link to="/sign-up">
+            <button class="button">
+              Create your library <i class="fas fa-arrow-right"></i>
+            </button>
+          </router-link>
         </div>
         <div class="lp__right">
           <img
@@ -111,6 +112,7 @@
 <script>
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+
 export default {
   components: {
     Footer,
@@ -122,7 +124,7 @@ export default {
   mounted() {},
   methods: {
     routeToSearchPage() {
-      this.$router.push("/search");
+      this.$router.push("/library");
     },
   },
 };
@@ -143,7 +145,7 @@ export default {
 
 .lp-container {
   display: flex;
-  margin: 0 auto;
+  margin: 8em auto 0;
   justify-content: space-between;
   align-items: center;
   max-width: 1140px;
@@ -264,13 +266,18 @@ export default {
 
   .lp-container {
     flex-direction: column;
+    margin: 150px auto 0;
   }
 
-  .lp__left,
-  .lp__right {
+  .lp__left {
     max-width: 600px;
     width: 100%;
     text-align: center;
+  }
+
+  .lp__right {
+    max-width: 300px;
+    margin: 20px auto 0;
   }
 
   .info__card {

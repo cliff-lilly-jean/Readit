@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: Make the navbar responsinve -->
   <nav id="navbar">
     <div class="navbar__content">
       <div class="navbar__left">
@@ -8,22 +7,21 @@
         </router-link>
       </div>
       <div class="navbar__right">
-        <ul class="navbar__links">
-          <!-- <li class="navbar__link"><a href="#">Home</a></li> -->
-          <!-- TODO: Add an profile/about page after log in -->
-          <!-- TODO: Add a library page after log in -->
-          <!-- TODO: Add a favorites page after log in -->
-          <!-- TODO: Add a clubs page after login -->
-        </ul>
-        <!-- TODO: Switch the button copy to sign out once the user is logged in -->
-        <p class="navbar__login" :class="{ 'sign-up': mode }">
-          <router-link to="/sign-up" @click="loginClicked"> Login </router-link>
-        </p>
-        <router-link to="/sign-up">
-          <button @click="signUpButtonClicked" class="navbar__button button">
-            Sign up
-          </button>
-        </router-link>
+        <div class="navbar__right--sm">
+          <i class="fas fa-bars"></i>
+        </div>
+        <div class="navbar__right--lg">
+          <p class="navbar__login" :class="{ 'sign-up': mode }">
+            <router-link to="/sign-up">
+              <span @click="loginClicked">Login</span>
+            </router-link>
+          </p>
+          <router-link to="/sign-up">
+            <button @click="signUpButtonClicked" class="navbar__button button">
+              Sign up
+            </button>
+          </router-link>
+        </div>
       </div>
     </div>
   </nav>
@@ -78,10 +76,13 @@ export default {
 }
 
 .navbar__right {
+  width: 200px;
+}
+
+.navbar__right--lg {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 200px;
   width: 100%;
 }
 
@@ -91,12 +92,13 @@ export default {
 
 .navbar__link a,
 p.navbar__login > a {
+  color: #010101;
   text-decoration: none;
   cursor: pointer;
   transition: color 1.3s 0.8s ease-in-out;
 }
 
-p.navbar__login.sign-up > a {
+p.navbar__login.sign-up > a span {
   color: #fefefe;
   transition: color 1.3s 0.8s ease-in-out;
 }
@@ -120,5 +122,27 @@ p.navbar__login.sign-up > a:hover {
   color: #fefefe;
   outline: none;
   font-weight: bold;
+}
+
+.navbar__right--sm {
+  position: relative;
+  display: none;
+}
+
+.navbar__right--sm .fa-bars {
+  position: absolute;
+  right: 0;
+  top: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .navbar__right--lg {
+    display: none;
+  }
+
+  .navbar__right--sm {
+    display: block;
+  }
 }
 </style>

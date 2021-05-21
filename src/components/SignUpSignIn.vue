@@ -1,6 +1,5 @@
 <template>
   <div id="sign-up">
-    <!-- TODO: Fix the signup true and false values on click when transitioning to the SIGN-UP page -->
     <Navbar
       :mode="isSignUpMode"
       @signUpButtonClicked="isSignUpMode = true"
@@ -14,13 +13,23 @@
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-envelope-open-text"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" required />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" required />
             </div>
-            <input type="submit" value="Login" class="btn solid" />
+            <div class="mobile-input-container">
+              <input type="submit" value="Login" class="btn solid" />
+
+              <input
+                class="mobile-input__input"
+                @click="newHereButtonClicked"
+                type="submit"
+                value="New Here?"
+              />
+            </div>
+            <AnonymousLogin></AnonymousLogin>
             <p class="social-text">
               Or Sign in with one fo your social platforms
             </p>
@@ -35,9 +44,6 @@
               <a href="#" class="social-icon">
                 <i class="fab fa-google"></i>
               </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
             </div>
           </form>
           <!-- TODO: Add a form action -->
@@ -45,17 +51,27 @@
             <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="email" placeholder="Name" />
+              <input type="email" placeholder="Name" required />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" required />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" required />
             </div>
-            <input type="submit" class="btn" value="Sign up" />
+            <div class="mobile-input-container">
+              <input type="submit" class="btn" value="Sign up" />
+              <input
+                class="mobile-input__input"
+                @click="alreadyAMember"
+                type="submit"
+                value="Already a Member?"
+              />
+            </div>
+            <!-- TODO: Create a method that runs if someone signs in anonymously send an alert every 30mins to create an account -->
+            <AnonymousLogin></AnonymousLogin>
             <p class="social-text">
               Or Sign up with one of your social platforms
             </p>
@@ -69,9 +85,6 @@
               </a>
               <a href="#" class="social-icon">
                 <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
               </a>
             </div>
           </form>
@@ -123,12 +136,13 @@
 <script>
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-// import { auth } from "../firebase";
+import AnonymousLogin from "./AnonymousLogin";
 
 export default {
   components: {
     Navbar,
     Footer,
+    AnonymousLogin,
   },
   data() {
     return {
@@ -141,6 +155,12 @@ export default {
     },
 
     signInButtonIsPressed() {
+      this.isSignUpMode = false;
+    },
+    newHereButtonClicked() {
+      this.isSignUpMode = true;
+    },
+    alreadyAMember() {
       this.isSignUpMode = false;
     },
   },
@@ -164,7 +184,7 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0;
+  top: 50px;
   left: 0;
 }
 
@@ -286,6 +306,21 @@ form.sign-in-form {
   margin: 10px 0;
   cursor: pointer;
   transition: 0.5s;
+}
+
+.btn.btn-anonymous {
+  padding: 10px;
+  font-size: 12px;
+  width: 200px;
+  background-color: #fefefe;
+  color: #020202;
+  border-radius: 0;
+  transition: 0;
+}
+
+.btn.btn-anonymous:hover {
+  background-color: #fefefe;
+  color: #b9343d;
 }
 
 .btn:hover {
@@ -411,6 +446,31 @@ form.sign-in-form {
   pointer-events: all;
 }
 
+.mobile-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 350px;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mobile-input-container input {
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.mobile-input__input {
+  border: none;
+  max-width: 150px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
 @media (max-width: 870px) {
   .container {
     min-height: 800px;
@@ -418,7 +478,7 @@ form.sign-in-form {
   }
   .signin-signup {
     width: 100%;
-    top: 95%;
+    top: 70%;
     transform: translate(-50%, -100%);
     transition: 1s 0.8s ease-in-out;
   }
@@ -443,10 +503,12 @@ form.sign-in-form {
 
   .right-panel {
     grid-row: 3 / 4;
+    display: none;
   }
 
   .left-panel {
     grid-row: 1 / 2;
+    display: none;
   }
 
   .image {
@@ -485,6 +547,7 @@ form.sign-in-form {
     right: initial;
     top: initial;
     transition: 2s ease-in-out;
+    background: transparent;
   }
 
   .container.sign-up-mode:before {
@@ -512,6 +575,10 @@ form.sign-in-form {
     top: 5%;
     transform: translate(-50%, 0);
   }
+
+  .forms-container {
+    top: 100px;
+  }
 }
 
 @media (max-width: 570px) {
@@ -537,6 +604,19 @@ form.sign-in-form {
   .container.sign-up-mode:before {
     bottom: 28%;
     left: 50%;
+  }
+}
+
+@media (max-width: 450px) {
+  .signin-signup {
+    width: 100%;
+    top: 80%;
+    transform: translate(-50%, -100%);
+    transition: 1s 0.8s ease-in-out;
+  }
+
+  .forms-container {
+    top: 50px;
   }
 }
 </style>
