@@ -2,7 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
 import Routes from './routes';
-import { firestorePlugin } from 'vuefire';
+// import { firestorePlugin } from 'vuefire';
 
 // Composition API
 import VueCompositionApi from '@vue/composition-api';
@@ -12,7 +12,7 @@ Vue.use(VueCompositionApi);
 export const bus = new Vue();
 
 // Vuefire Firebase
-Vue.use(firestorePlugin);
+// Vue.use(firestorePlugin);
 
 // Router
 Vue.use(VueRouter);
