@@ -148,7 +148,8 @@ export default {
   margin: 8em auto 0;
   justify-content: space-between;
   align-items: center;
-  max-width: 1140px;
+  max-width: 1600px;
+  width: 100%;
   padding: 0 20px;
   height: 100%;
 }
@@ -158,7 +159,8 @@ export default {
 }
 
 .lp__left p {
-  max-width: 90%;
+  max-width: 80%;
+  font-size: 1.5rem;
 }
 
 .title {
@@ -177,7 +179,7 @@ export default {
 }
 
 .lp__right {
-  width: 50%;
+  width: 40%;
 }
 
 .icon {
@@ -210,6 +212,7 @@ export default {
 
 .info__copy {
   max-width: 600px;
+  font-size: 1.3rem;
 }
 
 /* Library Rules */
@@ -250,6 +253,7 @@ export default {
 .feature__description {
   margin: 50px auto 0;
   text-align: center;
+  font-size: 1.1rem;
 }
 
 /* Media Queries */

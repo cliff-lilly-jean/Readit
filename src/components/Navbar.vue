@@ -61,7 +61,8 @@ export default {
 .navbar__content {
   display: flex;
   justify-content: space-between;
-  max-width: 90%;
+  max-width: 1600px;
+  width: 100%;
   margin: 0 auto;
 }
 
