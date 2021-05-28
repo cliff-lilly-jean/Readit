@@ -137,6 +137,12 @@ p.navbar__login.sign-up > a:hover {
   cursor: pointer;
 }
 
+@media (max-width: 870px) {
+  p.navbar__login.sign-up > a span {
+    color: #020202;
+  }
+}
+
 @media (max-width: 600px) {
   .navbar__right--lg {
     display: none;

@@ -9,19 +9,28 @@
       <div class="forms-container">
         <div class="signin-signup">
           <!-- TODO: Add a form action -->
-          <form action="#" class="sign-in-form">
+          <form @submit.prevent="handleSubmit" class="sign-in-form">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-envelope-open-text"></i>
-              <input type="email" placeholder="Email" required />
+              <input
+                v-model="email"
+                type="email"
+                placeholder="Email"
+                required
+              />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" required />
+              <input
+                v-model="password"
+                type="password"
+                placeholder="Password"
+                required
+              />
             </div>
             <div class="mobile-input-container">
               <input type="submit" value="Login" class="btn solid" />
-
               <input
                 class="mobile-input__input"
                 @click="newHereButtonClicked"
@@ -47,19 +56,29 @@
             </div>
           </form>
           <!-- TODO: Add a form action -->
-          <form action="#" class="sign-up-form">
+          <form @submit.prevent="handleSubmit" class="sign-up-form">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="email" placeholder="Name" required />
+              <input v-model="name" type="text" placeholder="Name" required />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" required />
+              <input
+                v-model="email"
+                type="email"
+                placeholder="Email"
+                required
+              />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" required />
+              <input
+                :v-model="password"
+                type="password"
+                placeholder="Password"
+                required
+              />
             </div>
             <div class="mobile-input-container">
               <input type="submit" class="btn" value="Sign up" />
@@ -75,7 +94,6 @@
             <p class="social-text">
               Or Sign up with one of your social platforms
             </p>
-            <!-- TODO: Link the social icons to their respective platform -->
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
@@ -137,12 +155,24 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import AnonymousLogin from "./AnonymousLogin";
+import { ref } from "@vue/composition-api";
 
 export default {
   components: {
     Navbar,
     Footer,
     AnonymousLogin,
+  },
+  setup() {
+    const name = ref("");
+    const email = ref("");
+    const password = ref("");
+
+    const handleSubmit = () => {
+      console.log(name.value, email.value, password.value);
+    };
+
+    return { name, email, password, handleSubmit };
   },
   data() {
     return {
@@ -255,7 +285,7 @@ form.sign-in-form {
   line-height: 1;
   font-weight: 600;
   font-size: 1.1rem;
-  color: #333;
+  color: #7a7a7a;
 }
 
 .input-field input::placeholder {
