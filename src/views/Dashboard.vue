@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import Navigation from "./Navigation";
-import Topbar from "./Topbar";
-import CardBox from "./CardBox";
+import Navigation from "../components/Navigation";
+import Topbar from "../components/Topbar";
+import CardBox from "../components/CardBox";
 import RecentBooks from "./RecentBooks";
 import RecentConnections from "./RecentConnections";
 

@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import Navigation from "./Navigation";
-import Topbar from "./Topbar";
-import BookCard from "./BookCard";
+import Navigation from "../components/Navigation";
+import Topbar from "../components/Topbar";
+import BookCard from "../components/BookCard";
 export default {
   components: {
     Navigation,

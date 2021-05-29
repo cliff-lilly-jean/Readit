@@ -1,12 +1,12 @@
-import LandingPage from './components/LandingPage.vue';
-import SignUp from './components/SignUpSignIn.vue';
-import Dashboard from "./components/Dashboard.vue";
-import Library from './components/Library.vue';
-import Connections from './components/Connections.vue';
-import Clubs from './components/Clubs.vue';
-import Help from './components/Help.vue';
-import Password from './components/Password.vue';
-import Settings from './components/Settings.vue';
+import LandingPage from './views/LandingPage.vue';
+import SignUp from './views/SignUpSignIn.vue';
+import Dashboard from "./views/Dashboard.vue";
+import Library from './views/Library.vue';
+import Connections from './views/Connections.vue';
+import Clubs from './views/Clubs.vue';
+import Help from './views/Help.vue';
+import Password from './views/Password.vue';
+import Settings from './views/Settings.vue';
 
 export default [
  // Each object is a different route
