@@ -8,6 +8,7 @@ import Help from './components/Help.vue';
 import Password from './components/Password.vue';
 import Settings from './components/Settings.vue';
 
+
 export default [
  // Each object is a different route
  {
@@ -18,6 +19,7 @@ export default [
   path: '/sign-up',
   component: SignUp
  },
+
  {
   path: '/dashboard',
   component: Dashboard

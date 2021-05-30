@@ -110,6 +110,7 @@
 </template>
 
 <script>
+import { ref } from "@vue/composition-api";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
@@ -118,10 +119,11 @@ export default {
     Footer,
     Navbar,
   },
-  data() {
-    return {};
+  setup() {
+    const showLogin = ref(true);
+    return { showLogin };
   },
-  mounted() {},
+
   methods: {
     routeToSearchPage() {
       this.$router.push("/library");
@@ -148,7 +150,7 @@ export default {
   margin: 8em auto 0;
   justify-content: space-between;
   align-items: center;
-  max-width: 1140px;
+  max-width: 1400px;
   padding: 0 20px;
   height: 100%;
 }
@@ -253,6 +255,7 @@ export default {
 }
 
 /* Media Queries */
+
 @media (max-width: 1140px) {
   .title {
     font-size: 3rem;

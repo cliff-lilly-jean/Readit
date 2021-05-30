@@ -176,7 +176,7 @@ export default {
   },
   data() {
     return {
-      isSignUpMode: true,
+      isSignUpMode: "",
     };
   },
   methods: {
