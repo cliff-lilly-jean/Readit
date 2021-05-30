@@ -119,13 +119,13 @@ export default {
     Navbar,
   },
   setup() {
-    const showLogin = ref(true);
-    return { showLogin };
+    // const showLogin = ref(true);
+    // return { showLogin };
   },
 
   methods: {
     routeToSearchPage() {
-      this.$router.push("/library");
+      this.$router.replace("/library");
     },
   },
 };
@@ -149,12 +149,8 @@ export default {
   margin: 8em auto 0;
   justify-content: space-between;
   align-items: center;
-<<<<<<< HEAD:src/components/LandingPage.vue
-  max-width: 1400px;
-=======
   max-width: 1600px;
   width: 100%;
->>>>>>> 48cbb7d3f52a674cf523e8ee5d1ed80f636023b2:src/views/LandingPage.vue
   padding: 0 20px;
   height: 100%;
 }

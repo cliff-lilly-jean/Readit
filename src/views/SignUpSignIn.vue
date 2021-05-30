@@ -9,7 +9,7 @@
       <div class="forms-container">
         <div class="signin-signup">
           <!-- TODO: Add a form action -->
-          <form @submit.prevent="handleSubmit" class="sign-in-form">
+          <form class="sign-in-form">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-envelope-open-text"></i>
@@ -30,7 +30,12 @@
               />
             </div>
             <div class="mobile-input-container">
-              <input type="submit" value="Login" class="btn solid" />
+              <input
+                @click="login"
+                type="submit"
+                value="Login"
+                class="btn solid"
+              />
               <input
                 class="mobile-input__input"
                 @click="newHereButtonClicked"
@@ -56,11 +61,11 @@
             </div>
           </form>
           <!-- TODO: Add a form action -->
-          <form @submit.prevent="handleSubmit" class="sign-up-form">
+          <form class="sign-up-form">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input v-model="name" type="text" placeholder="Name" required />
+              <input v-model="name" type="text" placeholder="Name" />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
@@ -74,14 +79,19 @@
             <div class="input-field">
               <i class="fas fa-lock"></i>
               <input
-                :v-model="password"
+                v-model="password"
                 type="password"
                 placeholder="Password"
                 required
               />
             </div>
             <div class="mobile-input-container">
-              <input type="submit" class="btn" value="Sign up" />
+              <input
+                @click="signup"
+                type="submit"
+                class="btn"
+                value="Sign up"
+              />
               <input
                 class="mobile-input__input"
                 @click="alreadyAMember"
@@ -155,28 +165,19 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import AnonymousLogin from "./AnonymousLogin";
-import { ref } from "@vue/composition-api";
-
+import firebase from "firebase";
 export default {
   components: {
     Navbar,
     Footer,
     AnonymousLogin,
   },
-  setup() {
-    const name = ref("");
-    const email = ref("");
-    const password = ref("");
-
-    const handleSubmit = () => {
-      console.log(name.value, email.value, password.value);
-    };
-
-    return { name, email, password, handleSubmit };
-  },
   data() {
     return {
       isSignUpMode: "",
+      name: "",
+      email: "",
+      password: "",
     };
   },
   methods: {
@@ -192,6 +193,42 @@ export default {
     },
     alreadyAMember() {
       this.isSignUpMode = false;
+    },
+    login() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(
+          (user) => {
+            console.log(user.data);
+          },
+          (err) => {
+            alert(err);
+          }
+        );
+    },
+    signup() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(
+          firebase.auth().onAuthStateChanged(
+            (user) => {
+              if (user) {
+                firebase.database().ref("users/").child(user.uid).set({
+                  email: this.email,
+                  uid: user.uid,
+                  name: this.name,
+                  password: this.password,
+                });
+              }
+              console.log(user.data);
+            },
+            (err) => {
+              alert(err);
+            }
+          )
+        );
     },
   },
 };
