@@ -110,9 +110,8 @@
 </template>
 
 <script>
-import { ref } from "@vue/composition-api";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 export default {
   components: {
@@ -150,7 +149,12 @@ export default {
   margin: 8em auto 0;
   justify-content: space-between;
   align-items: center;
+<<<<<<< HEAD:src/components/LandingPage.vue
   max-width: 1400px;
+=======
+  max-width: 1600px;
+  width: 100%;
+>>>>>>> 48cbb7d3f52a674cf523e8ee5d1ed80f636023b2:src/views/LandingPage.vue
   padding: 0 20px;
   height: 100%;
 }
@@ -160,7 +164,8 @@ export default {
 }
 
 .lp__left p {
-  max-width: 90%;
+  max-width: 80%;
+  font-size: 1.5rem;
 }
 
 .title {
@@ -179,7 +184,7 @@ export default {
 }
 
 .lp__right {
-  width: 50%;
+  width: 40%;
 }
 
 .icon {
@@ -212,6 +217,7 @@ export default {
 
 .info__copy {
   max-width: 600px;
+  font-size: 1.3rem;
 }
 
 /* Library Rules */
@@ -252,6 +258,7 @@ export default {
 .feature__description {
   margin: 50px auto 0;
   text-align: center;
+  font-size: 1.1rem;
 }
 
 /* Media Queries */
