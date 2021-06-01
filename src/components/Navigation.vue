@@ -75,7 +75,6 @@ export default {
   methods: {
     signOut() {
       auth.signOut().then(() => {
-        console.log("The user is signed out");
         this.$router.replace("/");
       });
     },

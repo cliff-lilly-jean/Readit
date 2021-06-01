@@ -160,8 +160,8 @@ export default {
 }
 
 .lp__left p {
-  max-width: 80%;
-  font-size: 1.5rem;
+  max-width: 100%;
+  font-size: 1.25rem;
 }
 
 .title {

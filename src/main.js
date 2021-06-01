@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
 import Routes from './routes';
+import { auth } from './firebase';
 
 // Composition API
 import VueCompositionApi from '@vue/composition-api';
@@ -9,9 +10,6 @@ Vue.use(VueCompositionApi);
 
 // Event Bus
 export const bus = new Vue();
-
-// Vuefire Firebase
-// Vue.use(firestorePlugin);
 
 // Router
 Vue.use(VueRouter);
@@ -22,6 +20,15 @@ const routes = new VueRouter({
 });
 
 Vue.config.productionTip = false;
+
+// Firebase auth state
+auth.onAuthStateChanged(user => {
+ if (user) {
+  console.log('The user has logged in: ', user);
+ } else {
+  console.log('The user has logged out');
+ }
+});
 
 new Vue({
  render: h => h(App),

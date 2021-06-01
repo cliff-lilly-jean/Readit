@@ -210,14 +210,11 @@ export default {
         });
     },
     login() {
-      auth
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then((cred) => {
-          console.log(cred.user);
-          this.email = "";
-          this.password = "";
-          this.$router.replace("/dashboard");
-        });
+      auth.signInWithEmailAndPassword(this.email, this.password).then(() => {
+        this.email = "";
+        this.password = "";
+        this.$router.replace("/dashboard");
+      });
     },
   },
 };
