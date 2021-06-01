@@ -87,8 +87,8 @@
             </div>
             <div class="mobile-input-container">
               <input
-                @click="signup"
-                type="submit"
+                @click="signUp"
+                type="subm it"
                 class="btn"
                 value="Sign up"
               />
@@ -165,7 +165,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import AnonymousLogin from "./AnonymousLogin";
-import firebase from "firebase";
+import { auth } from "../firebase";
 export default {
   components: {
     Navbar,
@@ -194,41 +194,19 @@ export default {
     alreadyAMember() {
       this.isSignUpMode = false;
     },
-    login() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(
-          (user) => {
-            console.log(user.data);
-          },
-          (err) => {
-            alert(err);
-          }
-        );
-    },
-    signup() {
-      firebase
-        .auth()
+    signUp() {
+      auth
         .createUserWithEmailAndPassword(this.email, this.password)
-        .then(
-          firebase.auth().onAuthStateChanged(
-            (user) => {
-              if (user) {
-                firebase.database().ref("users/").child(user.uid).set({
-                  email: this.email,
-                  uid: user.uid,
-                  name: this.name,
-                  password: this.password,
-                });
-              }
-              console.log(user.data);
-            },
-            (err) => {
-              alert(err);
-            }
-          )
-        );
+        .then((cred) => {
+          console.log(cred.user);
+          cred.user.displayName = this.name;
+          this.email = "";
+          this.password = "";
+          this.isSignUpMode = false;
+        });
+    },
+    login() {
+      //
     },
   },
 };
@@ -373,6 +351,7 @@ form.sign-in-form {
   margin: 10px 0;
   cursor: pointer;
   transition: 0.5s;
+  text-align: center;
 }
 
 .btn.btn-anonymous {
