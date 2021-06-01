@@ -31,7 +31,7 @@
             </div>
             <div class="mobile-input-container">
               <input
-                @click="login"
+                @click.prevent="login"
                 type="submit"
                 value="Login"
                 class="btn solid"
@@ -87,8 +87,8 @@
             </div>
             <div class="mobile-input-container">
               <input
-                @click="signUp"
-                type="subm it"
+                @click.prevent="signUp"
+                type="submit"
                 class="btn"
                 value="Sign up"
               />
@@ -200,13 +200,24 @@ export default {
         .then((cred) => {
           console.log(cred.user);
           cred.user.displayName = this.name;
+          this.name = "";
           this.email = "";
           this.password = "";
+          alert(
+            "Your account has been created. Use the log in form to sign in"
+          );
           this.isSignUpMode = false;
         });
     },
     login() {
-      //
+      auth
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then((cred) => {
+          console.log(cred.user);
+          this.email = "";
+          this.password = "";
+          this.$router.replace("/dashboard");
+        });
     },
   },
 };
