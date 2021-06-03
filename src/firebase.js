@@ -16,10 +16,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-export const fire = firebase;
-
-export const db = firebase.firestore();
+// export const db = firebase.firestore();
 export const auth = firebase.auth();
-export const storage = firebase.storage();
+// export const storage = firebase.storage();
 // export const fb = firebase.auth.FacebookAuthProvider;
 // export const fbSign = firebase.auth().signInWithPopup;

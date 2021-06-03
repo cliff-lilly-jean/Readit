@@ -246,6 +246,7 @@ export default {
           var accessToken = credential.accessToken;
 
           console.log(user, accessToken);
+          this.$router.replace("/dashboard");
         })
         .catch((error) => {
           // Handle Errors here.

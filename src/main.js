@@ -2,7 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
 import Routes from './routes';
-import { fire } from './firebase';
+import { auth } from './firebase';
 
 // Composition API
 import VueCompositionApi from '@vue/composition-api';
@@ -22,7 +22,7 @@ const routes = new VueRouter({
 Vue.config.productionTip = false;
 
 // Firebase auth state
-fire.auth().onAuthStateChanged(user => {
+auth.onAuthStateChanged(user => {
  if (user) {
   console.log('The user has logged in: ', user);
  } else {
