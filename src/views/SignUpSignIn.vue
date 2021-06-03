@@ -9,7 +9,7 @@
       <div class="forms-container">
         <div class="signin-signup">
           <!-- TODO: Add a form action -->
-          <form @submit.prevent="handleSubmit" class="sign-in-form">
+          <form class="sign-in-form">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-envelope-open-text"></i>
@@ -30,7 +30,12 @@
               />
             </div>
             <div class="mobile-input-container">
-              <input type="submit" value="Login" class="btn solid" />
+              <input
+                @click.prevent="login"
+                type="submit"
+                value="Login"
+                class="btn solid"
+              />
               <input
                 class="mobile-input__input"
                 @click="newHereButtonClicked"
@@ -44,7 +49,7 @@
             </p>
             <!-- TODO: Link the social icons to their respective platform -->
             <div class="social-media">
-              <a href="#" class="social-icon">
+              <a @click="facebookSignIn" href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
               <a href="#" class="social-icon">
@@ -56,11 +61,11 @@
             </div>
           </form>
           <!-- TODO: Add a form action -->
-          <form @submit.prevent="handleSubmit" class="sign-up-form">
+          <form class="sign-up-form">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input v-model="name" type="text" placeholder="Name" required />
+              <input v-model="name" type="text" placeholder="Name" />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
@@ -74,14 +79,19 @@
             <div class="input-field">
               <i class="fas fa-lock"></i>
               <input
-                :v-model="password"
+                v-model="password"
                 type="password"
                 placeholder="Password"
                 required
               />
             </div>
             <div class="mobile-input-container">
-              <input type="submit" class="btn" value="Sign up" />
+              <input
+                @click.prevent="signUp"
+                type="submit"
+                class="btn"
+                value="Sign up"
+              />
               <input
                 class="mobile-input__input"
                 @click="alreadyAMember"
@@ -95,7 +105,7 @@
               Or Sign up with one of your social platforms
             </p>
             <div class="social-media">
-              <a href="#" class="social-icon">
+              <a @click="facebookSignIn" href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
               <a href="#" class="social-icon">
@@ -155,7 +165,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import AnonymousLogin from "./AnonymousLogin";
-import { ref } from "@vue/composition-api";
+import firebase from "../../node_modules/firebase/app";
 
 export default {
   components: {
@@ -163,20 +173,12 @@ export default {
     Footer,
     AnonymousLogin,
   },
-  setup() {
-    const name = ref("");
-    const email = ref("");
-    const password = ref("");
-
-    const handleSubmit = () => {
-      console.log(name.value, email.value, password.value);
-    };
-
-    return { name, email, password, handleSubmit };
-  },
   data() {
     return {
-      isSignUpMode: true,
+      isSignUpMode: "",
+      name: "",
+      email: "",
+      password: "",
     };
   },
   methods: {
@@ -192,6 +194,71 @@ export default {
     },
     alreadyAMember() {
       this.isSignUpMode = false;
+    },
+    signUp() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then((cred) => {
+          return firebase
+            .firestore()
+            .collection("users")
+            .doc(cred.user.uid)
+            .set({
+              name: this.name,
+              email: this.email,
+            });
+        })
+        .then(() => {
+          this.name = "";
+          this.email = "";
+          this.password = "";
+          alert(
+            "Your account has been created. Use the log in form to sign in"
+          );
+          this.isSignUpMode = false;
+        });
+    },
+    login() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.email = "";
+          this.password = "";
+          this.$router.replace("/dashboard");
+        });
+    },
+    facebookSignIn() {
+      var provider = new firebase.auth.FacebookAuthProvider();
+      console.log(provider);
+
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          var credential = result.credential;
+
+          // The signed-in user info.
+          var user = result.user;
+
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          var accessToken = credential.accessToken;
+
+          console.log(user, accessToken);
+          this.$router.replace("/dashboard");
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var errorEmail = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+
+          console.log(errorCode, errorMessage, errorEmail, credential);
+        });
     },
   },
 };
@@ -336,6 +403,7 @@ form.sign-in-form {
   margin: 10px 0;
   cursor: pointer;
   transition: 0.5s;
+  text-align: center;
 }
 
 .btn.btn-anonymous {

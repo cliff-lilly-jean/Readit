@@ -52,12 +52,12 @@
             <span class="title">Password</span>
           </router-link>
         </li>
-        <li>
+        <li @click="signOut">
           <!-- TODO: Force this link to automatically make the sign out form active -->
-          <router-link to="/sign-up">
+          <a>
             <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
             <span class="title">Sign Out</span>
-          </router-link>
+          </a>
         </li>
       </ul>
     </div>
@@ -66,10 +66,18 @@
 </template>
 
 <script>
+import { auth } from "../firebase";
 export default {
   props: ["toggleState"],
   data() {
     return {};
+  },
+  methods: {
+    signOut() {
+      auth.signOut().then(() => {
+        this.$router.replace("/");
+      });
+    },
   },
 };
 </script>

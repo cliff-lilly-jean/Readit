@@ -118,13 +118,14 @@ export default {
     Footer,
     Navbar,
   },
-  data() {
-    return {};
+  setup() {
+    // const showLogin = ref(true);
+    // return { showLogin };
   },
-  mounted() {},
+
   methods: {
     routeToSearchPage() {
-      this.$router.push("/library");
+      this.$router.replace("/library");
     },
   },
 };
@@ -159,8 +160,8 @@ export default {
 }
 
 .lp__left p {
-  max-width: 80%;
-  font-size: 1.5rem;
+  max-width: 100%;
+  font-size: 1.25rem;
 }
 
 .title {
@@ -257,6 +258,7 @@ export default {
 }
 
 /* Media Queries */
+
 @media (max-width: 1140px) {
   .title {
     font-size: 3rem;
