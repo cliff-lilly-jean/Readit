@@ -52,10 +52,10 @@
               <a @click="facebookSignIn" href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a href="#" class="social-icon">
+              <a @click="twitterSignIn" href="#" class="social-icon">
                 <i class="fab fa-twitter"></i>
               </a>
-              <a href="#" class="social-icon">
+              <a @click="googleSignIn" href="#" class="social-icon">
                 <i class="fab fa-google"></i>
               </a>
             </div>
@@ -108,10 +108,10 @@
               <a @click="facebookSignIn" href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a href="#" class="social-icon">
+              <a @click="twitterSignIn" href="#" class="social-icon">
                 <i class="fab fa-twitter"></i>
               </a>
-              <a href="#" class="social-icon">
+              <a @click="googleSignIn" href="#" class="social-icon">
                 <i class="fab fa-google"></i>
               </a>
             </div>
@@ -200,6 +200,7 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((cred) => {
+          // Create a new database record with the new sign up into the users collection
           return firebase
             .firestore()
             .collection("users")
@@ -213,9 +214,7 @@ export default {
           this.name = "";
           this.email = "";
           this.password = "";
-          alert(
-            "Your account has been created. Use the log in form to sign in"
-          );
+          alert("Your account has been created. Use the login form to sign in");
           this.isSignUpMode = false;
         });
     },
@@ -231,7 +230,6 @@ export default {
     },
     facebookSignIn() {
       var provider = new firebase.auth.FacebookAuthProvider();
-      console.log(provider);
 
       firebase
         .auth()
@@ -241,6 +239,90 @@ export default {
 
           // The signed-in user info.
           var user = result.user;
+
+          this.name = user.displayName;
+          this.email = user.email;
+
+          firebase.firestore().collection("users").doc(result.user.uid).set({
+            name: this.name,
+            email: this.email,
+          });
+
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          var accessToken = credential.accessToken;
+
+          console.log(user, accessToken);
+          this.$router.replace("/dashboard");
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var errorEmail = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+
+          console.log(errorCode, errorMessage, errorEmail, credential);
+        });
+    },
+    googleSignIn() {
+      var provider = new firebase.auth.GoogleAuthProvider();
+
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          var credential = result.credential;
+
+          // The signed-in user info.
+          var user = result.user;
+
+          this.name = user.displayName;
+          this.email = user.email;
+
+          firebase.firestore().collection("users").doc(result.user.uid).set({
+            name: this.name,
+            email: this.email,
+          });
+
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          var accessToken = credential.accessToken;
+
+          console.log(user, accessToken);
+          this.$router.replace("/dashboard");
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var errorEmail = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+
+          console.log(errorCode, errorMessage, errorEmail, credential);
+        });
+    },
+    twitterSignIn() {
+      var provider = new firebase.auth.TwitterAuthProvider();
+
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          var credential = result.credential;
+
+          // The signed-in user info.
+          var user = result.user;
+
+          this.name = user.displayName;
+          this.email = user.email;
+
+          firebase.firestore().collection("users").doc(result.user.uid).set({
+            name: this.name,
+            email: this.email,
+          });
 
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
           var accessToken = credential.accessToken;
