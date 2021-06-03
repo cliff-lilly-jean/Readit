@@ -49,7 +49,7 @@
             </p>
             <!-- TODO: Link the social icons to their respective platform -->
             <div class="social-media">
-              <a href="#" class="social-icon">
+              <a @click="facebookSignIn" href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
               <a href="#" class="social-icon">
@@ -105,7 +105,7 @@
               Or Sign up with one of your social platforms
             </p>
             <div class="social-media">
-              <a href="#" class="social-icon">
+              <a @click="facebookSignIn" href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
               <a href="#" class="social-icon">
@@ -165,8 +165,8 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import AnonymousLogin from "./AnonymousLogin";
-import { auth } from "../firebase";
-import { db } from "../firebase";
+import firebase from "../../node_modules/firebase/app";
+
 export default {
   components: {
     Navbar,
@@ -196,13 +196,18 @@ export default {
       this.isSignUpMode = false;
     },
     signUp() {
-      auth
+      firebase
+        .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((cred) => {
-          return db.collection("users").doc(cred.user.uid).set({
-            name: this.name,
-            email: this.email,
-          });
+          return firebase
+            .firestore()
+            .collection("users")
+            .doc(cred.user.uid)
+            .set({
+              name: this.name,
+              email: this.email,
+            });
         })
         .then(() => {
           this.name = "";
@@ -215,11 +220,44 @@ export default {
         });
     },
     login() {
-      auth.signInWithEmailAndPassword(this.email, this.password).then(() => {
-        this.email = "";
-        this.password = "";
-        this.$router.replace("/dashboard");
-      });
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.email = "";
+          this.password = "";
+          this.$router.replace("/dashboard");
+        });
+    },
+    facebookSignIn() {
+      var provider = new firebase.auth.FacebookAuthProvider();
+      console.log(provider);
+
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          var credential = result.credential;
+
+          // The signed-in user info.
+          var user = result.user;
+
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          var accessToken = credential.accessToken;
+
+          console.log(user, accessToken);
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var errorEmail = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+
+          console.log(errorCode, errorMessage, errorEmail, credential);
+        });
     },
   },
 };
