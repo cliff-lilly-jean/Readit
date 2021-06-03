@@ -52,7 +52,7 @@ export default {
       toggleState: false,
       usersSearch: "",
       booksAPIKey: process.env.VUE_APP_API_KEY,
-      books: {},
+      books: [],
       barcodeScannerHoverMessage: "Use your webcam to scan the books barcode",
       lastCode: "",
       scannerBoxContainerOpacity: false,

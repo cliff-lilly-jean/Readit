@@ -166,6 +166,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import AnonymousLogin from "./AnonymousLogin";
 import { auth } from "../firebase";
+import { db } from "../firebase";
 export default {
   components: {
     Navbar,
@@ -198,8 +199,12 @@ export default {
       auth
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((cred) => {
-          console.log(cred.user);
-          cred.user.displayName = this.name;
+          return db.collection("users").doc(cred.user.uid).set({
+            name: this.name,
+            email: this.email,
+          });
+        })
+        .then(() => {
           this.name = "";
           this.email = "";
           this.password = "";
