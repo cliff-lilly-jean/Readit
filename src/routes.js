@@ -12,38 +12,47 @@ export default [
  // Each object is a different route
  {
   path: '/',
+  name: 'landing-page',
   component: LandingPage
  },
  {
   path: '/sign-up',
+  name: 'signup',
   component: SignUp
  },
  {
   path: '/dashboard',
+  name: 'dashboard',
   component: Dashboard
  },
  {
   path: '/library',
+  name: 'library',
   component: Library
  },
  {
   path: '/connections',
+  name: 'connections',
   component: Connections
  },
  {
   path: '/clubs',
+  name: 'clubs',
   component: Clubs
  },
  {
   path: '/help',
+  name: 'help',
   component: Help
  },
  {
   path: '/settings',
+  name: 'settings',
   component: Settings
  },
  {
   path: '/password',
+  name: 'password',
   component: Password
  },
 

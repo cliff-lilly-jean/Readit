@@ -80,6 +80,7 @@ export default {
   position: relative;
   font-size: 2em;
   font-weight: 500;
+  color: #ff6e69;
 }
 
 .card .cardName {
