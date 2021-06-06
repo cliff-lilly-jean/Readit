@@ -1,5 +1,5 @@
 <template>
-  <div id="library-component">
+  <div id="book-card-component">
     <!-- Navigation Start -->
     <Navigation :toggleState="toggleState"></Navigation>
     <!-- Navigation End -->
@@ -8,9 +8,7 @@
       <!-- Top Bar Start -->
       <Topbar @toggleMenu="toggleStateChange"></Topbar>
       <!-- Top Bar End -->
-      <!-- Book Start -->
-      <Book :books="books"></Book>
-      <!-- Book End -->
+      <BookCard v-on:updateBooksArray="addNewBook($event)"></BookCard>
     </div>
     <!-- Main End -->
   </div>
@@ -19,22 +17,26 @@
 <script>
 import Navigation from "../components/Navigation";
 import Topbar from "../components/Topbar";
-import Book from "../components/Book.vue";
+import BookCard from "../components/BookCard";
 export default {
-  props: ["books"],
   components: {
     Navigation,
     Topbar,
-    Book,
+    BookCard,
   },
   data() {
     return {
       toggleState: false,
+      books: [],
     };
   },
   methods: {
     toggleStateChange(value) {
       this.toggleState = value;
+    },
+    addNewBook(newBook) {
+      this.books.push(newBook);
+      console.log(this.books);
     },
   },
 };

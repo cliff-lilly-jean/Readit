@@ -17,7 +17,9 @@
           <p class="book__description">{{ bookDescription }}</p>
           <!-- TODO: See if there's a way to connect this to amazon or some other bookstore -->
           <!-- TODO: Create an add to library method that increments the number of books in a books array and adds the current book to the array -->
-          <a href="#" class="button">Add to library</a>
+          <a @click="addCurrentBookToBooksArr" class="button"
+            >Add to library +</a
+          >
         </div>
       </div>
     </div>
@@ -27,6 +29,7 @@
 <script>
 import { bus } from "../main";
 export default {
+  // props: ["books"],
   data() {
     return {
       bookTitle: "",
@@ -37,9 +40,28 @@ export default {
       bookPublishDate: "",
       bookStars: [],
       cardPopulated: false,
+      books: [],
     };
   },
-  methods: {},
+  methods: {
+    addCurrentBookToBooksArr() {
+      // Create a new object, newBookObj
+      // Add the bookTitle, bookAuthor, bookDescription, bookThumb, bookRating and bookPublishDate
+      let newBookAddition = {
+        title: this.bookTitle,
+        author: this.bookAuthor,
+        description: this.bookDescription,
+        thumbnail: this.bookThumb,
+        rating: this.bookRating,
+        publishDate: this.bookPublishDate,
+      };
+      // Add the newBookObj to the books array in the library view
+      this.books.push(newBookAddition);
+      // Emit the books array up to the library view
+      this.$emit("updateBooksArray", newBookAddition);
+      this.$router.replace("/library");
+    },
+  },
   created() {
     bus.$on("bookDetails", (data) => {
       this.bookTitle = data[0];

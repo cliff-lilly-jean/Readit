@@ -7,6 +7,7 @@ import Clubs from './views/Clubs.vue';
 import Help from './views/Help.vue';
 import Password from './views/Password.vue';
 import Settings from './views/Settings.vue';
+import CardView from './views/CardView.vue';
 
 
 export default [
@@ -56,6 +57,11 @@ export default [
   path: '/password',
   name: 'password',
   component: Password
+ },
+ {
+  path: '/card-view',
+  name: 'cardView',
+  component: CardView
  },
 
 ];

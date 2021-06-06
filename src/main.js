@@ -24,7 +24,7 @@ Vue.config.productionTip = false;
 // Firebase auth state
 auth.onAuthStateChanged(user => {
  if (user) {
-  console.log('The user has logged in: ', user);
+  console.log('The user has logged in: ');
  } else {
   console.log('The user has logged out');
  }

@@ -59,6 +59,7 @@ export default {
       bookTitle: "",
       bookAuthor: "",
       bookDescription: "",
+      bookPublishDate: "",
     };
   },
   methods: {
@@ -84,8 +85,7 @@ export default {
           this.bookRating = returnData.averageRating;
           this.bookThumb = returnData.imageLinks.thumbnail;
           this.bookPublishDate = returnData.publishDate;
-          console.log(returnData);
-          console.log(returnData.averageRating);
+          // TODO: Consider changing this to an object
           bus.$emit("bookDetails", [
             this.bookTitle,
             this.bookAuthor,
@@ -95,6 +95,7 @@ export default {
             this.bookPublishDate,
           ]);
         });
+      this.$router.replace("/card-view");
       this.usersSearch = "";
     },
     // Barcode Scanner Method
@@ -147,6 +148,7 @@ export default {
               vm.bookRating = returnData.averageRating;
               vm.bookThumb = returnData.imageLinks.thumbnail;
               vm.bookPublishDate = returnData.publishDate;
+              // TODO: Consider changing this to an object
               bus.$emit("bookDetails", [
                 vm.bookTitle,
                 vm.bookAuthor,
@@ -159,7 +161,7 @@ export default {
           vm.usersSearch = "";
           vm.scannerBoxContainerOpacity = false;
           Quagga.stop();
-          console.log(vm.lastCode);
+          this.$router.replace("/card-view");
         });
         vm.toggleScanner();
       }
