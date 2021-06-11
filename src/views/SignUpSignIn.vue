@@ -164,15 +164,16 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import firebase from "../../node_modules/firebase/app";
-// import getUsers from "../composables/getUsers";
-import getUser from "../composables/getUser";
+import getUsers from "../composables/getUsers";
+
+// import getUser from "../composables/getUser";
 export default {
   components: {
     Navbar,
     Footer,
   },
   setup() {
-    const { load } = getUser();
+    const { load } = getUsers();
     load();
   },
 
