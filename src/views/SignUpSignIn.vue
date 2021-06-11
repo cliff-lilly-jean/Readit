@@ -43,7 +43,7 @@
                 value="New Here?"
               />
             </div>
-            <AnonymousLogin></AnonymousLogin>
+
             <p class="social-text">
               Or Sign in with one fo your social platforms
             </p>
@@ -99,8 +99,7 @@
                 value="Already a Member?"
               />
             </div>
-            <!-- TODO: Create a method that runs if someone signs in anonymously send an alert every 30mins to create an account -->
-            <AnonymousLogin></AnonymousLogin>
+
             <p class="social-text">
               Or Sign up with one of your social platforms
             </p>
@@ -164,14 +163,13 @@
 <script>
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import AnonymousLogin from "./AnonymousLogin";
 import firebase from "../../node_modules/firebase/app";
-import getUser from "../composables/getBooks";
+import getUsers from "../composables/getUsers";
+import getUser from "../composables/getUser";
 export default {
   components: {
     Navbar,
     Footer,
-    AnonymousLogin,
   },
   setup() {
     const { load } = getUser();

@@ -1,18 +1,18 @@
 import { ref } from "@vue/composition-api";
 import { projectFirestore } from "../firebase/config";
 
-const getBooks = () => {
- const books = ref([]);
+const getUser = (id) => {
+ const books = ref(null);
  const error = ref(null);
 
  const load = async () => {
   try {
-   const res = await projectFirestore.collection('users').get();
-
-   books.value = res.docs.map(doc => {
-    console.log({ ...doc.data(), id: doc.id });
-    return { ...doc.data(), id: doc.id };
-   });
+   const res = await projectFirestore.collection('users').doc(id).get();
+   console.log(res.data());
+   // books.value = res.docs.map(doc => {
+   //  console.log({ ...doc.data(), id: doc.id });
+   //  return { ...doc.data(), id: doc.id };
+   // });
   }
   catch (err) {
    error.value = err.message;
@@ -22,4 +22,4 @@ const getBooks = () => {
  return { books, error, load };
 };
 
-export default getBooks;
+export default getUser;

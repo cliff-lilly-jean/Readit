@@ -8,7 +8,9 @@
       <!-- Top Bar Start -->
       <Topbar @toggleMenu="toggleStateChange"></Topbar>
       <!-- Top Bar End -->
-      <BookCard v-on:updateBooksArray="addNewBook($event)"></BookCard>
+      <BookCardDescription
+        v-on:updateBooksArray="addNewBook($event)"
+      ></BookCardDescription>
     </div>
     <!-- Main End -->
   </div>
@@ -17,12 +19,12 @@
 <script>
 import Navigation from "../components/Navigation";
 import Topbar from "../components/Topbar";
-import BookCard from "../components/BookCard";
+import BookCardDescription from "../components/BookCardDescription";
 export default {
   components: {
     Navigation,
     Topbar,
-    BookCard,
+    BookCardDescription,
   },
   data() {
     return {

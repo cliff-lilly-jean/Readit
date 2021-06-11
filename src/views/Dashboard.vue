@@ -10,7 +10,7 @@
         <Topbar @toggleMenu="toggleStateChange"></Topbar>
         <!-- Top Bar End -->
         <!-- Card Box Start -->
-        <CardBox></CardBox>
+        <UserTotals></UserTotals>
         <!-- Card Box End -->
         <!-- Details Start -->
         <div class="details">
@@ -27,7 +27,7 @@
 <script>
 import Navigation from "../components/Navigation";
 import Topbar from "../components/Topbar";
-import CardBox from "../components/CardBox";
+import UserTotals from "../components/UserTotals";
 import RecentBooks from "./RecentBooks";
 import RecentConnections from "./RecentConnections";
 
@@ -35,7 +35,7 @@ export default {
   components: {
     Navigation,
     Topbar,
-    CardBox,
+    UserTotals,
     RecentBooks,
     RecentConnections,
   },
