@@ -1,7 +1,7 @@
 <template>
   <div id="anonymous">
     <input
-      @click.prevent="auth.signInAnonymously()"
+      @click.prevent="projectAuth.signInAnonymously()"
       type="submit"
       value="Sign in anonymously"
       class="btn btn-anonymous"
@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import { auth } from "../firebase";
+import { projectAuth } from "../firebase/config";
 export default {
   data() {
     return {
-      auth,
+      projectAuth,
     };
   },
 };

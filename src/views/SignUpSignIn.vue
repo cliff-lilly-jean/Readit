@@ -166,13 +166,18 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import AnonymousLogin from "./AnonymousLogin";
 import firebase from "../../node_modules/firebase/app";
-
+import getUser from "../composables/getBooks";
 export default {
   components: {
     Navbar,
     Footer,
     AnonymousLogin,
   },
+  setup() {
+    const { load } = getUser();
+    load();
+  },
+
   data() {
     return {
       isSignUpMode: "",

@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { auth } from "../firebase";
+import { projectAuth } from "../firebase/config";
 export default {
   props: ["toggleState"],
   data() {
@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     signOut() {
-      auth.signOut().then(() => {
+      projectAuth.signOut().then(() => {
         this.$router.replace("/");
       });
     },

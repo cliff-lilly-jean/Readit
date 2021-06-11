@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import "firebase/auth";
-import "firebase/storage";
+// import "firebase/storage";
 
 
 const firebaseConfig = {
@@ -14,10 +14,11 @@ const firebaseConfig = {
  measurementId: "G-KQ92Y80GMH"
 };
 
+// init Firebase
 firebase.initializeApp(firebaseConfig);
 
-// export const db = firebase.firestore();
-export const auth = firebase.auth();
-// export const storage = firebase.storage();
-// export const fb = firebase.auth.FacebookAuthProvider;
-// export const fbSign = firebase.auth().signInWithPopup;
+// init Firebase service
+const projectFirestore = firebase.firestore();
+const projectAuth = firebase.auth();
+
+export { projectFirestore, projectAuth };
