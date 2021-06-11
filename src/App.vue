@@ -1,76 +1,30 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div id="nav">
+    <router-view />
+    <!-- <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link> -->
   </div>
 </template>
 
-<script>
-// Font Awesome Import
-import "@fortawesome/fontawesome-free/css/all.css";
-export default {
-  name: "App",
-  data() {
-    return {};
-  },
-  methods: {},
-};
-</script>
-
 <style>
-/* Font import */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-}
-
-img {
-  height: auto;
-  width: 100%;
-}
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Poppins", sans-serif;
+  text-align: center;
+  color: #2c3e50;
 }
 
-body {
-  font-family: "Poppins", sans-serif;
-  line-height: 1.5;
+#nav {
+  padding: 30px;
 }
 
-section {
-  padding: 50px 20px;
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
 }
 
-.button {
-  padding: 15px 50px;
-  margin: 20px 0;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  background: #e8505b;
-  color: #fefefe;
-  transition: all 0.5s;
-}
-
-.button:hover {
-  background: #af3a42;
-}
-
-/* Center the Video when the barcode scanner is clicked */
-#scanner-box video,
-#scanner-box canvas {
-  width: 100%;
-  height: auto;
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
