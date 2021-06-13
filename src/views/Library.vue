@@ -10,6 +10,10 @@
       <!-- Top Bar End -->
       <!-- Book Start -->
       <Book :books="books"></Book>
+      {{ books }}
+      <p v-for="book in books" :key="book.title">
+        {{ book }}
+      </p>
       <!-- Book End -->
     </div>
     <!-- Main End -->
@@ -21,7 +25,7 @@ import Navigation from "../components/Navigation";
 import Topbar from "../components/Topbar";
 import Book from "../components/Book.vue";
 export default {
-  props: ["books"],
+  props: ["book"],
   components: {
     Navigation,
     Topbar,
@@ -30,12 +34,20 @@ export default {
   data() {
     return {
       toggleState: false,
+      books: [],
     };
   },
   methods: {
     toggleStateChange(value) {
       this.toggleState = value;
     },
+  },
+  mounted() {
+    this.emitter.on("updateBooksArray", (book) => {
+      console.log(book);
+      this.books.push(book);
+      console.log(this.books);
+    });
   },
 };
 </script>

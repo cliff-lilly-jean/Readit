@@ -38,10 +38,10 @@ export default {
   },
   methods: {
     signUpButtonClicked() {
-      this.$emit("signUpButtonClicked");
+      this.emitter.emit("signUpButtonClicked");
     },
     loginClicked() {
-      this.$emit("loginClicked");
+      this.emitter.emit("loginClicked");
     },
   },
   computed: {},

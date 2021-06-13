@@ -97,7 +97,7 @@ export default {
   methods: {
     routeToLibraryPage() {
       this.$router.push({ path: "/library" }).catch(() => {
-        this.$emit("routeToLibraryPage");
+        this.emitter.emit("routeToLibraryPage");
       });
     },
   },

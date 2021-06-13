@@ -1,10 +1,6 @@
 <template>
   <div id="sign-up">
-    <Navbar
-      :mode="isSignUpMode"
-      @signUpButtonClicked="isSignUpMode = true"
-      @loginClicked="isSignUpMode = false"
-    ></Navbar>
+    <Navbar :mode="isSignUpMode"></Navbar>
     <div :class="{ 'sign-up-mode': isSignUpMode }" class="container">
       <div class="forms-container">
         <div class="signin-signup">
@@ -346,6 +342,15 @@ export default {
           console.log(errorCode, errorMessage, errorEmail, credential);
         });
     },
+  },
+  mounted() {
+    this.emitter.on("signUpButtonClicked", () => {
+      this.isSignUpMode = true;
+    });
+
+    this.emitter.on("loginClicked", () => {
+      this.isSignUpMode = false;
+    });
   },
 };
 </script>

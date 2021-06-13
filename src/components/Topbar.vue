@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import { bus } from "../main";
 import axios from "axios";
 import Quagga from "quagga";
 export default {
@@ -64,7 +63,7 @@ export default {
   },
   methods: {
     toggleMenu() {
-      this.$emit("toggleMenu", (this.toggleState = !this.toggleState));
+      this.emiter.$emit("toggleMenu", (this.toggleState = !this.toggleState));
     },
     // User search method
     userSearchQuery() {
@@ -86,7 +85,7 @@ export default {
           this.bookThumb = returnData.imageLinks.thumbnail;
           this.bookPublishDate = returnData.publishDate;
           // TODO: Consider changing this to an object
-          bus.$emit("bookDetails", [
+          this.emitter.emit("bookDetails", [
             this.bookTitle,
             this.bookAuthor,
             this.bookDescription,
@@ -149,7 +148,7 @@ export default {
               vm.bookThumb = returnData.imageLinks.thumbnail;
               vm.bookPublishDate = returnData.publishDate;
               // TODO: Consider changing this to an object
-              bus.$emit("bookDetails", [
+              this.emitter.emit("bookDetails", [
                 vm.bookTitle,
                 vm.bookAuthor,
                 vm.bookDescription,

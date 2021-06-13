@@ -20,6 +20,7 @@
           <a @click="addCurrentBookToBooksArr" class="button"
             >Add to library +</a
           >
+          {{ books }}
         </div>
       </div>
     </div>
@@ -27,9 +28,7 @@
 </template>
 
 <script>
-import { bus } from "../main";
 export default {
-  // props: ["books"],
   data() {
     return {
       bookTitle: "",
@@ -58,12 +57,12 @@ export default {
       // Add the newBookObj to the books array in the library view
       this.books.push(newBookAddition);
       // Emit the books array up to the library view
-      this.$emit("updateBooksArray", newBookAddition);
+      this.emitter.emit("updateBooksArray", this.books);
       this.$router.replace("/library");
     },
   },
   created() {
-    bus.$on("bookDetails", (data) => {
+    this.emitter.on("bookDetails", (data) => {
       this.bookTitle = data[0];
       this.bookAuthor = data[1];
       this.bookDescription = data[2];

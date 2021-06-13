@@ -2,9 +2,10 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 import { projectAuth } from './firebase/config';
+import mitt from 'mitt';
 
-// Event Bus
-// export const bus = new Vue();
+// Event bus init
+const emitter = mitt();
 
 // Firebase auth state
 projectAuth.onAuthStateChanged(user => {
@@ -15,4 +16,6 @@ projectAuth.onAuthStateChanged(user => {
  }
 });
 
-createApp(App).use(router).mount('#app');
+const app = createApp(App);
+app.config.globalProperties.emitter = emitter;
+app.use(router).mount('#app');

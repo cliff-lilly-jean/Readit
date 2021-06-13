@@ -8,9 +8,7 @@
       <!-- Top Bar Start -->
       <Topbar @toggleMenu="toggleStateChange"></Topbar>
       <!-- Top Bar End -->
-      <BookCardDescription
-        v-on:updateBooksArray="addNewBook($event)"
-      ></BookCardDescription>
+      <BookCardDescription></BookCardDescription>
     </div>
     <!-- Main End -->
   </div>
@@ -29,16 +27,11 @@ export default {
   data() {
     return {
       toggleState: false,
-      books: [],
     };
   },
   methods: {
     toggleStateChange(value) {
       this.toggleState = value;
-    },
-    addNewBook(newBook) {
-      this.books.push(newBook);
-      console.log(this.books);
     },
   },
 };
