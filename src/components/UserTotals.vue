@@ -1,6 +1,6 @@
 <template>
   <div id="card-box-component">
-    <div class="cardBox">
+    <div class="userTotals">
       <router-link to="/connections">
         <div class="card">
           <div>
@@ -17,7 +17,7 @@
         <div class="card">
           <div>
             <!-- TODO: Pull this data from the server -->
-            <div class="numbers">{{ booksInLibrary }}</div>
+            <div class="numbers">{{ $store.state.books.length }}</div>
             <div class="cardName">Library</div>
           </div>
           <div class="iconBox">
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style scoped>
-.cardBox {
+.userTotals {
   position: relative;
   width: 100%;
   padding: 20px;
@@ -93,13 +93,13 @@ export default {
 }
 
 @media (max-width: 992px) {
-  .cardBox {
+  .userTotals {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
-  .cardBox {
+  .userTotals {
     grid-template-columns: repeat(1, 1fr);
   }
 }

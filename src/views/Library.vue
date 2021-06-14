@@ -10,7 +10,6 @@
       <!-- Top Bar End -->
       <!-- Book Start -->
       <Book :books="books"></Book>
-      {{ $store.state.books }}
       <!-- Book End -->
     </div>
     <!-- Main End -->
