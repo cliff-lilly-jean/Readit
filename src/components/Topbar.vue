@@ -10,15 +10,21 @@
       <!-- TODO: Route this to the library page based off a correct barcode or input entry -->
       <div id="search" class="search">
         <label for="#">
-          <input
+          <!-- <input
             v-model="usersSearch"
             @keyup.enter="userSearchQuery"
+            type="text"
+            placeholder="Enter your book ISBN or click the bars to the right to scan"
+          /> -->
+          <input
+            v-model="$store.state.usersSearch"
+            @keyup.enter="$store.dispatch('userSearchQuery')"
             type="text"
             placeholder="Enter your book ISBN or click the bars to the right to scan"
           />
           <i class="fas fa-search"></i>
           <i
-            @click="openBarcodeScanner"
+            @click="$store.dispatch('openBarcodeScanner')"
             :title="barcodeScannerHoverMessage"
             class="fas fa-barcode"
           ></i>
@@ -27,7 +33,8 @@
       <div
         class="scanner-box-container"
         :class="{
-          'scanner-box-container--active': scannerBoxContainerOpacity,
+          'scanner-box-container--active':
+            $store.state.scannerBoxContainerOpacity,
         }"
       >
         <div class="scanner-box" id="scanner-box">
@@ -43,137 +50,21 @@
 </template>
 
 <script>
-import axios from "axios";
 import Quagga from "quagga";
 export default {
   data() {
     return {
       toggleState: false,
-      usersSearch: "",
-      booksAPIKey: process.env.VUE_APP_API_KEY,
-      books: [],
       barcodeScannerHoverMessage: "Use your webcam to scan the books barcode",
-      lastCode: "",
-      scannerBoxContainerOpacity: false,
-      bookTitle: "",
-      bookAuthor: "",
-      bookDescription: "",
-      bookPublishDate: "",
     };
   },
   methods: {
     toggleMenu() {
       this.emiter.$emit("toggleMenu", (this.toggleState = !this.toggleState));
     },
-    // User search method
-    userSearchQuery() {
-      axios
-        .get(
-          "https://www.googleapis.com/books/v1/volumes?q=isbn:" +
-            this.usersSearch +
-            "&key=" +
-            this.booksAPIKey
-        )
-        .then((response) => {
-          // Get the data and add it to books
-          // 9781612680170
-          let returnData = response.data.items[0].volumeInfo;
-          this.bookTitle = returnData.title;
-          this.bookAuthor = returnData.authors[0];
-          this.bookDescription = returnData.description;
-          this.bookRating = returnData.averageRating;
-          this.bookThumb = returnData.imageLinks.thumbnail;
-          this.bookPublishDate = returnData.publishDate;
-          // TODO: Consider changing this to an object
-          this.emitter.emit("bookDetails", [
-            this.bookTitle,
-            this.bookAuthor,
-            this.bookDescription,
-            this.bookThumb,
-            this.bookRating,
-            this.bookPublishDate,
-          ]);
-        });
-      this.$router.replace("/card-view");
-      this.usersSearch = "";
-    },
-    // Barcode Scanner Method
-    openBarcodeScanner() {
-      if (
-        navigator.mediaDevices &&
-        typeof navigator.mediaDevices.getUserMedia === "function"
-      ) {
-        // Global 'this' variable within Quagga
-        let vm = this;
-        Quagga.init(
-          {
-            inputStream: {
-              name: "Live",
-              type: "LiveStream",
-              target: document.querySelector("#scanner-box"),
-            },
-
-            decoder: {
-              readers: ["ean_reader"],
-            },
-            multiple: false,
-          },
-          function (err) {
-            if (err) {
-              console.log(err);
-              return;
-            }
-            console.log("Initialization finished. Ready to start");
-            Quagga.start();
-          }
-        );
-
-        Quagga.onDetected(function (result) {
-          vm.lastCode = result.codeResult.code;
-          axios
-            .get(
-              "https://www.googleapis.com/books/v1/volumes?q=isbn:" +
-                vm.lastCode +
-                "&key=" +
-                vm.booksAPIKey
-            )
-            .then((response) => {
-              // Get the data and add it to books
-              // 9781612680170
-              let returnData = response.data.items[0].volumeInfo;
-              vm.bookTitle = returnData.title;
-              vm.bookAuthor = returnData.authors[0];
-              vm.bookDescription = returnData.description;
-              vm.bookRating = returnData.averageRating;
-              vm.bookThumb = returnData.imageLinks.thumbnail;
-              vm.bookPublishDate = returnData.publishDate;
-              // TODO: Consider changing this to an object
-              this.emitter.emit("bookDetails", [
-                vm.bookTitle,
-                vm.bookAuthor,
-                vm.bookDescription,
-                vm.bookThumb,
-                vm.bookRating,
-                vm.bookPublishDate,
-              ]);
-            });
-          vm.usersSearch = "";
-          vm.scannerBoxContainerOpacity = false;
-          Quagga.stop();
-          this.$router.replace("/card-view");
-        });
-        vm.toggleScanner();
-      }
-    },
     closeBarcodeScanner() {
-      this.scannerBoxContainerOpacity = false;
+      this.$store.state.scannerBoxContainerOpacity = false;
       Quagga.stop;
-    },
-    toggleScanner() {
-      if (this.scannerBoxContainerOpacity === false) {
-        Quagga.stop();
-      }
-      this.scannerBoxContainerOpacity = !this.scannerBoxContainerOpacity;
     },
   },
 };

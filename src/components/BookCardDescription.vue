@@ -9,15 +9,18 @@
         </div>
         <div class="book__info">
           <div class="book__date">
-            <span>{{ bookPublishDate }}</span>
+            <span>{{ $store.state.bookPublishDate }}</span>
           </div>
-          <h1 class="book__title">{{ bookTitle }}</h1>
-          <p class="book__author">{{ bookAuthor }}</p>
-          <p class="book__rating">{{ avgRatingToStars }}</p>
-          <p class="book__description">{{ bookDescription }}</p>
+          <h1 class="book__title">{{ $store.state.bookTitle }}</h1>
+          <p class="book__author">{{ $store.state.bookAuthor }}</p>
+          <p class="book__rating">{{ $store.state.avgRatingToStars }}</p>
+          <p class="book__description">{{ $store.state.bookDescription }}</p>
           <!-- TODO: See if there's a way to connect this to amazon or some other bookstore -->
           <!-- TODO: Create an add to library method that increments the number of books in a books array and adds the current book to the array -->
-          <a @click="addCurrentBookToBooksArr" class="button"
+          <!-- <a @click="addCurrentBookToBooksArr" class="button"
+            >Add to library +</a
+          > -->
+          <a @click="$store.commit('addNewBook')" class="button"
             >Add to library +</a
           >
           {{ $store.state }}
@@ -44,20 +47,6 @@ export default {
   },
   methods: {
     addCurrentBookToBooksArr() {
-      // Create a new object, newBookObj
-      // Add the bookTitle, bookAuthor, bookDescription, bookThumb, bookRating and bookPublishDate
-      let newBookAddition = {
-        title: this.bookTitle,
-        author: this.bookAuthor,
-        description: this.bookDescription,
-        thumbnail: this.bookThumb,
-        rating: this.bookRating,
-        publishDate: this.bookPublishDate,
-      };
-      // Add the newBookObj to the books array in the library view
-      this.books.push(newBookAddition);
-      // Emit the books array up to the library view
-      this.emitter.emit("sendBookData", this.books);
       this.$router.replace("/library");
     },
   },
@@ -74,7 +63,7 @@ export default {
   },
   computed: {
     avgRatingToStars() {
-      let rating = this.bookRating;
+      let rating = this.$store.state.bookRating;
       let stars = this.bookStars;
       for (let i = 0; i < rating; i++) {
         stars.push("⭐");
