@@ -3,6 +3,9 @@ import App from './App.vue';
 import router from './router';
 import { projectAuth } from './firebase/config';
 import mitt from 'mitt';
+import store from '../src/store/index';
+import 'es6-promise/auto';
+
 
 // Event bus init
 const emitter = mitt();
@@ -17,5 +20,6 @@ projectAuth.onAuthStateChanged(user => {
 });
 
 const app = createApp(App);
+app.use(store);
 app.config.globalProperties.emitter = emitter;
 app.use(router).mount('#app');

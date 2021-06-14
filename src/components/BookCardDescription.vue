@@ -20,7 +20,7 @@
           <a @click="addCurrentBookToBooksArr" class="button"
             >Add to library +</a
           >
-          {{ books }}
+          {{ $store.state }}
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@ export default {
       // Add the newBookObj to the books array in the library view
       this.books.push(newBookAddition);
       // Emit the books array up to the library view
-      this.emitter.emit("updateBooksArray", this.books);
+      this.emitter.emit("sendBookData", this.books);
       this.$router.replace("/library");
     },
   },
