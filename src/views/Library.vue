@@ -10,7 +10,7 @@
       <!-- Top Bar End -->
       <!-- Book Start -->
       <Book :books="books"></Book>
-
+      {{ $store.state.books }}
       <!-- Book End -->
     </div>
     <!-- Main End -->
@@ -22,7 +22,6 @@ import Navigation from "../components/Navigation";
 import Topbar from "../components/Topbar";
 import Book from "../components/Book.vue";
 export default {
-  props: ["books"],
   components: {
     Navigation,
     Topbar,

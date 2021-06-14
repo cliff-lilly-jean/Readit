@@ -3,7 +3,7 @@
     <!-- 9781612680170 -->
     <div class="container">
       <!-- TODO: Fix card design -->
-      <div class="book" :class="{ active: cardPopulated }">
+      <div class="book" :class="{ active: $store.state.cardPopulated }">
         <div class="book__img">
           <img
             :src="$store.state.bookThumb"
@@ -14,9 +14,10 @@
           <div class="book__date">
             <span>{{ $store.state.bookPublishDate }}</span>
           </div>
+
           <h1 class="book__title">{{ $store.state.bookTitle }}</h1>
           <p class="book__author">{{ $store.state.bookAuthor }}</p>
-          <p class="book__rating">{{ $store.state.avgRatingToStars }}</p>
+          <p class="book__rating">{{ avgRatingToStars }}</p>
           <p class="book__description">{{ $store.state.bookDescription }}</p>
           <!-- TODO: See if there's a way to connect this to amazon or some other bookstore -->
           <!-- TODO: Create an add to library method that increments the number of books in a books array and adds the current book to the array -->
@@ -26,7 +27,6 @@
           <a @click="$store.commit('addNewBook')" class="button"
             >Add to library +</a
           >
-          {{ $store.state }}
         </div>
       </div>
     </div>
@@ -38,24 +38,12 @@ export default {
   data() {
     return {
       bookStars: [],
-      cardPopulated: false,
     };
   },
   methods: {
     addCurrentBookToBooksArr() {
       this.$router.replace("/library");
     },
-  },
-  created() {
-    this.emitter.on("bookDetails", (data) => {
-      this.bookTitle = data[0];
-      this.bookAuthor = data[1];
-      this.bookDescription = data[2];
-      this.bookThumb = data[3];
-      this.bookRating = data[4];
-      this.bookPublishDate = data[5];
-      this.cardPopulated = true;
-    });
   },
   computed: {
     avgRatingToStars() {
@@ -121,8 +109,8 @@ img {
   left: 0;
   background: linear-gradient(
     to right,
-    rgba(245, 91, 86, 0.3),
-    rgba(254, 84, 99, 0.3)
+    rgba(255, 207, 206, 0.3),
+    rgba(255, 210, 214, 0.3)
   );
   box-shadow: 0.5rem 0.5rem 3rem 1px rgba(0, 0, 0, 0.05);
   border-radius: 0.8rem;

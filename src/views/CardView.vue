@@ -34,13 +34,6 @@ export default {
       this.toggleState = value;
     },
   },
-  mounted() {
-    this.emitter.on("updateBooksArray", (book) => {
-      console.log(book);
-      this.books.push(book);
-      console.log(this.books);
-    });
-  },
 };
 </script>
 

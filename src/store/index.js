@@ -18,6 +18,7 @@ export default createStore({
   bookThumb: "",
   lastCode: "",
   scannerBoxContainerOpacity: false,
+  cardPopulated: false,
  },
  mutations: {
   addNewBook(state) {
@@ -67,7 +68,8 @@ export default createStore({
      this.state.books.push(newBookObj);
     });
    router.replace("/card-view");
-   this.usersSearch = "";
+   this.state.cardPopulated = true;
+   this.state.usersSearch = "";
   },
 
   // Barcode Scanner Method
@@ -76,8 +78,6 @@ export default createStore({
     navigator.mediaDevices &&
     typeof navigator.mediaDevices.getUserMedia === "function"
    ) {
-    // Global 'this' variable within Quagga
-    let vm = this.state;
     Quagga.init(
      {
       inputStream: {
@@ -99,42 +99,42 @@ export default createStore({
       Quagga.start();
      }
     );
-    Quagga.onDetected(function(result) {
-     vm.lastCode = result.codeResult.code;
+    Quagga.onDetected((result) => {
+     this.state.lastCode = result.codeResult.code;
      axios
       .get(
        "https://www.googleapis.com/books/v1/volumes?q=isbn:" +
-       vm.lastCode +
-       "&key=" + vm.booksAPIKey
+       this.state.lastCode +
+       "&key=" + this.state.booksAPIKey
       )
       .then((response) => {
        // Get the data and add it to books
        let returnData = response.data.items[0].volumeInfo;
-       vm.bookTitle = returnData.title;
-       vm.bookAuthor = returnData.authors[0];
-       vm.bookDescription = returnData.description;
-       vm.bookRating = returnData.averageRating;
-       vm.bookThumb = returnData.imageLinks.thumbnail;
-       vm.bookPublishDate = returnData.publishDate;
+       this.state.bookTitle = returnData.title;
+       this.state.bookAuthor = returnData.authors[0];
+       this.state.bookDescription = returnData.description;
+       this.state.bookRating = returnData.averageRating;
+       this.state.bookThumb = returnData.imageLinks.thumbnail;
+       this.state.bookPublishDate = returnData.publishDate;
 
        // Create a book Object to push into the books array
        let newBookObj = {
-        title: vm.bookTitle,
-        author: vm.bookAuthor,
-        description: vm.bookDescription,
-        publishDate: vm.bookPublishDate,
-        bookThumbnail: vm.bookThumb,
-        avgRating: vm.bookRating
+        title: this.state.bookTitle,
+        author: this.state.bookAuthor,
+        description: this.state.bookDescription,
+        publishDate: this.state.bookPublishDate,
+        bookThumbnail: this.state.bookThumb,
+        avgRating: this.state.bookRating
        };
-       vm.books.push(newBookObj);
+       this.state.books.push(newBookObj);
       });
-     vm.usersSearch = "";
-     vm.scannerBoxContainerOpacity = false;
+     this.state.usersSearch = "";
+     this.state.scannerBoxContainerOpacity = false;
      Quagga.stop();
      router.replace("/card-view");
+     this.state.cardPopulated = true;
     });
     commit('toggleScanner');
-
    }
   },
  },
