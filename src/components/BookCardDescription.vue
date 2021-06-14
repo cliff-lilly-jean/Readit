@@ -5,7 +5,10 @@
       <!-- TODO: Fix card design -->
       <div class="book" :class="{ active: cardPopulated }">
         <div class="book__img">
-          <img :src="bookThumb" alt="The thumbnail image of the book" />
+          <img
+            :src="$store.state.bookThumb"
+            alt="The thumbnail image of the book"
+          />
         </div>
         <div class="book__info">
           <div class="book__date">
@@ -34,15 +37,8 @@
 export default {
   data() {
     return {
-      bookTitle: "",
-      bookAuthor: "",
-      bookDescription: "",
-      bookThumb: "",
-      bookRating: "",
-      bookPublishDate: "",
       bookStars: [],
       cardPopulated: false,
-      books: [],
     };
   },
   methods: {

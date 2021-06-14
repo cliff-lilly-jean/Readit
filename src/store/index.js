@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
+import router from '../router/index';
 
 // Barcode scanner library
 import Quagga from "quagga";
@@ -65,7 +66,7 @@ export default createStore({
      };
      this.state.books.push(newBookObj);
     });
-   this.$router.replace("/card-view");
+   router.replace("/card-view");
    this.usersSearch = "";
   },
 
@@ -108,7 +109,6 @@ export default createStore({
       )
       .then((response) => {
        // Get the data and add it to books
-       // 9781612680170
        let returnData = response.data.items[0].volumeInfo;
        vm.bookTitle = returnData.title;
        vm.bookAuthor = returnData.authors[0];
@@ -131,7 +131,7 @@ export default createStore({
      vm.usersSearch = "";
      vm.scannerBoxContainerOpacity = false;
      Quagga.stop();
-     // this.$router.replace("/card-view");
+     router.replace("/card-view");
     });
     commit('toggleScanner');
 
