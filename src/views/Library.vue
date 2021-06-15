@@ -9,7 +9,7 @@
       <Topbar @toggleMenu="toggleStateChange"></Topbar>
       <!-- Top Bar End -->
       <!-- Book Start -->
-      <Book :books="books"></Book>
+      <Book></Book>
       <!-- Book End -->
     </div>
     <!-- Main End -->

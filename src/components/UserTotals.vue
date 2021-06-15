@@ -5,7 +5,7 @@
         <div class="card">
           <div>
             <!-- TODO: Pull this data from the server -->
-            <div class="numbers">{{ totalConnections }}</div>
+            <div class="numbers">{{ $store.state.connections.length }}</div>
             <div class="cardName">Connections</div>
           </div>
           <div class="iconBox">
@@ -25,12 +25,11 @@
           </div>
         </div>
       </router-link>
-      <!-- TODO: Add a route to the Clubs page -->
       <router-link to="/clubs">
         <div class="card">
           <div>
             <!-- TODO: Pull this data from the server -->
-            <div class="numbers">{{ numberOfClubs }}</div>
+            <div class="numbers">{{ $store.state.clubs.length }}</div>
             <div class="cardName">Clubs</div>
           </div>
           <div class="iconBox">

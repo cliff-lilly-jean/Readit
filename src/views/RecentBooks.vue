@@ -13,69 +13,13 @@
             <td>Publsh Date</td>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-for="book in $store.state.books" :key="book.title">
           <tr>
             <!-- TODO: Pull this data from the server -->
-            <td>{{ bookTitle }}</td>
-            <td>{{ bookAuthor }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
             <td>
-              <span class="status delivered">{{ bookPublishDate }}</span>
-            </td>
-          </tr>
-          <tr>
-            <!-- TODO: Pull this data from the server -->
-            <td>{{ bookTitle }}</td>
-            <td>{{ bookAuthor }}</td>
-            <td>
-              <span class="status return">{{ bookPublishDate }}</span>
-            </td>
-          </tr>
-          <tr>
-            <!-- TODO: Pull this data from the server -->
-            <td>{{ bookTitle }}</td>
-            <td>{{ bookAuthor }}</td>
-            <td>
-              <span class="status inprogress">{{ bookPublishDate }}</span>
-            </td>
-          </tr>
-          <tr>
-            <!-- TODO: Pull this data from the server -->
-            <td>{{ bookTitle }}</td>
-            <td>{{ bookAuthor }}</td>
-            <td>
-              <span class="status pending">{{ bookPublishDate }}</span>
-            </td>
-          </tr>
-          <tr>
-            <!-- TODO: Pull this data from the server -->
-            <td>{{ bookTitle }}</td>
-            <td>{{ bookAuthor }}</td>
-            <td>
-              <span class="status delivered">{{ bookPublishDate }}</span>
-            </td>
-          </tr>
-          <tr>
-            <!-- TODO: Pull this data from the server -->
-            <td>{{ bookTitle }}</td>
-            <td>{{ bookAuthor }}</td>
-            <td>
-              <span class="status return">{{ bookPublishDate }}</span>
-            </td>
-          </tr>
-          <tr>
-            <!-- TODO: Pull this data from the server -->
-            <td>{{ bookTitle }}</td>
-            <td>{{ bookAuthor }}</td>
-            <td>
-              <span class="status delivered">{{ bookPublishDate }}</span>
-            </td>
-          </tr>
-          <tr>
-            <!-- TODO: Pull this data from the server -->
-            <td>{{ bookTitle }}</td>
-            <td>{{ bookAuthor }}</td>
-            <td>
-              <span class="status return">{{ bookPublishDate }}</span>
+              <span class="status delivered">{{ book.publishDate }}</span>
             </td>
           </tr>
         </tbody>
@@ -87,19 +31,7 @@
 <script>
 export default {
   data() {
-    return {
-      // TODO: Pull data from the server
-      bookTitle: "Harry Potter",
-      bookAuthor: "J.K. Rowling",
-      bookPublishDate: 2007,
-    };
-  },
-  methods: {
-    routeToLibraryPage() {
-      this.$router.push({ path: "/library" }).catch(() => {
-        this.emitter.emit("routeToLibraryPage");
-      });
-    },
+    return {};
   },
 };
 </script>

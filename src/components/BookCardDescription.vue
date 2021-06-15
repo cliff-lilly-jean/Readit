@@ -2,7 +2,6 @@
   <div id="book-card">
     <!-- 9781612680170 -->
     <div class="container">
-      <!-- TODO: Fix card design -->
       <div class="book" :class="{ active: $store.state.cardPopulated }">
         <div class="book__img">
           <img
@@ -20,11 +19,7 @@
           <p class="book__rating">{{ avgRatingToStars }}</p>
           <p class="book__description">{{ $store.state.bookDescription }}</p>
           <!-- TODO: See if there's a way to connect this to amazon or some other bookstore -->
-          <!-- TODO: Create an add to library method that increments the number of books in a books array and adds the current book to the array -->
-          <!-- <a @click="addCurrentBookToBooksArr" class="button"
-            >Add to library +</a
-          > -->
-          <a @click="$store.commit('addNewBook')" class="button"
+          <a @click="$store.dispatch('addNewBook')" class="button"
             >Add to library +</a
           >
         </div>

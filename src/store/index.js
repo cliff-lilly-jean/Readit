@@ -8,6 +8,9 @@ import Quagga from "quagga";
 export default createStore({
  state: {
   books: [],
+  newBookObj: {},
+  clubs: [],
+  connections: [],
   booksAPIKey: process.env.VUE_APP_API_KEY,
   usersSearch: "",
   bookTitle: "",
@@ -34,7 +37,11 @@ export default createStore({
  },
  actions: {
   addNewBook() {
-   console.log('action');
+   // Add the newBookObj to the books Arr
+   this.state.books.push(this.state.newBookObj);
+   console.log(this.state.books);
+
+   // TODO: Route to the library page
   },
 
   // Topbar component User search method
@@ -57,7 +64,7 @@ export default createStore({
      this.state.bookThumb = returnData.imageLinks.thumbnail;
      this.state.bookPublishDate = returnData.publishDate;
 
-     let newBookObj = {
+     this.state.newBookObj = {
       title: this.state.bookTitle,
       author: this.state.bookAuthor,
       description: this.state.bookDescription,
@@ -65,7 +72,6 @@ export default createStore({
       bookThumbnail: this.state.bookThumb,
       avgRating: this.state.bookRating
      };
-     this.state.books.push(newBookObj);
     });
    router.replace("/card-view");
    this.state.cardPopulated = true;
@@ -118,7 +124,7 @@ export default createStore({
        this.state.bookPublishDate = returnData.publishDate;
 
        // Create a book Object to push into the books array
-       let newBookObj = {
+       this.state.newBookObj = {
         title: this.state.bookTitle,
         author: this.state.bookAuthor,
         description: this.state.bookDescription,
@@ -126,7 +132,6 @@ export default createStore({
         bookThumbnail: this.state.bookThumb,
         avgRating: this.state.bookRating
        };
-       this.state.books.push(newBookObj);
       });
      this.state.usersSearch = "";
      this.state.scannerBoxContainerOpacity = false;
