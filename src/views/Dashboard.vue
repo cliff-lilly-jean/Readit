@@ -28,8 +28,8 @@
 import Navigation from "../components/Navigation";
 import Topbar from "../components/Topbar";
 import UserTotals from "../components/UserTotals";
-import RecentBooks from "./RecentBooks";
-import RecentConnections from "./RecentConnections";
+import RecentBooks from "../components/RecentBooks";
+import RecentConnections from "../components/RecentConnections";
 
 export default {
   components: {
