@@ -10,12 +10,6 @@
       <!-- TODO: Route this to the library page based off a correct barcode or input entry -->
       <div id="search" class="search">
         <label for="#">
-          <!-- <input
-            v-model="usersSearch"
-            @keyup.enter="userSearchQuery"
-            type="text"
-            placeholder="Enter your book ISBN or click the bars to the right to scan"
-          /> -->
           <input
             v-model="$store.state.usersSearch"
             @keyup.enter="$store.dispatch('userSearchQuery')"

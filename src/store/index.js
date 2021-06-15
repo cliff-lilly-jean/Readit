@@ -38,10 +38,12 @@ export default createStore({
  actions: {
   addNewBook() {
    // Add the newBookObj to the books Arr
+   // TODO: Have this method add the new book the current users books Arr in Firebase
    this.state.books.push(this.state.newBookObj);
    console.log(this.state.books);
 
    // TODO: Route to the library page
+   router.replace('/library');
   },
 
   // Topbar component User search method
@@ -143,6 +145,8 @@ export default createStore({
    }
   },
  },
- getters: {},
+ getters: {
+  // TODO: Create a method to retrieve the current users books from Firebase
+ },
  modules: {},
 });

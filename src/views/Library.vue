@@ -9,7 +9,7 @@
       <Topbar @toggleMenu="toggleStateChange"></Topbar>
       <!-- Top Bar End -->
       <!-- Book Start -->
-      <Book></Book>
+      <Book :books="books"></Book>
       <!-- Book End -->
     </div>
     <!-- Main End -->
@@ -20,11 +20,18 @@
 import Navigation from "../components/Navigation";
 import Topbar from "../components/Topbar";
 import Book from "../components/Book.vue";
+import getBooks from "../composables/getBooks";
 export default {
   components: {
     Navigation,
     Topbar,
     Book,
+  },
+  setup() {
+    const { load, books } = getBooks();
+    console.log(books);
+    load();
+    return { books };
   },
   data() {
     return {

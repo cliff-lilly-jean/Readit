@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { projectFirestore } from "../firebase/config";
+import { db } from "../firebase/config";
 
 const getUsers = () => {
  const books = ref([]);
@@ -7,7 +7,7 @@ const getUsers = () => {
 
  const load = async () => {
   try {
-   const res = await projectFirestore.collection('users').get();
+   const res = await db.collection('users').get();
 
    books.value = res.docs.map(doc => {
     console.log({ ...doc.data(), id: doc.id });

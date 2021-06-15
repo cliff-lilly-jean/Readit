@@ -160,17 +160,11 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import firebase from "../../node_modules/firebase/app";
-import getUsers from "../composables/getUsers";
-
 // import getUser from "../composables/getUser";
 export default {
   components: {
     Navbar,
     Footer,
-  },
-  setup() {
-    const { load } = getUsers();
-    load();
   },
 
   data() {
@@ -185,7 +179,6 @@ export default {
     signUpButtonIsPressed() {
       this.isSignUpMode = true;
     },
-
     signInButtonIsPressed() {
       this.isSignUpMode = false;
     },
