@@ -7,16 +7,16 @@ const facebookError = ref(null);
 const facebookLogin = async () => {
  facebookError.value = null;
  const res = await new firebase.auth.FacebookAuthProvider();
-
- firebase
+ await firebase
   .auth()
   .signInWithPopup(res)
   .then((result) => {
+
+   facebookError.value = null;
    // var credential = result.credential;
 
    // The signed-in user info.
    let user = result.user;
-   console.log(user.uid);
 
    let name = user.displayName;
    let email = user.email;
@@ -25,7 +25,7 @@ const facebookLogin = async () => {
     name: name.value,
     email: email.value,
    });
-
+   return user;
    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
    // var accessToken = credential.accessToken;
   })
@@ -40,7 +40,6 @@ const facebookLogin = async () => {
 
    // console.log(errorCode, errorMessage, errorEmail, credential);
   });
- // console.log();
 };
 
 const useFacebook = () => {

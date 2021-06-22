@@ -5,10 +5,10 @@ import { auth } from './firebase/config';
 import $store from '../src/store/index';
 import 'es6-promise/auto';
 
+// Create an instance of app
 let app;
 
 auth.onAuthStateChanged(() => {
-
  if (!app) {
   app = createApp(App)
    .use(router)
@@ -16,7 +16,3 @@ auth.onAuthStateChanged(() => {
    .mount('#app');
  }
 });
-
-
-// app.use(auth);
-// app.use(db);

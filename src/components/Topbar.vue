@@ -36,8 +36,18 @@
         </div>
       </div>
       <router-link to="/library" class="user">
-        <img v-if="currentUser.photoURL" :src="currentUser.photoURL" alt="" />
-        <img v-else src="../assets/images/_img/default_user.svg" alt="" />
+        <img
+          v-if="currentUser.photoURL"
+          :src="currentUser.photoURL"
+          alt="The logged in user icon"
+          width="20"
+        />
+        <img
+          v-else
+          src="../assets/images/_img/default_user.svg"
+          alt="The default user icon"
+          width="20"
+        />
       </router-link>
     </div>
     <!-- Top Bar End -->
@@ -72,9 +82,6 @@ export default {
       barcodeScannerHoverMessage,
       toggleMenu,
     };
-  },
-  data() {
-    return {};
   },
 };
 </script>
@@ -159,8 +166,8 @@ export default {
 .user img {
   position: absolute;
   left: 0;
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   object-fit: cover;
 }
 

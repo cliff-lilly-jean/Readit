@@ -34,9 +34,9 @@
             <span class="title">Clubs</span>
           </router-link>
         </li>
-        <li @click="handleLogout">
+        <li>
           <!-- TODO: Force this link to automatically make the sign out form active -->
-          <a>
+          <a @click="handleLogout" href="#">
             <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
             <span class="title">Sign Out</span>
           </a>

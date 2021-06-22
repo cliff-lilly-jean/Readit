@@ -8,7 +8,7 @@ const googleLogin = async () => {
  googleError.value = null;
  const res = await new firebase.auth.GoogleAuthProvider();
 
- firebase
+ await firebase
   .auth()
   .signInWithPopup(res)
   .then((result) => {

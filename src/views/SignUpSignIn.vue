@@ -183,8 +183,8 @@ export default {
       name.value = "";
       email.value = "";
       password.value = "";
-      router.replace("/dashboard");
       console.log("The user has signed up");
+      router.replace("/dashboard");
     };
 
     // Login
@@ -193,30 +193,36 @@ export default {
       if (!loginError.value) {
         name.value = "";
         email.value = "";
-        router.replace("/dashboard");
         console.log("The user is logged in");
+        router.replace("/dashboard");
       }
     };
 
     // Facebook
     const handleFacebook = async () => {
       await facebookLogin();
-      console.log("The user is logged in with Facebook");
-      router.replace("/dashboard");
+      if (!facebookError.value) {
+        console.log("The user is logged in with Facebook");
+        router.replace("/dashboard");
+      }
     };
 
     // Google
     const handleGoogle = async () => {
       await googleLogin();
-      console.log("The user is logged in with Google");
-      router.replace("/dashboard");
+      if (!googleError.value) {
+        console.log("The user is logged in with Google");
+        router.replace("/dashboard");
+      }
     };
 
     // Twitter
     const handleTwitter = async () => {
       await twitterLogin();
-      console.log("The user is logged in with Twitter");
-      router.replace("/dashboard");
+      if (!twitterError.value) {
+        console.log("The user is logged in with Twitter");
+        router.replace("/dashboard");
+      }
     };
 
     // Emit Events

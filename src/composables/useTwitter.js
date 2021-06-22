@@ -8,7 +8,7 @@ const twitterLogin = async () => {
  twitterError.value = null;
  const res = await new firebase.auth.TwitterAuthProvider();
 
- firebase
+ await firebase
   .auth()
   .signInWithPopup(res)
   .then((result) => {
