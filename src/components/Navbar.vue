@@ -11,9 +11,9 @@
           <i class="fas fa-bars"></i>
         </div>
         <div class="navbar__right--lg">
-          <p class="navbar__login" :class="{ 'sign-up': mode }">
+          <p class="navbar__login" :class="{ 'sign-up': isSignUpMode }">
             <router-link to="/sign-up">
-              <span @click="loginClicked">Login</span>
+              <span @click="loginButtonClicked">Login</span>
             </router-link>
           </p>
           <router-link to="/sign-up">
@@ -30,21 +30,18 @@
 <script>
 export default {
   name: "Navbar",
-  props: ["mode"],
-  data() {
-    return {
-      isSignUpMode: "",
+  props: ["isSignUpMode"],
+  setup(props, context) {
+    // Emit events
+    const signUpButtonClicked = () => {
+      context.emit("signUpClicked");
     };
+    const loginButtonClicked = () => {
+      context.emit("loginClicked");
+    };
+
+    return { loginButtonClicked, signUpButtonClicked };
   },
-  methods: {
-    signUpButtonClicked() {
-      this.emitter.emit("signUpButtonClicked");
-    },
-    loginClicked() {
-      this.emitter.emit("loginClicked");
-    },
-  },
-  computed: {},
 };
 </script>
 

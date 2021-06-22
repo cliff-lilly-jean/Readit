@@ -1,6 +1,10 @@
 <template>
   <div id="sign-up">
-    <Navbar :mode="isSignUpMode"></Navbar>
+    <Navbar
+      :isSignUpMode="isSignUpMode"
+      @signUpClicked="onSignUpClicked"
+      @loginClicked="onLoginClicked"
+    ></Navbar>
     <div :class="{ 'sign-up-mode': isSignUpMode }" class="container">
       <div class="forms-container">
         <div class="signin-signup">
@@ -161,7 +165,7 @@ export default {
     Navbar,
     Footer,
   },
-  setup() {
+  setup(props, context) {
     const { signupError, signup } = useSignup();
     const { loginError, login } = useLogin();
     const { facebookError, facebookLogin } = useFacebook();
@@ -171,6 +175,7 @@ export default {
     const name = ref("");
     const email = ref("");
     const password = ref("");
+    const isSignUpMode = ref("");
 
     // Signup
     const handleSignup = async () => {
@@ -214,6 +219,29 @@ export default {
       router.replace("/dashboard");
     };
 
+    // Emit Events
+    const onSignUpClicked = () => {
+      isSignUpMode.value = true;
+    };
+
+    const onLoginClicked = () => {
+      isSignUpMode.value = false;
+    };
+
+    // Methods
+    const signUpButtonIsPressed = () => {
+      isSignUpMode.value = true;
+    };
+    const signInButtonIsPressed = () => {
+      isSignUpMode.value = false;
+    };
+    const newHereButtonClicked = () => {
+      isSignUpMode.value = true;
+    };
+    const alreadyAMember = () => {
+      isSignUpMode.value = false;
+    };
+
     return {
       name,
       email,
@@ -228,36 +256,19 @@ export default {
       googleError,
       handleTwitter,
       twitterError,
+      isSignUpMode,
+      onSignUpClicked,
+      onLoginClicked,
+      alreadyAMember,
+      newHereButtonClicked,
+      signInButtonIsPressed,
+      signUpButtonIsPressed,
     };
   },
   data() {
     return {
-      isSignUpMode: "",
       userId: null,
     };
-  },
-  methods: {
-    signUpButtonIsPressed() {
-      this.isSignUpMode = true;
-    },
-    signInButtonIsPressed() {
-      this.isSignUpMode = false;
-    },
-    newHereButtonClicked() {
-      this.isSignUpMode = true;
-    },
-    alreadyAMember() {
-      this.isSignUpMode = false;
-    },
-  },
-  mounted() {
-    this.emitter.on("signUpButtonClicked", () => {
-      this.isSignUpMode = true;
-    });
-
-    this.emitter.on("loginClicked", () => {
-      this.isSignUpMode = false;
-    });
   },
 };
 </script>

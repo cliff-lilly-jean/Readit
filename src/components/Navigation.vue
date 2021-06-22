@@ -59,7 +59,7 @@ export default {
       await logout();
       if (!logoutError.value) {
         console.log("User logged out");
-        // router.replace("/");
+        router.replace("/");
       }
     };
 

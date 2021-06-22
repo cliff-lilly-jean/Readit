@@ -23,7 +23,6 @@
             class="fas fa-barcode"
           ></i>
         </label>
-        {{}}
       </div>
       <div
         class="scanner-box-container"
@@ -47,22 +46,35 @@
 
 <script>
 import Quagga from "quagga";
+import $store from "../store/index";
+import { ref } from "vue";
 export default {
   props: ["currentUser"],
-  data() {
+  setup(props, context) {
+    const toggleState = ref(false);
+    const barcodeScannerHoverMessage = ref(
+      "Use your webcam to scan the books barcode"
+    );
+
+    // Methods
+    const closeBarcodeScanner = () => {
+      $store.state.scannerBoxContainerOpacity = false;
+      Quagga.stop;
+    };
+
+    const toggleMenu = () => {
+      context.emit("toggleMenu", (toggleState.value = !toggleState.value));
+    };
+
     return {
-      toggleState: false,
-      barcodeScannerHoverMessage: "Use your webcam to scan the books barcode",
+      closeBarcodeScanner,
+      toggleState,
+      barcodeScannerHoverMessage,
+      toggleMenu,
     };
   },
-  methods: {
-    toggleMenu() {
-      this.emiter.$emit("toggleMenu", (this.toggleState = !this.toggleState));
-    },
-    closeBarcodeScanner() {
-      this.$store.state.scannerBoxContainerOpacity = false;
-      Quagga.stop;
-    },
+  data() {
+    return {};
   },
 };
 </script>

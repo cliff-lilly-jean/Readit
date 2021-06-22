@@ -1,17 +1,22 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-// import { auth, db } from './firebase/config';
-import mitt from 'mitt';
+import { auth } from './firebase/config';
 import $store from '../src/store/index';
 import 'es6-promise/auto';
 
-// Event bus init
-const emitter = mitt();
+let app;
 
-const app = createApp(App);
+auth.onAuthStateChanged(() => {
+
+ if (!app) {
+  app = createApp(App)
+   .use(router)
+   .use($store)
+   .mount('#app');
+ }
+});
+
+
 // app.use(auth);
 // app.use(db);
-app.use($store);
-app.config.globalProperties.emitter = emitter;
-app.use(router).mount('#app');
