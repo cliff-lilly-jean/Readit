@@ -29,7 +29,7 @@ export default {
   },
   setup() {
     const { load, books } = getBooks();
-    console.log(books);
+
     load();
     return { books };
   },

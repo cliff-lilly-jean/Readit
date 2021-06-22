@@ -1,5 +1,5 @@
 <template>
-  <div id="user-dashboard">
+  <div v-if="user" id="user-dashboard">
     <div class="container">
       <!-- Navigation Start -->
       <Navigation :toggleState="toggleState"></Navigation>
@@ -7,7 +7,10 @@
       <!-- Main Start -->
       <div :class="{ active: toggleState }" class="main">
         <!-- Top Bar Start -->
-        <Topbar @toggleMenu="toggleStateChange"></Topbar>
+        <Topbar
+          :currentUser="currentUser"
+          @toggleMenu="toggleStateChange"
+        ></Topbar>
         <!-- Top Bar End -->
         <!-- Card Box Start -->
         <UserTotals></UserTotals>
@@ -30,6 +33,8 @@ import Topbar from "../components/Topbar";
 import UserTotals from "../components/UserTotals";
 import RecentBooks from "../components/RecentBooks";
 import RecentConnections from "../components/RecentConnections";
+import { ref } from "vue";
+import getUser from "../composables/getUser";
 
 export default {
   components: {
@@ -38,6 +43,12 @@ export default {
     UserTotals,
     RecentBooks,
     RecentConnections,
+  },
+  setup() {
+    const { user } = getUser();
+    const currentUser = ref(user);
+
+    return { user, currentUser };
   },
   data() {
     return {

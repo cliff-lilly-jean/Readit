@@ -1,25 +1,15 @@
 import { ref } from 'vue';
-import { db } from "../firebase/config";
+import { auth } from '../firebase/config';
 
-const getUser = (id) => {
- const books = ref(null);
- const error = ref(null);
+const user = ref(auth.currentUser);
 
- const load = async () => {
-  try {
-   const res = await db.collection('users').doc(id).get();
-   console.log(res.data());
-   // books.value = res.docs.map(doc => {
-   //  console.log({ ...doc.data(), id: doc.id });
-   //  return { ...doc.data(), id: doc.id };
-   // });
-  }
-  catch (err) {
-   error.value = err.message;
-   console.log(error.value);
-  }
- };
- return { books, error, load };
+auth.onAuthStateChanged(_user => {
+ console.log('User stated changed. Current user is: ', _user);
+ user.value = _user;
+});
+
+const getUser = () => {
+ return { user };
 };
 
 export default getUser;

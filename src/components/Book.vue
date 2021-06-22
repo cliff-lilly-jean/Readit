@@ -1,11 +1,11 @@
 <template>
   <!-- TODO: Create a page that shows the books details when clicked -->
   <div id="books">
-    <div v-for="book in books" :key="book.id" class="book-container">
+    <!-- <div v-for="book in books" :key="book.title" class="book-container">
       <div v-for="img in book" :key="img.bookThumbnail" class="book">
         <img :src="img.bookThumbnail" alt="The thumbnail of the book" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

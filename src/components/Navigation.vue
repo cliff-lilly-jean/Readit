@@ -34,25 +34,7 @@
             <span class="title">Clubs</span>
           </router-link>
         </li>
-        <li>
-          <router-link to="/help">
-            <span class="icon"><i class="fas fa-question-circle"></i></span>
-            <span class="title">Help</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/settings">
-            <span class="icon"><i class="fas fa-cog"></i></span>
-            <span class="title">Settings</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/password">
-            <span class="icon"><i class="fas fa-lock"></i></span>
-            <span class="title">Password</span>
-          </router-link>
-        </li>
-        <li @click="signOut">
+        <li @click="handleLogout">
           <!-- TODO: Force this link to automatically make the sign out form active -->
           <a>
             <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
@@ -66,18 +48,22 @@
 </template>
 
 <script>
-import { auth } from "../firebase/config";
+import useLogout from "../composables/useLogout";
+import router from "../router/index";
 export default {
   props: ["toggleState"],
-  data() {
-    return {};
-  },
-  methods: {
-    signOut() {
-      auth.signOut().then(() => {
-        this.$router.replace("/");
-      });
-    },
+  setup() {
+    const { logout, logoutError } = useLogout();
+
+    const handleLogout = async () => {
+      await logout();
+      if (!logoutError.value) {
+        console.log("User logged out");
+        // router.replace("/");
+      }
+    };
+
+    return { handleLogout };
   },
 };
 </script>

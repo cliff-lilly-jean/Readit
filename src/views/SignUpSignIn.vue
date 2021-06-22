@@ -5,7 +5,7 @@
       <div class="forms-container">
         <div class="signin-signup">
           <!-- TODO: Add a form action -->
-          <form class="sign-in-form">
+          <form @submit.prevent="handleLogin" class="sign-in-form">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-envelope-open-text"></i>
@@ -26,12 +26,7 @@
               />
             </div>
             <div class="mobile-input-container">
-              <input
-                @click.prevent="login"
-                type="submit"
-                value="Login"
-                class="btn solid"
-              />
+              <input type="submit" value="Login" class="btn solid" />
               <input
                 class="mobile-input__input"
                 @click="newHereButtonClicked"
@@ -39,25 +34,23 @@
                 value="New Here?"
               />
             </div>
-
             <p class="social-text">
               Or Sign in with one fo your social platforms
             </p>
-            <!-- TODO: Link the social icons to their respective platform -->
             <div class="social-media">
-              <a @click="facebookSignIn" href="#" class="social-icon">
+              <a @click="handleFacebook" href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a @click="twitterSignIn" href="#" class="social-icon">
+              <a @click="handleTwitter" href="#" class="social-icon">
                 <i class="fab fa-twitter"></i>
               </a>
-              <a @click="googleSignIn" href="#" class="social-icon">
+              <a @click="handleGoogle" href="#" class="social-icon">
                 <i class="fab fa-google"></i>
               </a>
             </div>
+            <div class="error">{{ loginError }}</div>
           </form>
-          <!-- TODO: Add a form action -->
-          <form class="sign-up-form">
+          <form @submit.prevent="handleSignup" class="sign-up-form">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
@@ -82,12 +75,7 @@
               />
             </div>
             <div class="mobile-input-container">
-              <input
-                @click.prevent="signUp"
-                type="submit"
-                class="btn"
-                value="Sign up"
-              />
+              <input type="submit" class="btn" value="Sign up" />
               <input
                 class="mobile-input__input"
                 @click="alreadyAMember"
@@ -100,16 +88,17 @@
               Or Sign up with one of your social platforms
             </p>
             <div class="social-media">
-              <a @click="facebookSignIn" href="#" class="social-icon">
+              <a @click="handleFacebook" href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a @click="twitterSignIn" href="#" class="social-icon">
+              <a @click="handleTwitter" href="#" class="social-icon">
                 <i class="fab fa-twitter"></i>
               </a>
-              <a @click="googleSignIn" href="#" class="social-icon">
+              <a @click="handleGoogle" href="#" class="social-icon">
                 <i class="fab fa-google"></i>
               </a>
             </div>
+            <div class="error">{{ signupError }}</div>
           </form>
         </div>
       </div>
@@ -159,20 +148,92 @@
 <script>
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import firebase from "../../node_modules/firebase/app";
-// import getUser from "../composables/getUser";
+import { ref } from "vue";
+import useSignup from "../composables/useSignup";
+import useLogin from "../composables/useLogin";
+import useFacebook from "../composables/useFacebook";
+import useGoogle from "../composables/useGoogle";
+import useTwitter from "../composables/useTwitter";
+import router from "../router/index";
+
 export default {
   components: {
     Navbar,
     Footer,
   },
+  setup() {
+    const { signupError, signup } = useSignup();
+    const { loginError, login } = useLogin();
+    const { facebookError, facebookLogin } = useFacebook();
+    const { googleError, googleLogin } = useGoogle();
+    const { twitterError, twitterLogin } = useTwitter();
 
+    const name = ref("");
+    const email = ref("");
+    const password = ref("");
+
+    // Signup
+    const handleSignup = async () => {
+      await signup(email.value, password.value, name.value);
+      name.value = "";
+      email.value = "";
+      password.value = "";
+      router.replace("/dashboard");
+      console.log("The user has signed up");
+    };
+
+    // Login
+    const handleLogin = async () => {
+      await login(email.value, password.value);
+      if (!loginError.value) {
+        name.value = "";
+        email.value = "";
+        router.replace("/dashboard");
+        console.log("The user is logged in");
+      }
+    };
+
+    // Facebook
+    const handleFacebook = async () => {
+      await facebookLogin();
+      console.log("The user is logged in with Facebook");
+      router.replace("/dashboard");
+    };
+
+    // Google
+    const handleGoogle = async () => {
+      await googleLogin();
+      console.log("The user is logged in with Google");
+      router.replace("/dashboard");
+    };
+
+    // Twitter
+    const handleTwitter = async () => {
+      await twitterLogin();
+      console.log("The user is logged in with Twitter");
+      router.replace("/dashboard");
+    };
+
+    return {
+      name,
+      email,
+      password,
+      handleSignup,
+      handleLogin,
+      signupError,
+      loginError,
+      handleFacebook,
+      facebookError,
+      handleGoogle,
+      googleError,
+      handleTwitter,
+      twitterError,
+    };
+  },
   data() {
     return {
       isSignUpMode: "",
-      name: "",
-      email: "",
-      password: "",
+      userId: null,
     };
   },
   methods: {
@@ -187,153 +248,6 @@ export default {
     },
     alreadyAMember() {
       this.isSignUpMode = false;
-    },
-    signUp() {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
-        .then((cred) => {
-          // Create a new database record with the new sign up into the users collection
-          return firebase
-            .firestore()
-            .collection("users")
-            .doc(cred.user.uid)
-            .set({
-              name: this.name,
-              email: this.email,
-            });
-        })
-        .then(() => {
-          this.name = "";
-          this.email = "";
-          this.password = "";
-          alert("Your account has been created. Use the login form to sign in");
-          this.isSignUpMode = false;
-        });
-    },
-    login() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(() => {
-          this.email = "";
-          this.password = "";
-          this.$router.replace("/dashboard");
-        });
-    },
-    facebookSignIn() {
-      var provider = new firebase.auth.FacebookAuthProvider();
-
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then((result) => {
-          var credential = result.credential;
-
-          // The signed-in user info.
-          var user = result.user;
-
-          this.name = user.displayName;
-          this.email = user.email;
-
-          firebase.firestore().collection("users").doc(result.user.uid).set({
-            name: this.name,
-            email: this.email,
-          });
-
-          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-          var accessToken = credential.accessToken;
-
-          console.log(user, accessToken);
-          this.$router.replace("/dashboard");
-        })
-        .catch((error) => {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // The email of the user's account used.
-          var errorEmail = error.email;
-          // The firebase.auth.AuthCredential type that was used.
-          var credential = error.credential;
-
-          console.log(errorCode, errorMessage, errorEmail, credential);
-        });
-    },
-    googleSignIn() {
-      var provider = new firebase.auth.GoogleAuthProvider();
-
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then((result) => {
-          var credential = result.credential;
-
-          // The signed-in user info.
-          var user = result.user;
-
-          this.name = user.displayName;
-          this.email = user.email;
-
-          firebase.firestore().collection("users").doc(result.user.uid).set({
-            name: this.name,
-            email: this.email,
-          });
-
-          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-          var accessToken = credential.accessToken;
-
-          console.log(user, accessToken);
-          this.$router.replace("/dashboard");
-        })
-        .catch((error) => {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // The email of the user's account used.
-          var errorEmail = error.email;
-          // The firebase.auth.AuthCredential type that was used.
-          var credential = error.credential;
-
-          console.log(errorCode, errorMessage, errorEmail, credential);
-        });
-    },
-    twitterSignIn() {
-      var provider = new firebase.auth.TwitterAuthProvider();
-
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then((result) => {
-          var credential = result.credential;
-
-          // The signed-in user info.
-          var user = result.user;
-
-          this.name = user.displayName;
-          this.email = user.email;
-
-          firebase.firestore().collection("users").doc(result.user.uid).set({
-            name: this.name,
-            email: this.email,
-          });
-
-          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-          var accessToken = credential.accessToken;
-
-          console.log(user, accessToken);
-          this.$router.replace("/dashboard");
-        })
-        .catch((error) => {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // The email of the user's account used.
-          var errorEmail = error.email;
-          // The firebase.auth.AuthCredential type that was used.
-          var credential = error.credential;
-
-          console.log(errorCode, errorMessage, errorEmail, credential);
-        });
     },
   },
   mounted() {

@@ -1,58 +1,60 @@
 {
-  "name": "readit",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+ "name": "readit",
+ "version": "0.1.0",
+ "private": true,
+ "scripts": {
+  "serve": "vue-cli-service serve",
+  "build": "vue-cli-service build",
+  "lint": "vue-cli-service lint"
+ },
+ "dependencies": {
+  "@fortawesome/fontawesome-free": "^5.15.3",
+  "@fortawesome/fontawesome-svg-core": "^1.2.35",
+  "@fortawesome/free-solid-svg-icons": "^5.15.3",
+  "@fortawesome/vue-fontawesome": "^2.0.2",
+  "@vue/composition-api": "^1.0.0-rc.9",
+  "axios": "^0.21.1",
+  "core-js": "^3.6.5",
+  "es6-promise": "^4.2.8",
+  "firebase": "^8.6.5",
+  "gsap": "^3.6.0",
+  "mitt": "^2.1.0",
+  "quagga": "^0.12.1",
+  "vue": "^3.0.0-beta.1",
+  "vue-router": "^4.0.0-0",
+  "vuefire": "^2.2.5",
+  "vuex": "^4.0.1"
+ },
+ "devDependencies": {
+  "@vue/cli-plugin-babel": "~4.5.0",
+  "@vue/cli-plugin-eslint": "~4.5.0",
+  "@vue/cli-plugin-router": "^4.5.13",
+  "@vue/cli-service": "~4.5.0",
+  "@vue/compiler-sfc": "^3.0.0-beta.1",
+  "babel-eslint": "^10.1.0",
+  "eslint": "^6.7.2",
+  "eslint-plugin-vue": "^7.0.0-alpha.0",
+  "vue-cli-plugin-vue-next": "~0.1.4"
+ },
+ "eslintConfig": {
+  "root": true,
+  "env": {
+   "node": true
   },
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.3",
-    "@fortawesome/fontawesome-svg-core": "^1.2.35",
-    "@fortawesome/free-solid-svg-icons": "^5.15.3",
-    "@fortawesome/vue-fontawesome": "^2.0.2",
-    "@vue/composition-api": "^1.0.0-rc.9",
-    "axios": "^0.21.1",
-    "core-js": "^3.6.5",
-    "es6-promise": "^4.2.8",
-    "firebase": "^8.6.5",
-    "gsap": "^3.6.0",
-    "mitt": "^2.1.0",
-    "quagga": "^0.12.1",
-    "vue": "^3.0.0-beta.1",
-    "vue-router": "^4.0.0-0",
-    "vuefire": "^2.2.5",
-    "vuex": "^4.0.1"
+  "extends": [
+   "plugin:vue/vue3-essential",
+   "eslint:recommended"
+  ],
+  "parserOptions": {
+   "parser": "babel-eslint"
   },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-router": "^4.5.13",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0-beta.1",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0-alpha.0",
-    "vue-cli-plugin-vue-next": "~0.1.4"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  "rules": {
+   "no-unused-vars": "off"
+  }
+ },
+ "browserslist": [
+  "> 1%",
+  "last 2 versions",
+  "not dead"
+ ]
 }

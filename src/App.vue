@@ -67,6 +67,11 @@ section {
   background: #af3a42;
 }
 
+.error {
+  color: #ff3f80;
+  font-size: 14px;
+}
+
 /* Center the Video when the barcode scanner is clicked */
 #scanner-box video,
 #scanner-box canvas {

@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 import router from '../router/index';
 
+
 // Barcode scanner library
 import Quagga from "quagga";
 
@@ -22,12 +23,9 @@ export default createStore({
   lastCode: "",
   scannerBoxContainerOpacity: false,
   cardPopulated: false,
+  isSignUpMode: "",
  },
  mutations: {
-  addNewBook(state) {
-   console.log(state);
-   console.log("a new book has been added");
-  },
   toggleScanner() {
    if (this.state.scannerBoxContainerOpacity === false) {
     Quagga.stop();
@@ -72,7 +70,7 @@ export default createStore({
       description: this.state.bookDescription,
       publishDate: this.state.bookPublishDate,
       bookThumbnail: this.state.bookThumb,
-      avgRating: this.state.bookRating
+      avgRating: this.state.bookRating,
      };
     });
    router.replace("/card-view");

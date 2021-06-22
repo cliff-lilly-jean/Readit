@@ -5,9 +5,6 @@ import Dashboard from "../views/Dashboard.vue";
 import Library from '../views/Library.vue';
 import Connections from '../views/Connections.vue';
 import Clubs from '../views/Clubs.vue';
-import Help from '../views/Help.vue';
-import Password from '../views/Password.vue';
-import Settings from '../views/Settings.vue';
 import CardView from '../views/CardView.vue';
 
 const routes = [
@@ -42,21 +39,6 @@ const routes = [
   path: '/clubs',
   name: 'clubs',
   component: Clubs
- },
- {
-  path: '/help',
-  name: 'help',
-  component: Help
- },
- {
-  path: '/settings',
-  name: 'settings',
-  component: Settings
- },
- {
-  path: '/password',
-  name: 'password',
-  component: Password
  },
  {
   path: '/card-view',

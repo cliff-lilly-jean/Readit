@@ -23,6 +23,7 @@
             class="fas fa-barcode"
           ></i>
         </label>
+        {{}}
       </div>
       <div
         class="scanner-box-container"
@@ -35,8 +36,9 @@
           <i @click="closeBarcodeScanner" class="fas fa-times"></i>
         </div>
       </div>
-      <router-link to="/settings" class="user">
-        <img src="../assets/images/_img/cliff-jean-portrait.jpg" alt="" />
+      <router-link to="/library" class="user">
+        <img v-if="currentUser.photoURL" :src="currentUser.photoURL" alt="" />
+        <img v-else src="../assets/images/_img/default_user.svg" alt="" />
       </router-link>
     </div>
     <!-- Top Bar End -->
@@ -46,6 +48,7 @@
 <script>
 import Quagga from "quagga";
 export default {
+  props: ["currentUser"],
   data() {
     return {
       toggleState: false,
