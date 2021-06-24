@@ -19,10 +19,12 @@ const twitterLogin = async () => {
 
    let name = user.displayName;
    let email = user.email;
+   let userId = user.uid;
 
    return db.collection('users').doc(result.user.uid).update({
     name: name,
     email: email,
+    userId: userId
    });
 
    // This gives you a twitter Access Token. You can use it to access the twitter API.

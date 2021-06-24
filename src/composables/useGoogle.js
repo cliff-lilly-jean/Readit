@@ -19,11 +19,12 @@ const googleLogin = async () => {
 
    let name = user.displayName;
    let email = user.email;
+   let userId = user.uid;
 
    return db.collection('users').doc(result.user.uid).update({
     name: name,
     email: email,
-    books: []
+    userId: userId
    });
 
    // This gives you a google Access Token. You can use it to access the google API.

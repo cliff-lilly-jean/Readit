@@ -13,9 +13,11 @@ const signup = async (email, password, name) => {
 
    let name = user.displayName;
    let email = user.email;
+   let userId = user.uid;
    return db.collection('users').doc(cred.user.uid).set({
     name: name,
     email: email,
+    userId: userId,
     books: []
    }).then(() => {
     if (!res) {
