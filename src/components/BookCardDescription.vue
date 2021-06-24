@@ -1,6 +1,7 @@
 <template>
   <div id="book-card">
     <!-- 9781612680170 -->
+    <!-- 9780062905161 -->
     <div class="container">
       <div class="book" :class="{ active: $store.state.cardPopulated }">
         <div class="book__img">
@@ -16,10 +17,13 @@
 
           <h1 class="book__title">{{ $store.state.bookTitle }}</h1>
           <p class="book__author">{{ $store.state.bookAuthor }}</p>
-          <p class="book__rating">{{ avgRatingToStars }}</p>
+          <!-- <p class="book__rating">{{ avgRatingToStars }}</p> -->
           <p class="book__description">{{ $store.state.bookDescription }}</p>
           <!-- TODO: See if there's a way to connect this to amazon or some other bookstore -->
-          <a @click="$store.dispatch('addNewBook')" class="button"
+          <a
+            @click="addNewBookToFirebase"
+            @keypress.enter.prevent="addNewBookToFirebase"
+            class="button"
             >Add to library +</a
           >
         </div>
@@ -29,7 +33,39 @@
 </template>
 
 <script>
+import getUser from "../composables/getUser";
+import $store from "../store/index";
+import { ref } from "vue";
+import router from "../router/index";
+import { db, auth } from "../firebase/config";
+import useCollection from "../composables/useCollection";
+import firebase from "firebase/app";
 export default {
+  setup() {
+    // const { addDoc, error } = useCollection("user");
+    const { user } = getUser();
+
+    const addNewBookToFirebase = async () => {
+      const newBook = {
+        title: $store.state.bookTitle,
+        author: $store.state.bookAuthor,
+        description: $store.state.bookDescription,
+        cover: $store.state.bookThumb,
+      };
+      await db
+        .collection("users")
+        .doc(user.value.uid)
+        .update({
+          name: user.value.displayName,
+          email: user.value.email,
+          books: firebase.firestore.FieldValue.arrayUnion(newBook),
+        });
+      console.log(user.value);
+      router.replace("/library");
+    };
+
+    return { addNewBookToFirebase };
+  },
   data() {
     return {
       bookStars: [],

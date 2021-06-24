@@ -11,7 +11,6 @@ const getBooks = () => {
    // TODO: Get the user data for a sepcific logged in user
 
    const res = await db.collection('users').get();
-
    books.value = res.docs.map(doc => {
     return { ...doc.data().books, id: doc.id };
    });

@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import firebase from "../../node_modules/firebase/app";
-
+import { db } from '../firebase/config';
 
 const twitterError = ref(null);
 
@@ -20,16 +20,13 @@ const twitterLogin = async () => {
    let name = user.displayName;
    let email = user.email;
 
-   firebase.firestore().collection("users").doc(result.user.uid).set({
-    name: name.value,
-    email: email.value,
+   return db.collection('users').doc(result.user.uid).update({
+    name: name,
+    email: email,
    });
 
    // This gives you a twitter Access Token. You can use it to access the twitter API.
    // var accessToken = credential.accessToken;
-   let userId = result.user.uid;
-   console.log(userId.value);
-   // this.$router.replace("/dashboard");
   })
   .catch((twitterError) => {
    // Handle Errors here.

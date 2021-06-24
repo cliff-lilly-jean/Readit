@@ -41,21 +41,25 @@ const routes = [
   path: '/library',
   name: 'library',
   component: Library,
+  beforeEnter: requireAuth
  },
  {
   path: '/connections',
   name: 'connections',
   component: Connections,
+  beforeEnter: requireAuth
  },
  {
   path: '/clubs',
   name: 'clubs',
   component: Clubs,
+  beforeEnter: requireAuth
  },
  {
   path: '/card-view',
   name: 'cardView',
   component: CardView,
+  beforeEnter: requireAuth
  },
 
 ];

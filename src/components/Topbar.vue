@@ -35,7 +35,7 @@
           <i @click="closeBarcodeScanner" class="fas fa-times"></i>
         </div>
       </div>
-      <router-link to="/library" class="user">
+      <!-- <router-link to="/library" class="user">
         <img
           v-if="currentUser.photoURL"
           :src="currentUser.photoURL"
@@ -48,7 +48,7 @@
           alt="The default user icon"
           width="20"
         />
-      </router-link>
+      </router-link> -->
     </div>
     <!-- Top Bar End -->
   </div>

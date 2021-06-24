@@ -18,12 +18,15 @@
 import Navigation from "../components/Navigation";
 import Topbar from "../components/Topbar";
 import BookCardDescription from "../components/BookCardDescription";
+import { ref } from "vue";
 export default {
   components: {
     Navigation,
     Topbar,
     BookCardDescription,
   },
+  setup() {},
+
   data() {
     return {
       toggleState: false,

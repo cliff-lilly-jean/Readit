@@ -56,7 +56,9 @@ export default createStore({
     .then((response) => {
      // Get the data and add it to books
      // 9781612680170
+
      let returnData = response.data.items[0].volumeInfo;
+
      this.state.bookTitle = returnData.title;
      this.state.bookAuthor = returnData.authors[0];
      this.state.bookDescription = returnData.description;
@@ -76,6 +78,7 @@ export default createStore({
    router.replace("/card-view");
    this.state.cardPopulated = true;
    this.state.usersSearch = "";
+   console.log(this.state.books);
   },
 
   // Barcode Scanner Method
