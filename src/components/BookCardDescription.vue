@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import getBooks from "../composables/getBooks";
 import getUser from "../composables/getUser";
 import $store from "../store/index";
 import { ref } from "vue";
@@ -44,6 +45,7 @@ export default {
   setup() {
     // const { addDoc, error } = useCollection("user");
     const { user } = getUser();
+    const { load, books } = getBooks();
 
     const addNewBookToFirebase = async () => {
       const newBook = {

@@ -11,11 +11,14 @@ const getBooks = () => {
 
    let user = auth.currentUser;
 
-   await db.collection('users').doc(user.uid).get().then(cred => {
-    books.value = cred.data().books.map(book => {
-     return { book };
+   await db
+    .collection("users")
+    .doc(user.uid)
+    .onSnapshot((snap) => {
+     books.value = snap.data().books.map(book => {
+      return { book };
+     });
     });
-   });
   }
   catch (err) {
    error.value = err.message;

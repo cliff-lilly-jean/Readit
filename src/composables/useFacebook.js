@@ -43,7 +43,7 @@ const facebookLogin = async () => {
    // The firebase.auth.AuthCredential type that was used.
    let credential = facebookError.credential;
 
-   // console.log(errorCode, errorMessage, errorEmail, credential);
+   console.log(errorCode, errorMessage, errorEmail);
   });
 };
 

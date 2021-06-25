@@ -8,20 +8,28 @@
       <table>
         <thead>
           <tr>
+            <td>Cover</td>
             <td>Title</td>
             <td>Author</td>
-            <td>Publsh Date</td>
           </tr>
         </thead>
 
         <tbody v-for="book in books" :key="book.title">
           <tr>
             <!-- TODO: Pull this data from the server -->
+            <td>
+              <img
+                class="book-cover"
+                :src="book.book.cover"
+                width="100px"
+                alt=""
+              />
+            </td>
             <td>{{ book.book.title }}</td>
             <td>{{ book.book.author }}</td>
-            <td>
+            <!-- <td>
               <span class="status delivered">{{ book.book.publishDate }}</span>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>
@@ -131,6 +139,10 @@ table thead td {
 
 .inprogress {
   background: #1795ce;
+}
+
+.book-cover {
+  max-width: 100px;
 }
 
 @media (max-width: 758px) {

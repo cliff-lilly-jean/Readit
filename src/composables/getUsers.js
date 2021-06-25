@@ -10,7 +10,7 @@ const getUsers = () => {
    const res = await db.collection('users').get();
 
    books.value = res.docs.map(doc => {
-    console.log({ ...doc.data(), id: doc.id });
+
     return { ...doc.data(), id: doc.id };
    });
   }

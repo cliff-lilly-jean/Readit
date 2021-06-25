@@ -28,10 +28,10 @@ export default {
     Book,
   },
   setup() {
-    const { load, books } = getBooks();
+    const { load, books, error } = getBooks();
 
     load();
-    return { books };
+    return { books, error };
   },
   data() {
     return {

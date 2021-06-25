@@ -15,8 +15,12 @@
 </template>
 
 <script>
+import getBooks from "../composables/getBooks";
+import { ref } from "vue";
+import { db, auth } from "../firebase/config";
 export default {
   props: ["books"],
+  setup() {},
 };
 </script>
 

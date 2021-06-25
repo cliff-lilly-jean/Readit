@@ -183,7 +183,6 @@ export default {
       name.value = "";
       email.value = "";
       password.value = "";
-      console.log("The user has signed up");
       router.replace("/dashboard");
     };
 
@@ -193,7 +192,6 @@ export default {
       if (!loginError.value) {
         name.value = "";
         email.value = "";
-        console.log("The user is logged in");
         router.replace("/dashboard");
       }
     };
@@ -202,7 +200,6 @@ export default {
     const handleFacebook = async () => {
       await facebookLogin();
       if (!facebookError.value) {
-        console.log("The user is logged in with Facebook");
         router.replace("/dashboard");
       }
     };
@@ -211,7 +208,6 @@ export default {
     const handleGoogle = async () => {
       await googleLogin();
       if (!googleError.value) {
-        console.log("The user is logged in with Google");
         router.replace("/dashboard");
       }
     };
@@ -220,7 +216,6 @@ export default {
     const handleTwitter = async () => {
       await twitterLogin();
       if (!twitterError.value) {
-        console.log("The user is logged in with Twitter");
         router.replace("/dashboard");
       }
     };

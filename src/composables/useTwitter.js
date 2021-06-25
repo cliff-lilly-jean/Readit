@@ -40,9 +40,9 @@ const twitterLogin = async () => {
    // The firebase.auth.AuthCredential type that was used.
    let credential = twitterError.credential;
 
-   // console.log(errorCode, errorMessage, errorEmail, credential);
+   console.log(errorCode, errorMessage, errorEmail, credential);
   });
- // console.log();
+
 };
 
 const useTwitter = () => {

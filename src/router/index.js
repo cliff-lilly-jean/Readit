@@ -11,7 +11,6 @@ import { auth } from '../firebase/config';
 // Route Auth Guard to prevent users that are not logged in from accessing certain routes
 const requireAuth = (to, from, next) => {
  let user = auth.currentUser;
- console.log('Current user in Route Auth gaurd: ', user);
  if (!user) {
   next({ name: 'landing-page' });
  } else {

@@ -38,7 +38,6 @@ export default createStore({
    // Add the newBookObj to the books Arr
    // TODO: Have this method add the new book the current users books Arr in Firebase
    this.state.books.push(this.state.newBookObj);
-   console.log(this.state.books);
 
    // TODO: Route to the library page
    router.replace('/library');
@@ -78,7 +77,6 @@ export default createStore({
    router.replace("/card-view");
    this.state.cardPopulated = true;
    this.state.usersSearch = "";
-   console.log(this.state.books);
   },
 
   // Barcode Scanner Method
