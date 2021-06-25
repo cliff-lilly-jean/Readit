@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import firebase from "../../node_modules/firebase/app";
-import { db } from '../firebase/config';
+import { db, auth } from '../firebase/config';
 
 
 const facebookError = ref(null);
@@ -21,11 +21,16 @@ const facebookLogin = async () => {
 
    let name = user.displayName;
    let email = user.email;
+   let userId = result.user.uid;
 
-   return db.collection('users').doc(result.user.uid).update({
+
+   return db.collection('users').doc(result.user.uid).set({
     name: name,
-    email: email
-   });
+    email: email,
+    userId: userId
+    // Added merge: true sor that the data doesn't get overwritten if it already exists
+   }, { merge: true });
+
    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
    // var accessToken = credential.accessToken;
   })

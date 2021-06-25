@@ -60,7 +60,7 @@ export default {
           email: user.value.email,
           books: firebase.firestore.FieldValue.arrayUnion(newBook),
         });
-      console.log(user.value);
+
       router.replace("/library");
     };
 
