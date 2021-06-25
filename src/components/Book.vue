@@ -1,8 +1,8 @@
 <template>
   <!-- TODO: Create a page that shows the books details when clicked -->
   <div id="books">
-    <div v-if="books.length">
-      <div v-for="book in books" :key="book.title" class="book-container">
+    <div v-if="books.length" class="book-container">
+      <div v-for="book in books" :key="book.title">
         <div v-for="img in book" :key="img.cover" class="book">
           <img :src="img.cover" />
         </div>
