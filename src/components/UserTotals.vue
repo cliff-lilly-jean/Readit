@@ -17,7 +17,7 @@
         <div class="card">
           <div>
             <!-- TODO: Pull this data from the server -->
-            <div class="numbers">{{ $store.state.books.length }}</div>
+            <div class="numbers">{{ books.length }}</div>
             <div class="cardName">Library</div>
           </div>
           <div class="iconBox">
@@ -42,8 +42,15 @@
 </template>
 
 <script>
+import getBooks from "../composables/getBooks";
 export default {
   components: {},
+  setup() {
+    const { books, error, load } = getBooks();
+    load();
+
+    return { books, error, load };
+  },
   data() {
     return {
       booksInLibrary: 97,

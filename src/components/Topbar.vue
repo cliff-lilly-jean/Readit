@@ -35,7 +35,7 @@
           <i @click="closeBarcodeScanner" class="fas fa-times"></i>
         </div>
       </div>
-      <!-- <router-link to="/library" class="user">
+      <router-link to="/library" class="user">
         <img
           v-if="currentUser.photoURL"
           :src="currentUser.photoURL"
@@ -48,7 +48,7 @@
           alt="The default user icon"
           width="20"
         />
-      </router-link> -->
+      </router-link>
     </div>
     <!-- Top Bar End -->
   </div>
@@ -58,13 +58,16 @@
 import Quagga from "quagga";
 import $store from "../store/index";
 import { ref } from "vue";
+import { auth } from "../firebase/config";
 export default {
-  props: ["currentUser"],
+  // props: ["currentUser"],
   setup(props, context) {
     const toggleState = ref(false);
     const barcodeScannerHoverMessage = ref(
       "Use your webcam to scan the books barcode"
     );
+
+    const currentUser = auth.currentUser;
 
     // Methods
     const closeBarcodeScanner = () => {
@@ -81,6 +84,7 @@ export default {
       toggleState,
       barcodeScannerHoverMessage,
       toggleMenu,
+      currentUser,
     };
   },
 };

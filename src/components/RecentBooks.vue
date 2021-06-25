@@ -13,13 +13,14 @@
             <td>Publsh Date</td>
           </tr>
         </thead>
-        <tbody v-for="book in $store.state.books" :key="book.title">
+
+        <tbody v-for="book in books" :key="book.title">
           <tr>
             <!-- TODO: Pull this data from the server -->
-            <td>{{ book.title }}</td>
-            <td>{{ book.author }}</td>
+            <td>{{ book.book.title }}</td>
+            <td>{{ book.book.author }}</td>
             <td>
-              <span class="status delivered">{{ book.publishDate }}</span>
+              <span class="status delivered">{{ book.book.publishDate }}</span>
             </td>
           </tr>
         </tbody>
@@ -29,9 +30,13 @@
 </template>
 
 <script>
+import getBooks from "../composables/getBooks";
 export default {
-  data() {
-    return {};
+  setup() {
+    const { books, error, load } = getBooks();
+    load();
+
+    return { books, error, load };
   },
 };
 </script>
