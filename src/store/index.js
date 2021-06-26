@@ -63,16 +63,16 @@ export default createStore({
      this.state.bookDescription = returnData.description;
      this.state.bookRating = returnData.averageRating;
      this.state.bookThumb = returnData.imageLinks.thumbnail;
-     this.state.bookPublishDate = returnData.publishDate;
+     this.state.bookPublishDate = returnData.publishedDate;
 
-     this.state.newBookObj = {
-      title: this.state.bookTitle,
-      author: this.state.bookAuthor,
-      description: this.state.bookDescription,
-      publishDate: this.state.bookPublishDate,
-      bookThumbnail: this.state.bookThumb,
-      avgRating: this.state.bookRating,
-     };
+     // this.state.newBookObj = {
+     //  title: this.state.bookTitle,
+     //  author: this.state.bookAuthor,
+     //  description: this.state.bookDescription,
+     //  publishDate: this.state.bookPublishDate,
+     //  bookThumbnail: this.state.bookThumb,
+     //  avgRating: this.state.bookRating,
+     // };
     });
    router.replace("/card-view");
    this.state.cardPopulated = true;
@@ -122,17 +122,17 @@ export default createStore({
        this.state.bookDescription = returnData.description;
        this.state.bookRating = returnData.averageRating;
        this.state.bookThumb = returnData.imageLinks.thumbnail;
-       this.state.bookPublishDate = returnData.publishDate;
+       this.state.bookPublishDate = returnData.publishedDate;
 
        // Create a book Object to push into the books array
-       this.state.newBookObj = {
-        title: this.state.bookTitle,
-        author: this.state.bookAuthor,
-        description: this.state.bookDescription,
-        publishDate: this.state.bookPublishDate,
-        bookThumbnail: this.state.bookThumb,
-        avgRating: this.state.bookRating
-       };
+       // this.state.newBookObj = {
+       //  title: this.state.bookTitle,
+       //  author: this.state.bookAuthor,
+       //  description: this.state.bookDescription,
+       //  publishDate: this.state.bookPublishDate,
+       //  bookThumbnail: this.state.bookThumb,
+       //  avgRating: this.state.bookRating
+       // };
       });
      this.state.usersSearch = "";
      this.state.scannerBoxContainerOpacity = false;

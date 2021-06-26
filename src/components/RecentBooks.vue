@@ -11,25 +11,38 @@
             <td>Cover</td>
             <td>Title</td>
             <td>Author</td>
+            <td>Publish Date</td>
           </tr>
         </thead>
 
         <tbody v-for="book in books" :key="book.title">
+          <!-- TODO: Link the books to the description page when clicked -->
           <tr>
-            <!-- TODO: Pull this data from the server -->
             <td>
-              <img
-                class="book-cover"
-                :src="book.book.cover"
-                width="100px"
-                alt=""
-              />
+              <div v-if="book.book.cover.length">
+                <img
+                  class="book-cover"
+                  :src="book.book.cover"
+                  width="100px"
+                  alt=""
+                />
+              </div>
+              <div velse>
+                <img
+                  class="book-cover"
+                  src="../assets/images/_img/image_not_available.jpeg"
+                  width="100px"
+                  alt=""
+                />
+              </div>
             </td>
             <td>{{ book.book.title }}</td>
             <td>{{ book.book.author }}</td>
-            <!-- <td>
-              <span class="status delivered">{{ book.book.publishDate }}</span>
-            </td> -->
+            <td>
+              <span style="display: block" class="status delivered">{{
+                book.book.published
+              }}</span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -88,6 +101,7 @@ table thead td {
 
 .recentBooks table tr {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .recentBooks table tbody tr:last-child {
@@ -106,11 +120,12 @@ table thead td {
 .recentBooks table thead tr td:last-child,
 .recentBooks table tbody tr td:last-child {
   text-align: right;
+  max-width: 100px;
 }
 
 .recentBooks table thead tr td:nth-child(2),
 .recentBooks table tbody tr td:nth-child(2) {
-  text-align: right;
+  text-align: left;
   padding-right: 20px;
 }
 

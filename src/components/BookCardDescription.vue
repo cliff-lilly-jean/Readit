@@ -53,6 +53,7 @@ export default {
         author: $store.state.bookAuthor,
         description: $store.state.bookDescription,
         cover: $store.state.bookThumb,
+        published: $store.state.bookPublishDate,
       };
       await db
         .collection("users")
