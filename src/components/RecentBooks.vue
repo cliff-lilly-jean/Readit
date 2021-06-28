@@ -11,7 +11,6 @@
             <td>Cover</td>
             <td>Title</td>
             <td>Author</td>
-            <td>Publish Date</td>
           </tr>
         </thead>
 
@@ -27,7 +26,7 @@
                   alt=""
                 />
               </div>
-              <div velse>
+              <div v-else>
                 <img
                   class="book-cover"
                   src="../assets/images/_img/image_not_available.jpeg"
@@ -38,11 +37,6 @@
             </td>
             <td>{{ book.book.title }}</td>
             <td>{{ book.book.author }}</td>
-            <td>
-              <span style="display: block" class="status delivered">{{
-                book.book.published
-              }}</span>
-            </td>
           </tr>
         </tbody>
       </table>

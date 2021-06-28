@@ -17,7 +17,8 @@ const signup = async (email, password, name) => {
    return db.collection('users').doc(cred.user.uid).set({
     name: name,
     email: email,
-    userId: userId,
+    connections: [],
+    clubs: [],
     books: []
    }).then(() => {
     if (!res) {

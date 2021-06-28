@@ -6,9 +6,11 @@
         <div v-for="img in book" :key="img.cover">
           <div v-if="img.cover.length">
             <img :src="img.cover" />
+            <p class="book-title">{{ img.title }}</p>
           </div>
           <div v-else>
             <img src="../assets/images/_img/image_not_available.jpeg" alt="" />
+            <p class="book-title">{{ img.title }}</p>
           </div>
         </div>
       </div>
@@ -20,9 +22,6 @@
 </template>
 
 <script>
-import getBooks from "../composables/getBooks";
-import { ref } from "vue";
-import { db, auth } from "../firebase/config";
 export default {
   props: ["books"],
 };
@@ -48,6 +47,10 @@ export default {
   cursor: pointer;
   transform: scale(1.05);
   transition: 0.4s ease;
+}
+
+.book-title {
+  text-align: center;
 }
 
 .no-books {

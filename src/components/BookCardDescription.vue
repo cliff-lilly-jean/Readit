@@ -11,14 +11,13 @@
           />
         </div>
         <div class="book__info">
-          <div class="book__date">
+          <!-- <div class="book__date">
             <span>{{ $store.state.bookPublishDate }}</span>
-          </div>
+          </div> -->
 
           <h1 class="book__title">{{ $store.state.bookTitle }}</h1>
           <p class="book__author">{{ $store.state.bookAuthor }}</p>
-          <!-- <p class="book__rating">{{ avgRatingToStars }}</p> -->
-          <p class="book__description">{{ $store.state.bookDescription }}</p>
+          <p class="book__description">{{ snippet }}</p>
           <!-- TODO: See if there's a way to connect this to amazon or some other bookstore -->
           <a
             @click="addNewBookToFirebase"
@@ -33,19 +32,19 @@
 </template>
 
 <script>
-import getBooks from "../composables/getBooks";
 import getUser from "../composables/getUser";
+
 import $store from "../store/index";
-import { ref } from "vue";
 import router from "../router/index";
-import { db, auth } from "../firebase/config";
-import useCollection from "../composables/useCollection";
+import { db } from "../firebase/config";
 import firebase from "firebase/app";
+import { computed } from "vue";
 export default {
   setup() {
-    // const { addDoc, error } = useCollection("user");
     const { user } = getUser();
-    const { load, books } = getBooks();
+    const snippet = computed(() => {
+      return $store.state.bookDescription.substring(0, 200) + "...";
+    });
 
     const addNewBookToFirebase = async () => {
       const newBook = {
@@ -63,11 +62,10 @@ export default {
           email: user.value.email,
           books: firebase.firestore.FieldValue.arrayUnion(newBook),
         });
-
       router.replace("/library");
     };
 
-    return { addNewBookToFirebase };
+    return { addNewBookToFirebase, snippet };
   },
   data() {
     return {

@@ -24,7 +24,6 @@ const twitterLogin = async () => {
    return db.collection('users').doc(result.user.uid).set({
     name: name,
     email: email,
-    userId: userId
     // Added merge: true sor that the data doesn't get overwritten if it already exists
    }, { merge: true });
 

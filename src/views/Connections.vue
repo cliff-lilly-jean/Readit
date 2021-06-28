@@ -8,6 +8,14 @@
       <!-- Top Bar Start -->
       <Topbar @toggleMenu="toggleStateChange"></Topbar>
       <!-- Top Bar End -->
+      <!-- TODO: Ceate a field to search the firebase database for connections -->
+      <!-- Connection Body Content Start -->
+      <div class="connection-body-content">
+        <!-- Search Connections Start -->
+        <ConnectionSearchBar></ConnectionSearchBar>
+        <!-- Search Connections End -->
+      </div>
+      <!-- Connection Body Content End -->
     </div>
     <!-- Main End -->
   </div>
@@ -16,10 +24,12 @@
 <script>
 import Navigation from "../components/Navigation";
 import Topbar from "../components/Topbar";
+import ConnectionSearchBar from "../components/ConnectionSearchBar";
 export default {
   components: {
     Navigation,
     Topbar,
+    ConnectionSearchBar,
   },
   data() {
     return {
@@ -34,5 +44,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.connection-body-content {
+  display: flex;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
