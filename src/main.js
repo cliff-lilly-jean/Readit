@@ -5,6 +5,7 @@ import { auth } from './firebase/config';
 import $store from '../src/store/index';
 import 'es6-promise/auto';
 
+
 // Create an instance of app
 let app;
 

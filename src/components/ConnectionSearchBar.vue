@@ -6,30 +6,82 @@
         <input
           type="text"
           placeholder="Make a connection"
-          v-model="userSearch"
+          v-model="userConnections"
+          autocomplete="off"
+          @input="filterUsers"
         />
       </div>
       <span class="clear" @click="clearSearch"></span>
     </div>
+    <!-- TODO: Create a dropdown list of users, by name pulled from firebase as the user types -->
+    <div v-if="filteredUserConnections">
+      <ul>
+        <li
+          v-for="filteredConnection in filteredUserConnections"
+          :key="filteredConnection"
+          @click="addNewConnection(filteredConnection)"
+        >
+          {{ filteredConnection }}
+        </li>
+      </ul>
+    </div>
+    <div v-else></div>
+
+    <!-- TODO: Create request queue functionality for pending requests -->
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
+import getAllDbConnections from "../composables/getAllDbConnections";
 export default {
   setup() {
+    // Data
     const searchToggle = ref(false);
-    const userSearch = ref("");
+    const userConnections = ref("");
+    const filteredUserConnections = ref([]);
+    const { load, allCurrentUsersInDb } = getAllDbConnections();
+
+    // const filteredConnections = computed(() => {
+    //   return connections.value.filter((connection) => {
+    //     return connection.name.match(userSearch.value);
+    //   });
+    // });
+
+    // Methods
+    const filterUsers = () => {
+      if (!userConnections.value) {
+        filteredUserConnections.value = "";
+      } else {
+        filteredUserConnections.value = allCurrentUsersInDb.value.filter(
+          (user) => {
+            return user
+              .toLowerCase()
+              .startsWith(userConnections.value.toLowerCase());
+          }
+        );
+      }
+    };
 
     const searchBarToggle = () => {
       searchToggle.value = !searchToggle.value;
     };
 
     const clearSearch = () => {
-      userSearch.value = "";
+      userConnections.value = "";
     };
 
-    return { searchToggle, searchBarToggle, clearSearch, userSearch };
+    load();
+
+    return {
+      searchToggle,
+      searchBarToggle,
+      clearSearch,
+      userConnections,
+      allCurrentUsersInDb,
+      filterUsers,
+      filteredUserConnections,
+    };
   },
 };
 </script>
