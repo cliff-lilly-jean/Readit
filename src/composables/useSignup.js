@@ -6,14 +6,14 @@ const signupError = ref(null);
 
 const signup = async (email, password, name) => {
  signupError.value = null;
+
  try {
   const res = await auth.createUserWithEmailAndPassword(email, password).then(cred => {
    // The signed-in user info.
    let user = cred.user;
-
-   let name = user.displayName;
    let email = user.email;
-   let userId = user.uid;
+
+
    return db.collection('users').doc(cred.user.uid).set({
     name: name,
     email: email,

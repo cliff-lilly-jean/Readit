@@ -15,8 +15,9 @@
     </div>
     <!-- TODO: Create a dropdown list of users, by name pulled from firebase as the user types -->
     <div v-if="filteredUserConnections">
-      <ul>
+      <ul class="connections-list">
         <li
+          class="connections-list__user"
           v-for="filteredConnection in filteredUserConnections"
           :key="filteredConnection"
           @click="addNewConnection(filteredConnection)"
@@ -25,7 +26,6 @@
         </li>
       </ul>
     </div>
-    <div v-else></div>
 
     <!-- TODO: Create request queue functionality for pending requests -->
   </div>
@@ -40,6 +40,7 @@ export default {
     const searchToggle = ref(false);
     const userConnections = ref("");
     const filteredUserConnections = ref([]);
+    const newConnection = ref("");
     const { load, allCurrentUsersInDb } = getAllDbConnections();
 
     // const filteredConnections = computed(() => {
@@ -63,8 +64,15 @@ export default {
       }
     };
 
+    const addNewConnection = (connection) => {
+      newConnection.value = connection;
+      console.log(newConnection.value);
+    };
+
     const searchBarToggle = () => {
       searchToggle.value = !searchToggle.value;
+      filteredUserConnections.value = "";
+      userConnections.value = "";
     };
 
     const clearSearch = () => {
@@ -81,6 +89,7 @@ export default {
       allCurrentUsersInDb,
       filterUsers,
       filteredUserConnections,
+      addNewConnection,
     };
   },
 };
@@ -202,5 +211,27 @@ export default {
   height: 15px;
   background: #fff;
   transform: rotate(315deg);
+}
+
+.connections-list {
+  max-width: 800px;
+  padding: 20px;
+  transition: 0.5s;
+}
+
+.connections-list__user {
+  list-style: none;
+  padding: 20px 50px;
+  background: #fdbabf;
+  text-align: center;
+  margin: 10px auto 20px;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: 0.5s;
+}
+
+.connections-list__user:hover {
+  transform: scale(1.05);
+  transition: 0.5s;
 }
 </style>
