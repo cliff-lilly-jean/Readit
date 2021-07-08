@@ -22,7 +22,13 @@
           :key="filteredConnection"
           @click="addNewConnection(filteredConnection)"
         >
-          {{ filteredConnection }}
+          <div v-if="filteredConnection.photo == null">
+            <img src="../assets/images/_img/default_user.svg" alt="" />
+          </div>
+          <div v-else>
+            <img :src="filteredConnection.photo" alt="" />
+          </div>
+          <span> {{ filteredConnection.name }}</span>
         </li>
       </ul>
     </div>
@@ -34,6 +40,7 @@
 <script>
 import { ref } from "vue";
 import getAllDbConnections from "../composables/getAllDbConnections";
+import { auth } from "../firebase/config";
 export default {
   setup() {
     // Data
@@ -43,12 +50,6 @@ export default {
     const newConnection = ref("");
     const { load, allCurrentUsersInDb } = getAllDbConnections();
 
-    // const filteredConnections = computed(() => {
-    //   return connections.value.filter((connection) => {
-    //     return connection.name.match(userSearch.value);
-    //   });
-    // });
-
     // Methods
     const filterUsers = () => {
       if (!userConnections.value) {
@@ -56,7 +57,7 @@ export default {
       } else {
         filteredUserConnections.value = allCurrentUsersInDb.value.filter(
           (user) => {
-            return user
+            return user.name
               .toLowerCase()
               .startsWith(userConnections.value.toLowerCase());
           }

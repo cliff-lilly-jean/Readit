@@ -21,12 +21,18 @@ const facebookLogin = async () => {
 
    let name = user.displayName;
    let email = user.email;
-   let userId = result.user.uid;
+   let photo = user.photoURL;
+
+   // Make a check if there is a photoURL
+   if (photo == null) {
+    photo = 'https://img.icons8.com/material-rounded/48/000000/user.png';
+   }
 
 
    return db.collection('users').doc(result.user.uid).set({
     name: name,
     email: email,
+    photo: photo,
     // Added merge: true sor that the data doesn't get overwritten if it already exists
    }, { merge: true });
 

@@ -12,11 +12,18 @@ const signup = async (email, password, name) => {
    // The signed-in user info.
    let user = cred.user;
    let email = user.email;
+   let photo = user.photoURL;
+
+   // Make a check if there is a photoURL
+   if (photo == null) {
+    photo = 'https://img.icons8.com/material-rounded/48/000000/user.png';
+   }
 
 
    return db.collection('users').doc(cred.user.uid).set({
     name: name,
     email: email,
+    photo: photo,
     connections: [],
     clubs: [],
     books: []

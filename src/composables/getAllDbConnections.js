@@ -10,21 +10,13 @@ const getConnections = () => {
  const load = async () => {
   try {
 
+
    const res = await db.collection("users").get();
    connections.value = res.docs.map(doc => {
-    const docData = { ...doc.data() };
-    allCurrentUsersInDb.value.push(docData.name);
+    const docData = { ...doc.data(), id: doc.id };
+    allCurrentUsersInDb.value.push(docData);
     return allCurrentUsersInDb.value;
    });
-
-   // await db
-   //  .collection("users")
-   //  .doc(user.uid)
-   //  .onSnapshot((snap) => {
-   //   books.value = snap.data().books.map(book => {
-   //    return { book };
-   //   });
-   //  });
   }
   catch (err) {
    error.value = err.message;
