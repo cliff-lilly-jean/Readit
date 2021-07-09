@@ -14,6 +14,7 @@
         <!-- Search Connections Start -->
         <ConnectionSearchBar></ConnectionSearchBar>
         <!-- Search Connections End -->
+        <Connection :connections="connections"></Connection>
       </div>
       <!-- Connection Body Content End -->
     </div>
@@ -25,11 +26,21 @@
 import Navigation from "../components/Navigation";
 import Topbar from "../components/Topbar";
 import ConnectionSearchBar from "../components/ConnectionSearchBar";
+import Connection from "../components/Connection";
+import getConnections from "../composables/getConnections";
 export default {
   components: {
     Navigation,
     Topbar,
     ConnectionSearchBar,
+    Connection,
+  },
+  setup() {
+    const { loadConnections, connections, error } = getConnections();
+
+    loadConnections();
+    console.log(connections);
+    return { connections, error };
   },
   data() {
     return {
@@ -47,7 +58,8 @@ export default {
 <style scoped>
 .connection-body-content {
   display: flex;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;

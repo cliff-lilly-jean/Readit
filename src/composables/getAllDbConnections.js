@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { db, auth } from "../firebase/config";
 
 
-const getConnections = () => {
+const getAllDbConnections = () => {
  const connections = ref([]);
  const allCurrentUsersInDb = ref([]);
  const error = ref(null);
@@ -26,4 +26,4 @@ const getConnections = () => {
  return { allCurrentUsersInDb, error, load };
 };
 
-export default getConnections;
+export default getAllDbConnections;

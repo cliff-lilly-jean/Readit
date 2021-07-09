@@ -5,7 +5,7 @@
         <div class="card">
           <div>
             <!-- TODO: Pull this data from the server -->
-            <div class="numbers">{{ $store.state.connections.length }}</div>
+            <div class="numbers">{{ connections.length }}</div>
             <div class="cardName">Connections</div>
           </div>
           <div class="iconBox">
@@ -43,20 +43,16 @@
 
 <script>
 import getBooks from "../composables/getBooks";
+import getConnections from "../composables/getConnections";
 export default {
   components: {},
   setup() {
     const { books, error, load } = getBooks();
+    const { connections, loadConnections } = getConnections();
     load();
+    loadConnections();
 
-    return { books, error, load };
-  },
-  data() {
-    return {
-      booksInLibrary: 97,
-      totalConnections: 11,
-      numberOfClubs: 2,
-    };
+    return { books, error, load, connections, loadConnections };
   },
 };
 </script>

@@ -47,7 +47,9 @@
 <script>
 import { ref } from "vue";
 import getAllDbConnections from "../composables/getAllDbConnections";
-import { auth } from "../firebase/config";
+import getUser from "../composables/getUser";
+import firebase from "firebase/app";
+import { auth, db } from "../firebase/config";
 export default {
   setup() {
     // Data
@@ -55,8 +57,9 @@ export default {
     const userConnections = ref("");
     const filteredUserConnections = ref([]);
     const { load, allCurrentUsersInDb } = getAllDbConnections();
+
+    const { user } = getUser();
     const newConnection = ref(null);
-    const connectionNumber = ref(null);
 
     // Methods
     const filterUsers = () => {
@@ -73,10 +76,25 @@ export default {
       }
     };
 
-    const addNewConnection = (connection) => {
+    // TODO: Fix bug where a user can add themselves as a connection
+    const addNewConnection = async (connection) => {
       newConnection.value = connection;
-      console.log(newConnection.value);
+
       // TODO: Add the new connections name, photo and books to the connections arr
+      const currentConnection = {
+        name: newConnection.value.name,
+        photo: newConnection.value.photo,
+        email: newConnection.value.email,
+        books: newConnection.value.books,
+        id: newConnection.value.id,
+      };
+      await db
+        .collection("users")
+        .doc(user.value.uid)
+        .update({
+          connections:
+            firebase.firestore.FieldValue.arrayUnion(currentConnection),
+        });
     };
 
     const searchBarToggle = () => {
@@ -114,7 +132,7 @@ export default {
 
 #connection-search-bar {
   align-self: flex-start;
-  margin: 50px auto;
+  margin: 0 auto;
 }
 
 .search {
@@ -126,12 +144,12 @@ export default {
   transition: 0.5s;
   box-shadow: 0 0 0 5px #ffedee;
   overflow: hidden;
-  margin: 0 auto;
+  margin: 50px auto 0;
 }
 
 .search.active {
   width: 360px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .search .icon {
@@ -234,10 +252,12 @@ export default {
   transition: 0.5s;
   border-radius: 5px;
   overflow: hidden;
+  z-index: 1000;
 }
 
 .connections-list.active {
   background: #e8505b;
+  z-index: 1;
 }
 
 .connections-list__user {

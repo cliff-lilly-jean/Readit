@@ -5,123 +5,18 @@
         <h2>Recent Connections</h2>
       </div>
       <table>
-        <tbody>
+        <tbody v-for="connection in connections" :key="connection.name">
           <tr>
             <td width="60px">
               <div class="imgBx">
-                <img
-                  src="../assets/images/_img/cliff-jean-portrait.jpg"
-                  alt=""
-                />
+                <img :src="connection.connection.photo" width="100px" alt="" />
               </div>
             </td>
             <td>
               <h4>
                 <!-- TODO: Pull this data from the server -->
-                {{ connectionName }}<br />
-                <span>{{ connectionLocation }} </span>
-              </h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx">
-                <img
-                  src="../assets/images/_img/cliff-jean-portrait.jpg"
-                  alt=""
-                />
-              </div>
-            </td>
-            <td>
-              <h4>
-                <!-- TODO: Pull this data from the server -->
-                {{ connectionName }}<br />
-                <span>{{ connectionLocation }} </span>
-              </h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx">
-                <img
-                  src="../assets/images/_img/cliff-jean-portrait.jpg"
-                  alt=""
-                />
-              </div>
-            </td>
-            <td>
-              <h4>
-                <!-- TODO: Pull this data from the server -->
-                {{ connectionName }}<br />
-                <span>{{ connectionLocation }} </span>
-              </h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx">
-                <img
-                  src="../assets/images/_img/cliff-jean-portrait.jpg"
-                  alt=""
-                />
-              </div>
-            </td>
-            <td>
-              <h4>
-                <!-- TODO: Pull this data from the server -->
-                {{ connectionName }}<br />
-                <span>{{ connectionLocation }} </span>
-              </h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx">
-                <img
-                  src="../assets/images/_img/cliff-jean-portrait.jpg"
-                  alt=""
-                />
-              </div>
-            </td>
-            <td>
-              <h4>
-                <!-- TODO: Pull this data from the server -->
-                {{ connectionName }}<br />
-                <span>{{ connectionLocation }} </span>
-              </h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx">
-                <img
-                  src="../assets/images/_img/cliff-jean-portrait.jpg"
-                  alt=""
-                />
-              </div>
-            </td>
-            <td>
-              <h4>
-                <!-- TODO: Pull this data from the server -->
-                {{ connectionName }}<br />
-                <span>{{ connectionLocation }} </span>
-              </h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="60px">
-              <div class="imgBx">
-                <img
-                  src="../assets/images/_img/cliff-jean-portrait.jpg"
-                  alt=""
-                />
-              </div>
-            </td>
-            <td>
-              <h4>
-                <!-- TODO: Pull this data from the server -->
-                {{ connectionName }}<br />
-                <span>{{ connectionLocation }} </span>
+                {{ connection.connection.name }}<br />
+                <span>{{ connection.connection.email }} </span>
               </h4>
             </td>
           </tr>
@@ -132,12 +27,13 @@
 </template>
 
 <script>
+import getConnections from "../composables/getConnections";
+
 export default {
-  data() {
-    return {
-      connectionName: "Cliff Jean",
-      connectionLocation: "North Lauderdale",
-    };
+  setup() {
+    const { connections, error, loadConnections } = getConnections();
+    loadConnections();
+    return { connections, error, loadConnections };
   },
 };
 </script>
