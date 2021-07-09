@@ -33,6 +33,9 @@ const facebookLogin = async () => {
     name: name,
     email: email,
     photo: photo,
+    books: firebase.firestore.FieldValue.arrayUnion(),
+    clubs: firebase.firestore.FieldValue.arrayUnion(),
+    connections: firebase.firestore.FieldValue.arrayUnion()
     // Added merge: true sor that the data doesn't get overwritten if it already exists
    }, { merge: true });
 

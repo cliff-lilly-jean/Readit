@@ -15,20 +15,27 @@
     </div>
     <!-- TODO: Create a dropdown list of users, by name pulled from firebase as the user types -->
     <div v-if="filteredUserConnections">
-      <ul class="connections-list">
+      <ul class="connections-list" :class="{ active: searchToggle }">
         <li
           class="connections-list__user"
           v-for="filteredConnection in filteredUserConnections"
           :key="filteredConnection"
           @click="addNewConnection(filteredConnection)"
         >
-          <div v-if="filteredConnection.photo == null">
-            <img src="../assets/images/_img/default_user.svg" alt="" />
-          </div>
-          <div v-else>
+          <span class="connectionImage" v-if="filteredConnection.photo == null">
+            <img
+              src="https://img.icons8.com/material-rounded/48/000000/user.png"
+              alt=""
+            />
+          </span>
+          <span class="connectionImage" v-else>
             <img :src="filteredConnection.photo" alt="" />
-          </div>
-          <span> {{ filteredConnection.name }}</span>
+          </span>
+          <span class="connectionName">{{ filteredConnection.name }}</span>
+          <span class="connectionBooks">
+            {{ filteredConnection.books.length }}
+          </span>
+          <span><i class="fas fa-book"></i></span>
         </li>
       </ul>
     </div>
@@ -47,8 +54,9 @@ export default {
     const searchToggle = ref(false);
     const userConnections = ref("");
     const filteredUserConnections = ref([]);
-    const newConnection = ref("");
     const { load, allCurrentUsersInDb } = getAllDbConnections();
+    const newConnection = ref(null);
+    const connectionNumber = ref(null);
 
     // Methods
     const filterUsers = () => {
@@ -68,6 +76,7 @@ export default {
     const addNewConnection = (connection) => {
       newConnection.value = connection;
       console.log(newConnection.value);
+      // TODO: Add the new connections name, photo and books to the connections arr
     };
 
     const searchBarToggle = () => {
@@ -78,6 +87,7 @@ export default {
 
     const clearSearch = () => {
       userConnections.value = "";
+      filteredUserConnections.value = "";
     };
 
     load();
@@ -116,10 +126,12 @@ export default {
   transition: 0.5s;
   box-shadow: 0 0 0 5px #ffedee;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .search.active {
   width: 360px;
+  margin: 0 auto;
 }
 
 .search .icon {
@@ -214,25 +226,65 @@ export default {
   transform: rotate(315deg);
 }
 
+/* Connections List */
+
 .connections-list {
-  max-width: 800px;
+  width: 500px;
   padding: 20px;
   transition: 0.5s;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.connections-list.active {
+  background: #e8505b;
 }
 
 .connections-list__user {
-  list-style: none;
-  padding: 20px 50px;
-  background: #fdbabf;
-  text-align: center;
-  margin: 10px auto 20px;
-  cursor: pointer;
-  border-radius: 50px;
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  color: #fff;
+  margin: 5px 0;
   transition: 0.5s;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.connections-list__user:nth-child(1) {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.connections-list__user:nth-child(2) {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.connections-list__user:nth-child(3) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* .connections-list__user span:nth-child(1) {
+  width: 30px;
+}
+
+.connections-list__user span:nth-child(2) {
+  width: 300px;
+}
+
+.connections-list__user span:nth-child(3) {
+  width: 100px;
+} */
+
+.connections-list__user span img {
+  border-radius: 50%;
+  max-width: 50px;
 }
 
 .connections-list__user:hover {
   transform: scale(1.05);
   transition: 0.5s;
+  cursor: pointer;
+  background: #e8505b;
 }
 </style>

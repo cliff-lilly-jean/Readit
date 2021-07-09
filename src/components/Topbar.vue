@@ -44,7 +44,7 @@
         />
         <img
           v-else
-          src="../assets/images/_img/default_user.svg"
+          src="https://img.icons8.com/material-rounded/48/000000/user.png"
           alt="The default user icon"
           width="20"
         />
