@@ -14,7 +14,7 @@
       <span class="clear" @click="clearSearch"></span>
     </div>
     <!-- TODO: Create a dropdown list of users, by name pulled from firebase as the user types -->
-    <div v-if="filteredUserConnections">
+    <div class="returned-connections" v-if="filteredUserConnections">
       <ul class="connections-list" :class="{ active: searchToggle }">
         <li
           class="connections-list__user"
@@ -137,8 +137,10 @@ export default {
 
 .search {
   position: relative;
-  width: 60px;
-  height: 60px;
+  max-width: 60px;
+  width: 100%;
+  max-height: 60px;
+  height: 100%;
   background: #e8505b;
   border-radius: 60px;
   transition: 0.5s;
@@ -148,16 +150,18 @@ export default {
 }
 
 .search.active {
-  width: 360px;
-  /* margin: 0 auto; */
+  max-width: 360px;
+  width: 100%;
 }
 
 .search .icon {
   position: absolute;
   top: 0;
   left: 0;
-  width: 60px;
-  height: 60px;
+  max-width: 60px;
+  width: 100%;
+  max-height: 60px;
+  height: 100%;
   background: #e8505b;
   border-radius: 60px;
   display: flex;
@@ -170,8 +174,10 @@ export default {
 .search .icon:before {
   content: "";
   position: absolute;
-  width: 15px;
-  height: 15px;
+  max-width: 15px;
+  width: 100%;
+  max-height: 15px;
+  height: 100%;
   border: 3px solid #fefefe;
   border-radius: 50%;
   transform: translate(-4px, -4px);
@@ -180,15 +186,18 @@ export default {
 .search .icon:after {
   content: "";
   position: absolute;
-  width: 3px;
-  height: 12px;
+  max-width: 3px;
+  width: 100%;
+  max-height: 12px;
+  height: 100%;
   background: #fefefe;
   transform: translate(6px, 6px) rotate(315deg);
 }
 
 .search .input {
   position: relative;
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   height: 60px;
   left: 60px;
   display: flex;
@@ -217,8 +226,10 @@ export default {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 15px;
-  height: 15px;
+  max-width: 15px;
+  width: 100%;
+  max-height: 15px;
+  height: 100%;
   right: 15px;
   cursor: pointer;
   display: flex;
@@ -229,8 +240,10 @@ export default {
 .clear:before {
   position: absolute;
   content: "";
-  width: 1px;
-  height: 15px;
+  max-width: 1px;
+  width: 100%;
+  max-height: 15px;
+  height: 100%;
   background: #fff;
   transform: rotate(45deg);
 }
@@ -238,16 +251,25 @@ export default {
 .clear:after {
   position: absolute;
   content: "";
-  width: 1px;
-  height: 15px;
+  max-width: 1px;
+  width: 100%;
+  max-height: 15px;
+  height: 100%;
   background: #fff;
   transform: rotate(315deg);
 }
 
 /* Connections List */
 
+.returned-connections {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+}
+
 .connections-list {
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
   padding: 20px;
   transition: 0.5s;
   border-radius: 5px;
@@ -284,18 +306,6 @@ export default {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* .connections-list__user span:nth-child(1) {
-  width: 30px;
-}
-
-.connections-list__user span:nth-child(2) {
-  width: 300px;
-}
-
-.connections-list__user span:nth-child(3) {
-  width: 100px;
-} */
-
 .connections-list__user span img {
   border-radius: 50%;
   max-width: 50px;
@@ -306,5 +316,12 @@ export default {
   transition: 0.5s;
   cursor: pointer;
   background: #e8505b;
+}
+
+/* Media Queries */
+@media (max-width: 676px) {
+  .search .input input {
+    font-size: 16px;
+  }
 }
 </style>

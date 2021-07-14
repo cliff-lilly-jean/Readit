@@ -10,7 +10,7 @@
       <!-- Top Bar End -->
       <!-- TODO: Ceate a field to search the firebase database for connections -->
       <!-- Connection Body Content Start -->
-      <div class="connection-body-content">
+      <div class="connections-body-content">
         <!-- Search Connections Start -->
         <ConnectionSearchBar></ConnectionSearchBar>
         <!-- Search Connections End -->
@@ -56,12 +56,8 @@ export default {
 </script>
 
 <style scoped>
-.connection-body-content {
-  display: flex;
-  /* min-height: 100vh; */
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.connections-body-content {
+  max-width: 1000px;
+  padding: 0 10px;
 }
 </style>
