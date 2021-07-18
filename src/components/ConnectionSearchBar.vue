@@ -95,6 +95,9 @@ export default {
           connections:
             firebase.firestore.FieldValue.arrayUnion(currentConnection),
         });
+      searchToggle.value = !searchToggle.value;
+      filteredUserConnections.value = "";
+      userConnections.value = "";
     };
 
     const searchBarToggle = () => {
@@ -167,7 +170,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 1;
   cursor: pointer;
 }
 
