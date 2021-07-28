@@ -20,12 +20,18 @@
           </div>
         </div>
         <div class="connection__body">
-          <p class="connection__name">Name: {{ connection.connection.name }}</p>
-          <p class="connection__email">
-            Email: {{ connection.connection.email }}
+          <p class="connection__name">{{ connection.connection.name }}</p>
+          <p class="connection__description">
+            <span v-if="!connection.connection.description">
+              {{ connection.connection.email }}
+            </span>
+            <span v-else>
+              {{ connection.connection.description }}
+            </span>
           </p>
           <p class="connection__books">
-            # of Books: {{ connection.connection.books.length }}
+            <i class="fas fa-book" style="color: #ff6e69"></i>
+            {{ connection.connection.books.length }} books
           </p>
         </div>
       </div>
@@ -44,26 +50,40 @@ export default {
 
 <style scoped>
 .connection {
-  max-width: 350px;
+  max-width: 275px;
   width: 100%;
-  background: #44cba1;
+  background: #fefefe;
   margin: 20px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s;
+  min-height: 200px;
+}
+
+.connection:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .connection img {
   border-radius: 50%;
-  max-width: 50px;
+  min-width: 100px;
   width: 100%;
 }
 
 .connection__body {
-  font-weight: bold;
+  text-align: center;
   font-size: 18px;
+}
+
+.connection__name {
+  font-weight: 600;
+  color: #ff6e69;
 }
 
 .connection-container {
