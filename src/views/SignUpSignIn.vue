@@ -111,10 +111,7 @@
         <div class="panel left-panel">
           <div class="content">
             <h3>New here?</h3>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-              ex ratione. Aliquid!
-            </p>
+            <p>Welcome to ReadIt, Let's start building your library.</p>
             <button
               @click="signUpButtonIsPressed"
               class="btn transparent"
@@ -129,8 +126,7 @@
           <div class="content">
             <h3>One of us?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
+              Welcome back! Cant wait to see the new additions to your library.
             </p>
             <!-- TODO: Add OAuth -->
             <button
