@@ -27,7 +27,7 @@
     <img src="images/library.jpeg" alt="Logo" width="200" height="200">
   </a>
 
-  <h1 align="center"><a href="https://readit-social.netlify.app/" target='_blank'>ReadIt</a></h1>
+  <h1 align="center"><a href="https://readit-social.netlify.app/" target="_blank">ReadIt</a></h1>
 
 
   <!-- <p align="center">
