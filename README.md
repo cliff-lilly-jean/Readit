@@ -171,6 +171,7 @@ Add a new book to your library with the book ISBN
 - [ ] Add video chat for club meetings
 - [ ] Add ratings system
 - [ ] Add book recommendation system
+- [ ] Add chat functionality for p2p
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
