@@ -35,11 +35,7 @@ export default createStore({
  },
  actions: {
   addNewBook() {
-   // Add the newBookObj to the books Arr
-   // TODO: Have this method add the new book the current users books Arr in Firebase
    this.state.books.push(this.state.newBookObj);
-
-   // TODO: Route to the library page
    router.replace('/library');
   },
 
@@ -54,8 +50,6 @@ export default createStore({
     )
     .then((response) => {
      // Get the data and add it to books
-     // 9781612680170
-
      let returnData = response.data.items[0].volumeInfo;
 
      this.state.bookTitle = returnData.title;
@@ -64,15 +58,6 @@ export default createStore({
      this.state.bookRating = returnData.averageRating;
      this.state.bookThumb = returnData.imageLinks.thumbnail;
      this.state.bookPublishDate = returnData.publishedDate;
-
-     // this.state.newBookObj = {
-     //  title: this.state.bookTitle,
-     //  author: this.state.bookAuthor,
-     //  description: this.state.bookDescription,
-     //  publishDate: this.state.bookPublishDate,
-     //  bookThumbnail: this.state.bookThumb,
-     //  avgRating: this.state.bookRating,
-     // };
     });
    router.replace("/card-view");
    this.state.cardPopulated = true;
@@ -123,16 +108,6 @@ export default createStore({
        this.state.bookRating = returnData.averageRating;
        this.state.bookThumb = returnData.imageLinks.thumbnail;
        this.state.bookPublishDate = returnData.publishedDate;
-
-       // Create a book Object to push into the books array
-       // this.state.newBookObj = {
-       //  title: this.state.bookTitle,
-       //  author: this.state.bookAuthor,
-       //  description: this.state.bookDescription,
-       //  publishDate: this.state.bookPublishDate,
-       //  bookThumbnail: this.state.bookThumb,
-       //  avgRating: this.state.bookRating
-       // };
       });
      this.state.usersSearch = "";
      this.state.scannerBoxContainerOpacity = false;
@@ -145,7 +120,7 @@ export default createStore({
   },
  },
  getters: {
-  // TODO: Create a method to retrieve the current users books from Firebase
+
  },
  modules: {},
 });

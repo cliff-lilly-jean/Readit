@@ -68,9 +68,9 @@ export default {
       } else {
         filteredUserConnections.value = allCurrentUsersInDb.value.filter(
           (user) => {
-            return user.name
-              .toLowerCase()
-              .startsWith(userConnections.value.toLowerCase());
+            return user.email;
+            // .toLowerCase()
+            // .startsWith(userConnections.value.toLowerCase());
           }
         );
       }

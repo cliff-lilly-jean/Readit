@@ -11,11 +11,13 @@ const getConnections = () => {
 
    let user = auth.currentUser;
 
+
    await db
     .collection("users")
     .doc(user.uid)
     .onSnapshot((snap) => {
      connections.value = snap.data().connections.map(connection => {
+      console.log(connection);
       return { connection };
      });
     });
