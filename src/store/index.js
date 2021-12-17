@@ -111,7 +111,9 @@ export default createStore({
       });
      this.state.usersSearch = "";
      this.state.scannerBoxContainerOpacity = false;
+     console.log('Quagga stop');
      Quagga.stop();
+     localstream.stop();
      router.replace("/card-view");
      this.state.cardPopulated = true;
     });

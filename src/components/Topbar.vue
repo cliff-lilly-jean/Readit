@@ -72,7 +72,7 @@ export default {
     // Methods
     const closeBarcodeScanner = () => {
       $store.state.scannerBoxContainerOpacity = false;
-      Quagga.stop;
+      Quagga.stop();
     };
 
     const toggleMenu = () => {
