@@ -35,7 +35,7 @@
           <i @click="closeBarcodeScanner" class="fas fa-times"></i>
         </div>
       </div>
-      <router-link to="/library" class="user">
+      <router-link to="/profile" class="user">
         <img
           v-if="currentUser.photoURL"
           :src="currentUser.photoURL"

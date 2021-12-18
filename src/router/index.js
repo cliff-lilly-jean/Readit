@@ -6,7 +6,7 @@ import Library from '../views/Library.vue';
 import Connections from '../views/Connections.vue';
 import Clubs from '../views/Clubs.vue';
 import CardView from '../views/CardView.vue';
-import UserDescription from '../views/UserDescription.vue';
+import Profile from '../views/Profile.vue';
 import { auth } from '../firebase/config';
 
 // Route Auth Guard to prevent users that are not logged in from accessing certain routes
@@ -62,9 +62,9 @@ const routes = [
   beforeEnter: requireAuth
  },
  {
-  path: '/description',
-  name: 'UserDescription',
-  component: UserDescription,
+  path: '/profile',
+  name: 'Profile',
+  component: Profile,
   beforeEnter: requireAuth
  },
 
